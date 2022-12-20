@@ -1,6 +1,6 @@
 import 'package:get/get.dart';
 
-class DictationaryController extends GetxController {
+class DictionaryController extends GetxController {
   //TODO: Implement DictationaryController
 
   final count = 0.obs;

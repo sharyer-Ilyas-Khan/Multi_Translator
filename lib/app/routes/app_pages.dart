@@ -4,14 +4,16 @@ import '../modules/darwer/bindings/darwer_binding.dart';
 import '../modules/darwer/views/darwer_view.dart';
 import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
-import '../modules/dictationary/bindings/dictationary_binding.dart';
-import '../modules/dictationary/views/dictationary_view.dart';
+import '../modules/dictionary/bindings/dictationary_binding.dart';
+import '../modules/dictionary/views/dictionary_view.dart';
 import '../modules/feedback/bindings/feedback_binding.dart';
 import '../modules/feedback/views/feedback_view.dart';
 import '../modules/history/bindings/history_binding.dart';
 import '../modules/history/views/history_view.dart';
 import '../modules/image_text_translator/bindings/image_text_translator_binding.dart';
 import '../modules/image_text_translator/views/image_text_translator_view.dart';
+import '../modules/languages/bindings/languages_binding.dart';
+import '../modules/languages/views/languages_view.dart';
 import '../modules/multi_translator/bindings/multi_translator_binding.dart';
 import '../modules/multi_translator/views/multi_translator_view.dart';
 import '../modules/rate_us/bindings/rate_us_binding.dart';
@@ -33,7 +35,7 @@ class AppPages {
   static final routes = [
     GetPage(
       name: _Paths.DASHBOARD,
-      page: () => const DashboardView(),
+      page: () => DashboardView(),
       binding: DashboardBinding(),
     ),
     GetPage(
@@ -68,8 +70,8 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.DICTATIONARY,
-      page: () => const DictationaryView(),
-      binding: DictationaryBinding(),
+      page: () => const DictionaryView(),
+      binding: DictionaryBinding(),
     ),
     GetPage(
       name: _Paths.FEEDBACK,
@@ -85,6 +87,11 @@ class AppPages {
       name: _Paths.HISTORY,
       page: () => const HistoryView(),
       binding: HistoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.LANGUAGES,
+      page: () => const LanguagesView(),
+      binding: LanguagesBinding(),
     ),
   ];
 }

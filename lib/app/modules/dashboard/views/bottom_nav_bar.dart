@@ -12,7 +12,7 @@ class BottomNavBar extends StatelessWidget {
       child: Center(
         child: Container(
           height:Get.height*0.08,
-          width: Get.width*0.9,
+          width: Get.width*0.85,
           decoration: BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.circular(50),
@@ -23,17 +23,13 @@ class BottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
-              BottomNavButtons(icon: "Assets/svg/translator.svg",index: 0),
+              BottomNavButtons(icon:"Assets/svg/translator.svg",index: 0),
               BottomNavButtons(icon:"Assets/svg/voice.svg",index: 1),
-              BottomNavButtons(icon: "Assets/svg/camera.svg",index: 2),
+              BottomNavButtons(icon:"Assets/svg/camera.svg",index: 2),
               BottomNavButtons(icon:"Assets/svg/diary.svg",index: 3),
               BottomNavButtons(icon: "Assets/svg/multitranslator.svg",index: 4),
-
-
-
             ],
           )
-
         ),
       ),
     );

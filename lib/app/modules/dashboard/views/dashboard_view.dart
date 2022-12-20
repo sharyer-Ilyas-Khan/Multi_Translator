@@ -5,23 +5,26 @@ import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/dashboard/views/bottom_nav_bar.dart';
-import 'package:translator/app/modules/dictationary/views/dictationary_view.dart';
 import 'package:translator/app/modules/image_text_translator/views/image_text_translator_view.dart';
 import 'package:translator/app/modules/multi_translator/views/multi_translator_view.dart';
 import 'package:translator/app/modules/uni_translator/views/uni_translator_view.dart';
 import 'package:translator/app/modules/voice_translator/views/voice_translator_view.dart';
 
+import '../../dictionary/views/dictionary_view.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
-  const DashboardView({Key? key}) : super(key: key);
+   DashboardView({Key? key}) : super(key: key);
+  List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
   @override
   Widget build(BuildContext context) {
       DashboardController controller=Get.put(DashboardController());
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: const Text('Multi Translator',style:appBar,),
+        title:  Obx(()=> Text(title[controller.selectedIndex.value],style:appBar,)),
         centerTitle: true,
+        elevation: 0.0,
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: (){
@@ -53,7 +56,7 @@ class DashboardView extends GetView<DashboardController> {
                     UniTranslatorView(),
                     VoiceTranslatorView(),
                     ImageTextTranslatorView(),
-                    DictationaryView(),
+                    DictionaryView(),
                     MultiTranslatorView()
                   ],
                 ),
@@ -65,8 +68,11 @@ class DashboardView extends GetView<DashboardController> {
               Container(color: Colors.amber,
               child: Center(child: Text("AD"),),)),
           ///bottom nav bar
-           Expanded( child:BottomNavBar()),
-
+          SizedBox(
+            height: Get.height*0.14,
+            width: Get.width,
+            child: BottomNavBar(),
+          ),
         ],
       ),
     );

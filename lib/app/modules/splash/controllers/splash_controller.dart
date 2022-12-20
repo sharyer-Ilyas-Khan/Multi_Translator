@@ -25,7 +25,7 @@ class SplashController extends GetxController {
   void gotoDashboard(){
     Timer(
         const Duration(seconds: 4),(){
-      Get.off(()=>const DashboardView());
+      Get.off(()=> DashboardView());
     }
     );
   }

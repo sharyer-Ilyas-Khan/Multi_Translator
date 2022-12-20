@@ -15,6 +15,7 @@ abstract class Routes {
   static const FEEDBACK = _Paths.FEEDBACK;
   static const RATE_US = _Paths.RATE_US;
   static const HISTORY = _Paths.HISTORY;
+  static const LANGUAGES = _Paths.LANGUAGES;
 }
 
 abstract class _Paths {
@@ -31,4 +32,5 @@ abstract class _Paths {
   static const FEEDBACK = '/feedback';
   static const RATE_US = '/rate-us';
   static const HISTORY = '/history';
+  static const LANGUAGES = '/languages';
 }

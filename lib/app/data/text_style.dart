@@ -22,3 +22,59 @@ const appBar=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
+const fromHintStyle=TextStyle(
+    fontSize: 15,
+    color:Colors.grey,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+ const  fromDropStyle=TextStyle(
+    fontSize: 15,
+    color:Colors.black87,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const  fromTextStyle=TextStyle(
+    fontSize: 15,
+    color:Colors.black,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const toHintStyle=TextStyle(
+    fontSize: 20,
+    color:Colors.white,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const  toDropStyle=TextStyle(
+    fontSize: 15,
+    color:Colors.white,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const  toTextStyle=TextStyle(
+    fontSize: 15,
+    color:Colors.white,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const  picker=TextStyle(
+    fontSize: 15,
+    color:Colors.black87,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const  dictionaryInput=TextStyle(
+    fontSize: 15,
+    color:Colors.black87,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);

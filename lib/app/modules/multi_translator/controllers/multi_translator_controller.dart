@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 class MultiTranslatorController extends GetxController {
   //TODO: Implement MultiTranslatorController
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +18,4 @@ class MultiTranslatorController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }
