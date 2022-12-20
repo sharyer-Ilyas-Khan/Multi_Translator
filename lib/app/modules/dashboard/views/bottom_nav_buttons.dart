@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
@@ -9,25 +10,24 @@ class BottomNavButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    DashboardController controller=DashboardController();
-    return Obx(
-      ()=> InkWell(
+    DashboardController controller=Get.put(DashboardController());
+    return  InkWell(
         onTap: (){
-          controller.selectedOption(index);
+            controller.selectedOption(index);
         },
-        child: Container(
-          height:60,
-          width: 60,
-          decoration:  BoxDecoration(
-            shape: BoxShape.circle,
-            color: controller.selectedIndex.value==index?
-            AppColors.secondaryColor:Colors.transparent
-          ),
-          child: Center(
-            child: Icon(icon),
+        child: Obx(()=> Container(
+            height:60,
+            width: 60,
+            decoration:  BoxDecoration(
+              shape: BoxShape.circle,
+              color: controller.selectedIndex.value==index?
+              AppColors.secondaryColor:Colors.transparent
+            ),
+            child: Center(
+              child: SvgPicture.asset(icon),
+            ),
           ),
         ),
-      ),
     );
   }
 }

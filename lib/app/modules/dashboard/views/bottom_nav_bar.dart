@@ -23,11 +23,13 @@ class BottomNavBar extends StatelessWidget {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: const [
-              BottomNavButtons(icon: Icons.language,index: 0),
-              BottomNavButtons(icon: Icons.mic,index: 1),
-              BottomNavButtons(icon: Icons.camera_alt,index: 2),
-              BottomNavButtons(icon: Icons.book,index: 3),
-              BottomNavButtons(icon: Icons.language,index: 5),
+              BottomNavButtons(icon: "Assets/svg/translator.svg",index: 0),
+              BottomNavButtons(icon:"Assets/svg/voice.svg",index: 1),
+              BottomNavButtons(icon: "Assets/svg/camera.svg",index: 2),
+              BottomNavButtons(icon:"Assets/svg/diary.svg",index: 3),
+              BottomNavButtons(icon: "Assets/svg/multitranslator.svg",index: 4),
+
+
 
             ],
           )
