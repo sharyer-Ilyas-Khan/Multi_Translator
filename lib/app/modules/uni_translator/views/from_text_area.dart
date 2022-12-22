@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
+import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
+
+import '../../languages/views/languages_view.dart';
 class FromTextArea extends StatelessWidget {
   const FromTextArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    LanguagesController languagesController=Get.put(LanguagesController());
     return Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -30,25 +34,33 @@ class FromTextArea extends StatelessWidget {
               padding:  EdgeInsets.all(2.0),
               child: Text("From:",style: fromTextStyle,),
             ),
-            Container(
-              width: Get.width*0.35,
-              height: 40,
-              decoration: BoxDecoration(
-                border: Border.all(color: Colors.black54,width: 2),
-                borderRadius: BorderRadius.circular(25)
-              ),
-              child: Padding(
-                padding: const EdgeInsets.only(left: 15.0,right: 10.0),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: const [
-                    Text("Angreji",style: fromDropStyle,),
-                    RotatedBox(
-                      quarterTurns: 1,
-                    child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
-                  ],
+            Obx(
+              ()=> InkWell(
+                onTap: (){
+                  Get.to(()=>LanguagesView());
+                },              child: Container(
+                  width: Get.width*0.35,
+                  height: 40,
+                  decoration: BoxDecoration(
+                    border: Border.all(color: Colors.black54,width: 2),
+                    borderRadius: BorderRadius.circular(25)
+                  ),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0,right: 10.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children:  [
+                        Text(
+                          languagesController.languages
+                          [languagesController.selectedIndex.value],style: fromDropStyle,),
+                        const RotatedBox(
+                          quarterTurns: 1,
+                        child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
+                      ],
+                    )
                 )
-            )
+                ),
+              ),
             )
           ],
         ),

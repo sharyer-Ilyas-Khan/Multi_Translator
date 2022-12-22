@@ -78,3 +78,24 @@ const  dictionaryInput=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
+const searchLangStyle=TextStyle(
+    fontSize: 15,
+    color:Colors.grey,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const searchLangHint=TextStyle(
+    fontSize: 18,
+    color:Colors.black12,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 1.0
+);
+const languageTitle=TextStyle(
+    fontSize: 18,
+    color:Colors.black87,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 1.0
+);

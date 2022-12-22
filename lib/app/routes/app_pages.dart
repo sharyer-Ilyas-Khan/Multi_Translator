@@ -90,7 +90,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LANGUAGES,
-      page: () => const LanguagesView(),
+      page: () =>  LanguagesView(),
       binding: LanguagesBinding(),
     ),
   ];
