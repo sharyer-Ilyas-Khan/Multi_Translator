@@ -4,6 +4,8 @@ class LanguagesController extends GetxController {
   //TODO: Implement LanguagesController
 
   final selectedIndex = 0.obs;
+  final selectedFromIndex = 0.obs;
+  final selectedToIndex = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,8 +21,15 @@ class LanguagesController extends GetxController {
     super.onClose();
   }
 
-void setIndex(index){
-    selectedIndex.value=index;
+void setIndex(index,from){
+  selectedIndex.value=index;
+    if(from=="from"){
+      selectedFromIndex.value=index;
+    }
+  if(from=="to"){
+    selectedToIndex.value=index;
+  }
+
 }
 
   List languages=[

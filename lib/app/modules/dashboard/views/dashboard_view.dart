@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
+import 'package:translator/app/modules/darwer/views/darwer_view.dart';
 import 'package:translator/app/modules/dashboard/views/bottom_nav_bar.dart';
 import 'package:translator/app/modules/image_text_translator/views/image_text_translator_view.dart';
 import 'package:translator/app/modules/multi_translator/views/multi_translator_view.dart';
@@ -28,7 +29,9 @@ class DashboardView extends GetView<DashboardController> {
         backgroundColor: Colors.white,
         leading: InkWell(
           onTap: (){
-            
+              Get.to(()=>const DarwerView(),
+                  transition: Transition.fadeIn
+              );
           },
          child:  Padding(
            padding: const EdgeInsets.all(15.0),

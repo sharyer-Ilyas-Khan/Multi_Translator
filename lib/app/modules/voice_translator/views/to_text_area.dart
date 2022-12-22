@@ -36,7 +36,7 @@ class ToTextArea extends StatelessWidget {
             Obx(
                   ()=> InkWell(
                 onTap: (){
-                  Get.to(()=>LanguagesView());
+                  Get.to(()=>LanguagesView(type: "to"));
                 },
                 child: Container(
                     width: Get.width*0.35,
@@ -51,7 +51,7 @@ class ToTextArea extends StatelessWidget {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children:  [
                             Text( languagesController.languages
-                            [languagesController.selectedIndex.value],style: toDropStyle,),
+                            [languagesController.selectedToIndex.value],style: toDropStyle,),
                             const RotatedBox(
                                 quarterTurns: 1,
                                 child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,size: 15,))

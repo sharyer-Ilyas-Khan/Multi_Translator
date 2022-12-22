@@ -8,7 +8,8 @@ import 'package:translator/app/modules/languages/views/search_bar.dart';
 import '../controllers/languages_controller.dart';
 
 class LanguagesView extends GetView<LanguagesController> {
-   LanguagesView({Key? key}) : super(key: key);
+  final String? type;
+   LanguagesView({Key? key, this.type}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     LanguagesController controller=Get.put(LanguagesController());
@@ -39,7 +40,8 @@ class LanguagesView extends GetView<LanguagesController> {
                   ()=>InkWell(
                     highlightColor: Colors.transparent,
                     onTap: (){
-                      controller.setIndex(index);
+                      controller.setIndex(index,type);
+                      Navigator.pop(context);
                     },
                     child: Padding(
                     padding: const EdgeInsets.only(left: 18.0,right: 18.0,top:12.0,bottom: 12.0),
