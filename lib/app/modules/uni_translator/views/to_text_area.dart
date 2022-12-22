@@ -5,12 +5,14 @@ import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
 import '../../languages/views/languages_view.dart';
+import '../controllers/uni_translator_controller.dart';
 class ToTextArea extends StatelessWidget {
   const ToTextArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
+    UniTranslatorController uniController=Get.put(UniTranslatorController());
     return  Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -20,19 +22,23 @@ class ToTextArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            SizedBox(
-              height: Get.height*0.13,
-              width: Get.width*0.9,
-              child: const TextField(
-                maxLines: 5,
-                minLines: 5,
-                style: textInputStyleTo,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "....",
-                    hintStyle:toHintStyle,
-                ),
+            Obx(()=> SizedBox(
+                height: Get.height*0.13,
+                width: Get.width*0.9,
+                child:SingleChildScrollView(
+                  child: Text(uniController.translatedText.value,style:textInputStyleTo ,),
+                )
+                // child: const TextField(
+                //   maxLines: 5,
+                //   minLines: 5,
+                //   style: textInputStyleTo,
+                //   keyboardType: TextInputType.emailAddress,
+                //   decoration: InputDecoration(
+                //       border: InputBorder.none,
+                //       hintText: "....",
+                //       hintStyle:toHintStyle,
+                //   ),
+                // ),
               ),
             ),
             const Padding(

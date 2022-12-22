@@ -19,7 +19,6 @@ class DashboardView extends GetView<DashboardController> {
   List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
   @override
   Widget build(BuildContext context) {
-      DashboardController controller=Get.put(DashboardController());
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(

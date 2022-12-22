@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
+import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
 
 import '../../languages/views/languages_view.dart';
 class FromTextArea extends StatelessWidget {
@@ -11,6 +12,7 @@ class FromTextArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
+    UniTranslatorController uniController=Get.put(UniTranslatorController());
     return Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -23,16 +25,21 @@ class FromTextArea extends StatelessWidget {
             SizedBox(
               height: Get.height*0.13,
               width: Get.width*0.9,
-              child: const TextField(
+              child:  TextField(
                 maxLines: 5,
                 minLines: 5,
                 style: textInputStyle,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: "Enter Text Here",
                   hintStyle:fromHintStyle
                 ),
+                onChanged: (value) async {
+                  String translatedText=
+                  await uniController.getTranslateUrl("en", "ur", value);
+                  uniController.setText(translatedText);
+                },
               ),
             ),
             const Padding(
