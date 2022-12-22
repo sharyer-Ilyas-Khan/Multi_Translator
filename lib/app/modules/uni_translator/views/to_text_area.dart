@@ -20,14 +20,19 @@ class ToTextArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            const TextField(
-              maxLines: 5,
-              minLines: 5,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "....",
-                  hintStyle:toHintStyle,
+            SizedBox(
+              height: Get.height*0.13,
+              width: Get.width*0.9,
+              child: const TextField(
+                maxLines: 5,
+                minLines: 5,
+                style: textInputStyleTo,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "....",
+                    hintStyle:toHintStyle,
+                ),
               ),
             ),
             const Padding(

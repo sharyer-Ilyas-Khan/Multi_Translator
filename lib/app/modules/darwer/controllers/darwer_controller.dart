@@ -1,9 +1,7 @@
 import 'package:get/get.dart';
 
 class DarwerController extends GetxController {
-  //TODO: Implement DarwerController
 
-  final count = 0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -19,5 +17,4 @@ class DarwerController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }

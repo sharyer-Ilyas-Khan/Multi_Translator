@@ -20,14 +20,19 @@ class FromTextArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            const TextField(
-              maxLines: 5,
-              minLines: 5,
-              keyboardType: TextInputType.emailAddress,
-              decoration: InputDecoration(
-                border: InputBorder.none,
-                hintText: "Enter Text Here",
-                hintStyle:fromHintStyle
+            SizedBox(
+              height: Get.height*0.13,
+              width: Get.width*0.9,
+              child: const TextField(
+                maxLines: 5,
+                minLines: 5,
+                style: textInputStyle,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(
+                  border: InputBorder.none,
+                  hintText: "Enter Text Here",
+                  hintStyle:fromHintStyle
+                ),
               ),
             ),
             const Padding(

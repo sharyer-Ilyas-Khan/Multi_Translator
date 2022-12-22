@@ -36,6 +36,20 @@ const fromHintStyle=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
+const  textInputStyle=TextStyle(
+    fontSize: 40,
+    color:Colors.black87,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const  textInputStyleTo=TextStyle(
+    fontSize: 40,
+    color:Colors.white,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 1.0
+);
 const  fromTextStyle=TextStyle(
     fontSize: 15,
     color:Colors.black,
@@ -98,4 +112,25 @@ const languageTitle=TextStyle(
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
     letterSpacing: 1.0
+);
+const appBarDrawer=TextStyle(
+    fontSize: 16,
+    color:AppColors.appBarIconColor,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const drawerOptions=TextStyle(
+    fontSize: 14,
+    color:AppColors.appBarIconColor,
+    fontFamily: "robob",
+    fontWeight: FontWeight.w100,
+    letterSpacing: 0.0
+);
+const drawerLangOptions=TextStyle(
+    fontSize: 15,
+    color:AppColors.appBarIconColor,
+    fontFamily: "robob",
+    fontWeight: FontWeight.w100,
+    letterSpacing: 0.0
 );

@@ -5,8 +5,6 @@ import '../controllers/darwer_controller.dart';
 class DarwerBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<DarwerController>(
-      () => DarwerController(),
-    );
+    Get.put( DarwerController());
   }
 }
