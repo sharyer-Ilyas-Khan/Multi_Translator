@@ -134,3 +134,45 @@ const drawerLangOptions=TextStyle(
     fontWeight: FontWeight.w100,
     letterSpacing: 0.0
 );
+const dictionaryTitle=TextStyle(
+    fontSize: 30,
+    color:AppColors.appBarIconColor,
+    fontFamily: "robob",
+    fontWeight: FontWeight.w100,
+    letterSpacing: 1.0
+);
+const dictionaryExample=TextStyle(
+    fontSize: 27,
+    color:Colors.black54,
+    fontFamily: "robob",
+    fontWeight: FontWeight.w100,
+    letterSpacing: 1.0
+);
+const dictionaryExampleText=TextStyle(
+    fontSize: 15,
+    color:Colors.black26,
+    fontFamily: "robon",
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.0
+);
+const dictionaryMean=TextStyle(
+    fontSize: 16,
+    color:Colors.black87,
+    fontFamily: "robon",
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0
+);
+const dictionaryDef=TextStyle(
+    fontSize: 16,
+    color:Colors.black45,
+    fontFamily: "robon",
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0
+);
+const dictionaryMoreResult=TextStyle(
+    fontSize: 16,
+    color:AppColors.primaryColor,
+    fontFamily: "robon",
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0
+);
