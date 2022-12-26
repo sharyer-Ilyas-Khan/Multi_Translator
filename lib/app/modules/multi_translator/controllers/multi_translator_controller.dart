@@ -5,12 +5,20 @@ import 'package:translator/app/modules/multi_translator/views/to_text_area.dart'
 
 class MultiTranslatorController extends GetxController {
   //TODO: Implement MultiTranslatorController
-   final RxList listOfWidget=[FromTextArea(),ToTextArea(id:1,)].obs;
-   final RxList listOfPrefix=["en","en"].obs;
-   final RxList listOfLang=["English","English"].obs;
-   final RxList listOfTranslation=["...","..."].obs;
+    RxList listOfWidget=[FromTextArea(),ToTextArea(id:1,)].obs;
+    RxList listOfPrefix=["en","en"].obs;
+    RxList listOfLang=["English","English"].obs;
+    RxList listOfTranslation=["...","..."].obs;
    Rx<String> translatedText="...".obs;
    String textContent='';
+
+
+   void clearList(){
+     listOfPrefix=["en","en"].obs;
+     listOfTranslation=["...","..."].obs;
+     listOfLang=["English","English"].obs;
+     listOfWidget=[FromTextArea(),ToTextArea(id:1,)].obs;
+   }
   @override
   void onInit() {
 

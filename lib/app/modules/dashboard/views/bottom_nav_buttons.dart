@@ -3,6 +3,10 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
+import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
+
+import '../../multi_translator/views/from_text_area.dart';
+import '../../multi_translator/views/to_text_area.dart';
 class BottomNavButtons extends StatelessWidget {
   final icon;
   final index;
@@ -11,9 +15,14 @@ class BottomNavButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DashboardController controller=Get.put(DashboardController());
+    MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
     return  InkWell(
         onTap: (){
+          if(index==4){
+            multiTranslatorController.clearList();
+          }
             controller.selectedOption(index);
+
         },
         child: Obx(()=> Container(
             height:60,

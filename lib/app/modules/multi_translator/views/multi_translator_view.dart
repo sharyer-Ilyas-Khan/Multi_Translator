@@ -9,10 +9,12 @@ import '../controllers/multi_translator_controller.dart';
 
 class MultiTranslatorView extends GetView<MultiTranslatorController> {
    MultiTranslatorView({Key? key}) : super(key: key);
+   late ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
+    scrollController=ScrollController(initialScrollOffset: 0.0);
     MultiTranslatorController controller=Get.put(MultiTranslatorController());
-    return Scaffold(
+   return Scaffold(
         resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         onPressed: (){
@@ -20,7 +22,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
           controller.addLang();
           controller.addIntoTranslation();
           controller.addIntoList();
-
+          scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 200), curve: Curves.easeOut);
 
         },
         backgroundColor: Colors.white,
@@ -32,6 +34,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
       body:Obx(
             ()=>ListView.builder(
             itemCount:controller.listOfWidget.length,
+            controller: scrollController,
             itemBuilder: (_,index){
               return controller.listOfWidget.value[index];
 

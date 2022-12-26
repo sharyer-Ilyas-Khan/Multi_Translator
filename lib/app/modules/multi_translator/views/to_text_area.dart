@@ -17,7 +17,17 @@ class ToTextArea extends StatelessWidget {
     return  Container(
       height: Get.height*0.25,
       width: Get.width,
-      color: AppColors.primaryColor,
+
+      decoration: const BoxDecoration(
+        color: AppColors.primaryColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.white,
+            spreadRadius: 1,
+            blurRadius: 6
+          )
+        ]
+      ),
       child: Padding(
         padding:  EdgeInsets.only(left: Get.width*0.08,top: 30),
         child: Column(
