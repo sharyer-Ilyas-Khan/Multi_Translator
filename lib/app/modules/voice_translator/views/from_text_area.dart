@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
+import 'package:translator/app/modules/voice_translator/controllers/voice_translator_controller.dart';
 
 import '../../languages/views/languages_view.dart';
 class FromTextArea extends StatelessWidget {
@@ -11,6 +12,7 @@ class FromTextArea extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
+    VoiceTranslatorController controller=Get.put(VoiceTranslatorController());
     return Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -20,18 +22,14 @@ class FromTextArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            SizedBox(
-              height: Get.height*0.13,
-              width: Get.width*0.9,
-              child: const TextField(
-                maxLines: 5,
-                minLines: 5,
-                style: textInputStyle,
-                decoration: InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Please tap to speak",
-                  hintStyle:fromHintStyle
-                ),
+            Obx(
+              ()=> SizedBox(
+                height: Get.height*0.13,
+                width: Get.width*0.9,
+                child: SingleChildScrollView(
+                  child: Text(controller.inputText.value,style:textInputStyle ,),
+                )
+
               ),
             ),
             const Padding(

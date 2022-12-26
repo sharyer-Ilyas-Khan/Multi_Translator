@@ -2,6 +2,12 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+
+
+    <key>NSSpeechRecognitionUsageDescription</key>
+    <string>Your message to user when the microphone is accessed for the first time</string>
+    <key>NSMicrophoneUsageDescription</key>
+    <string>Your message to user when the microphone is accessed for the first time</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

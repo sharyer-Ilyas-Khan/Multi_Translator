@@ -56,7 +56,7 @@ class DashboardView extends GetView<DashboardController> {
                   index: controller.selectedIndex.value,
                   children:  [
                     const UniTranslatorView(),
-                    const VoiceTranslatorView(),
+                     VoiceTranslatorView(),
                     const ImageTextTranslatorView(),
                     const DictionaryView(),
                     MultiTranslatorView()

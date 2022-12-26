@@ -60,7 +60,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.VOICE_TRANSLATOR,
-      page: () => const VoiceTranslatorView(),
+      page: () =>  VoiceTranslatorView(),
       binding: VoiceTranslatorBinding(),
     ),
     GetPage(

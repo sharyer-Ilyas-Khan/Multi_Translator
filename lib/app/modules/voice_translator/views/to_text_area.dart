@@ -5,12 +5,14 @@ import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
 import '../../languages/views/languages_view.dart';
+import '../controllers/voice_translator_controller.dart';
 class ToTextArea extends StatelessWidget {
   const ToTextArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
+    VoiceTranslatorController controller=Get.put(VoiceTranslatorController());
     return  Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -20,18 +22,14 @@ class ToTextArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            SizedBox(
-              height: Get.height*0.13,
-              width: Get.width*0.9,
-              child: const TextField(
-                maxLines: 5,
-                minLines: 5,
-                style: textInputStyleTo,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "....",
-                    hintStyle:toHintStyle,
-                ),
+            Obx(
+              ()=> SizedBox(
+                height: Get.height*0.13,
+                width: Get.width*0.9,
+                child: SingleChildScrollView(
+                  child: Text(controller.translatedText.value,style:textInputStyleTo ,),
+                )
+
               ),
             ),
             const Padding(
@@ -41,7 +39,7 @@ class ToTextArea extends StatelessWidget {
             Obx(
                   ()=> InkWell(
                 onTap: (){
-                  Get.to(()=>LanguagesView(type: "to"));
+                  Get.to(()=>LanguagesView(type: "to",id:"voice"));
                 },
                 child: Container(
                     width: Get.width*0.35,

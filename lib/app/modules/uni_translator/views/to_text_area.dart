@@ -28,17 +28,7 @@ class ToTextArea extends StatelessWidget {
                 child:SingleChildScrollView(
                   child: Text(uniController.translatedText.value,style:textInputStyleTo ,),
                 )
-                // child: const TextField(
-                //   maxLines: 5,
-                //   minLines: 5,
-                //   style: textInputStyleTo,
-                //   keyboardType: TextInputType.emailAddress,
-                //   decoration: InputDecoration(
-                //       border: InputBorder.none,
-                //       hintText: "....",
-                //       hintStyle:toHintStyle,
-                //   ),
-                // ),
+
               ),
             ),
             const Padding(

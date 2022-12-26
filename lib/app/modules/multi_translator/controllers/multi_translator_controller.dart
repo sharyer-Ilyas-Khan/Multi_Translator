@@ -69,7 +69,6 @@ void setTranslations(String sourceLan,content)async{
      try {
        String url="${TRANSLATE_BASE_URL}translate_a/single?client=gtx&sl=${sourceLan}&tl=${targetLan}&dt=t&q=${Uri.encodeFull(content)}";
        Response response=await GetConnect().get(url);
-       print(response.body);
        var result=response.body[0][0];
        return result[0];
      } catch (e) {
