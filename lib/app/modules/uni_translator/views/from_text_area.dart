@@ -37,7 +37,11 @@ class FromTextArea extends StatelessWidget {
                 ),
                 onChanged: (value) async {
                   String translatedText=
-                  await uniController.getTranslateUrl("en", "ur", value);
+                  await uniController.getTranslateUrl(languagesController.languagesPrefix[
+                    languagesController.selectedFromIndex.value
+                  ], languagesController.languagesPrefix[
+                  languagesController.selectedToIndex.value
+                  ], value);
                   uniController.setText(translatedText);
                 },
               ),

@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 class UniTranslatorController extends GetxController {
   //TODO: Implement UniTranslatorController
   Rx<String> translatedText="...".obs;
+  String textContent='';
 
   @override
   void onInit() {
@@ -27,7 +28,7 @@ void setText(text){
     translatedText.value=text;
 }
   Future<String> getTranslateUrl(String sourceLan, String targetLan, String content)async {
-
+    textContent=content;
     String TRANSLATE_BASE_URL = "https://translate.google.com.hk/";
     try {
      String url="${TRANSLATE_BASE_URL}translate_a/single?client=gtx&sl=${sourceLan}&tl=${targetLan}&dt=t&q=${Uri.encodeFull(content)}";
@@ -36,7 +37,7 @@ void setText(text){
     var result=response.body[0][0];
     return result[0];
     } catch (e) {
-      return "${TRANSLATE_BASE_URL}translate_a/single?client=gtx&sl=${sourceLan}&tl=${targetLan}&dt=t&q=${content}";
+      return "....";
     }
   }
 }
