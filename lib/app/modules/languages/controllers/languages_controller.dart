@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
 import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
 
 class LanguagesController extends GetxController {
@@ -7,7 +8,9 @@ class LanguagesController extends GetxController {
   final selectedIndex = 0.obs;
   final selectedFromIndex = 0.obs;
   final selectedToIndex = 0.obs;
+  final indexId = 0.obs;
   UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
+  MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
   @override
   void onInit() {
 
@@ -24,12 +27,12 @@ class LanguagesController extends GetxController {
     super.onClose();
   }
 
-Future<void> setIndex(index,from) async {
+Future<void> setIndex(index,from,id) async {
   selectedIndex.value=index;
     if(from=="from"){
       selectedFromIndex.value=index;
     }
-  if(from=="to"){
+  if(from=="to" && id==null){
     selectedToIndex.value=index;
     String translatedText=await uniTranslatorController.getTranslateUrl(
       languagesPrefix[selectedFromIndex.value],
@@ -39,6 +42,24 @@ Future<void> setIndex(index,from) async {
 
     );
     uniTranslatorController.setText(translatedText);
+
+  }
+  if(from=="to" && id!=null){
+    indexId.value=id;
+    selectedToIndex.value=index;
+    multiTranslatorController.listOfPrefix[indexId.value]=languagesPrefix[selectedToIndex.value];
+    multiTranslatorController.listOfLang[indexId.value]=languages[selectedToIndex.value];
+
+
+    String translatedText=await multiTranslatorController.getTranslateUrl(
+        languagesPrefix[selectedFromIndex.value],
+
+        multiTranslatorController.listOfPrefix[indexId.value],
+        multiTranslatorController.textContent
+
+    );
+    multiTranslatorController.listOfTranslation[indexId.value]=translatedText;
+    // multiTranslatorController.setText(translatedText);
 
   }
 

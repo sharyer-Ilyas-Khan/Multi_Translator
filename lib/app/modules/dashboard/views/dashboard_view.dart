@@ -54,11 +54,11 @@ class DashboardView extends GetView<DashboardController> {
               Obx(
                 ()=> IndexedStack(
                   index: controller.selectedIndex.value,
-                  children: const [
-                    UniTranslatorView(),
-                    VoiceTranslatorView(),
-                    ImageTextTranslatorView(),
-                    DictionaryView(),
+                  children:  [
+                    const UniTranslatorView(),
+                    const VoiceTranslatorView(),
+                    const ImageTextTranslatorView(),
+                    const DictionaryView(),
                     MultiTranslatorView()
                   ],
                 ),
@@ -68,12 +68,12 @@ class DashboardView extends GetView<DashboardController> {
               flex:2,
               child:
               Container(color: Colors.amber,
-              child: Center(child: Text("AD"),),)),
+              child: const Center(child: Text("AD"),),)),
           ///bottom nav bar
           SizedBox(
             height: Get.height*0.14,
             width: Get.width,
-            child: BottomNavBar(),
+            child: const BottomNavBar(),
           ),
         ],
       ),

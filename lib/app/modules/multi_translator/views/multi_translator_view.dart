@@ -8,13 +8,19 @@ import 'package:translator/app/modules/multi_translator/views/to_text_area.dart'
 import '../controllers/multi_translator_controller.dart';
 
 class MultiTranslatorView extends GetView<MultiTranslatorController> {
-  const MultiTranslatorView({Key? key}) : super(key: key);
+   MultiTranslatorView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    MultiTranslatorController controller=Get.put(MultiTranslatorController());
     return Scaffold(
         resizeToAvoidBottomInset: false,
       floatingActionButton: FloatingActionButton(
         onPressed: (){
+          controller.addPrefix();
+          controller.addLang();
+          controller.addIntoTranslation();
+          controller.addIntoList();
+
 
         },
         backgroundColor: Colors.white,
@@ -23,12 +29,15 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
         ),
       ),
 
-      body: ListView(
-        children: [
-        FromTextArea(),
-          ToTextArea()
-        ],
-      )
+      body:Obx(
+            ()=>ListView.builder(
+            itemCount:controller.listOfWidget.length,
+            itemBuilder: (_,index){
+              return controller.listOfWidget.value[index];
+
+        }),
+    )
     );
   }
+
 }

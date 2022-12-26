@@ -17,7 +17,7 @@ class DrawerOption extends StatelessWidget {
             height: Get.height*0.06,
         child: Row(
           children: [
-            SvgPicture.asset("Assets/svg/${icon}.svg"),
+            SvgPicture.asset("Assets/svg/$icon.svg"),
             const SizedBox(width: 30),
             Text(text!,style: drawerOptions,)
           ],

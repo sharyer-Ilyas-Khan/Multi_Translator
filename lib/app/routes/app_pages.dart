@@ -55,7 +55,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MULTI_TRANSLATOR,
-      page: () => const MultiTranslatorView(),
+      page: () =>  MultiTranslatorView(),
       binding: MultiTranslatorBinding(),
     ),
     GetPage(

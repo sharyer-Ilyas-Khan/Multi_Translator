@@ -9,7 +9,8 @@ import '../controllers/languages_controller.dart';
 
 class LanguagesView extends GetView<LanguagesController> {
   final String? type;
-   LanguagesView({Key? key, this.type}) : super(key: key);
+  final id;
+   LanguagesView({Key? key, this.type,this.id}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     LanguagesController controller=Get.put(LanguagesController());
@@ -40,7 +41,7 @@ class LanguagesView extends GetView<LanguagesController> {
                   ()=>InkWell(
                     highlightColor: Colors.transparent,
                     onTap: (){
-                      controller.setIndex(index,type);
+                      controller.setIndex(index,type,id);
                       Navigator.pop(context);
                     },
                     child: Padding(
@@ -100,8 +101,8 @@ class LanguagesView extends GetView<LanguagesController> {
     "Italian",
     "Urdu",
     "Hindi",
-        "Dutch",
-        "Thai",
+    "Dutch",
+    "Thai",
     "Russian",
     "Afrikaans",
     "Chinese",

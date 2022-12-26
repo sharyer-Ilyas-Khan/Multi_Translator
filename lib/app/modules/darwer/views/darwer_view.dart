@@ -32,33 +32,33 @@ class DarwerView extends GetView<DarwerController> {
               children: [
                 Container(
                   height: 12,width: 12,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     color: Colors.black,
                     shape: BoxShape.circle
                   ),
                 ),
                 const SizedBox(width: 30),
-                Text("App Languages",style: drawerLangOptions,)
+                const Text("App Languages",style: drawerLangOptions,)
               ],
             ),
           ),
         ),
-          DrawerOption(icon: "removeads",text: "Remove Ads"),
-             DrawerOption(icon: "fav",text: "Favourite"),
-             DrawerOption(icon: "history",text: "History"),
-          Padding(
+          const DrawerOption(icon: "removeads",text: "Remove Ads"),
+             const DrawerOption(icon: "fav",text: "Favourite"),
+             const DrawerOption(icon: "history",text: "History"),
+          const Padding(
             padding:  EdgeInsets.all(20.0),
             child: Text("App section",style: appBarDrawer,),
           ),
-          DrawerOption(icon: "feedback",text: "Feedback"),
-          DrawerOption(icon: "rateus",text: "Rate us"),
-          DrawerOption(icon: "share",text: "Share"),
-          Padding(
+          const DrawerOption(icon: "feedback",text: "Feedback"),
+          const DrawerOption(icon: "rateus",text: "Rate us"),
+          const DrawerOption(icon: "share",text: "Share"),
+          const Padding(
             padding:  EdgeInsets.all(20.0),
             child: Text("Privacy section",style: appBarDrawer,),
           ),
-          DrawerOption(icon: "privacy",text: "Privacy policy"),
-          DrawerOption(icon: "quit",text: "Quit"),
+          const DrawerOption(icon: "privacy",text: "Privacy policy"),
+          const DrawerOption(icon: "quit",text: "Quit"),
 
 
         ],

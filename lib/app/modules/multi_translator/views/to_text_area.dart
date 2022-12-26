@@ -5,12 +5,15 @@ import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
 import '../../languages/views/languages_view.dart';
+import '../controllers/multi_translator_controller.dart';
 class ToTextArea extends StatelessWidget {
-  const ToTextArea({Key? key}) : super(key: key);
+  final id;
+  const ToTextArea({Key? key,required this.id}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
+    MultiTranslatorController multiController=Get.put(MultiTranslatorController());
     return  Container(
       height: Get.height*0.25,
       width: Get.width,
@@ -20,19 +23,12 @@ class ToTextArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            SizedBox(
-              height: Get.height*0.13,
-              width: Get.width*0.9,
-              child: const TextField(
-                maxLines: 5,
-                minLines: 5,
-                style: textInputStyleTo,
-                keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "....",
-                    hintStyle:toHintStyle,
-                ),
+            Obx(()=> SizedBox(
+                height: Get.height*0.13,
+                width: Get.width*0.9,
+                child: SingleChildScrollView(
+                  child: Text(multiController.listOfTranslation[id],style:textInputStyleTo ,),
+                )
               ),
             ),
             const Padding(
@@ -42,7 +38,7 @@ class ToTextArea extends StatelessWidget {
             Obx(
                   ()=> InkWell(
                 onTap: (){
-                  Get.to(()=>LanguagesView(type: "to"));
+                  Get.to(()=>LanguagesView(type: "to",id:id));
                 },
                 child: Container(
                     width: Get.width*0.35,
@@ -56,8 +52,8 @@ class ToTextArea extends StatelessWidget {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children:  [
-                            Text( languagesController.languages
-                            [languagesController.selectedToIndex.value],style: toDropStyle,),
+                            Text(multiController.listOfLang[id]
+                              ,style: toDropStyle,),
                             const RotatedBox(
                                 quarterTurns: 1,
                                 child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,size: 15,))

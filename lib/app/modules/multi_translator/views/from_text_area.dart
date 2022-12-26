@@ -5,12 +5,14 @@ import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/bindings/languages_binding.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/languages/views/languages_view.dart';
+import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
 class FromTextArea extends StatelessWidget {
   const FromTextArea({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
+    MultiTranslatorController controller=Get.put(MultiTranslatorController());
     return Container(
       height: Get.height*0.25,
       width: Get.width,
@@ -23,16 +25,21 @@ class FromTextArea extends StatelessWidget {
             SizedBox(
               height: Get.height*0.13,
               width: Get.width*0.9,
-              child: const TextField(
+              child:  TextField(
                 maxLines: 5,
                 minLines: 5,
                 style: textInputStyle,
                 keyboardType: TextInputType.emailAddress,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                   border: InputBorder.none,
                   hintText: "Enter Text Here",
                   hintStyle:fromHintStyle
                 ),
+                onChanged: (value) async {
+                  controller.setTranslations(
+                      languagesController.languagesPrefix[languagesController.selectedFromIndex.value],
+                      value);
+                },
               ),
             ),
             const Padding(
