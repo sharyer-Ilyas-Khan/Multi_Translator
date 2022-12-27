@@ -47,6 +47,7 @@ class SearchBarDictionary extends StatelessWidget {
             )),
             Obx(()=> InkWell(
                 onTap: (){
+                  controller.load(true);
                   controller.lookUp();
                 },
                 child: Container(

@@ -31,7 +31,7 @@ class DarwerView extends GetView<DarwerController> {
             child: Row(
               children: [
                 Container(
-                  height: 12,width: 12,
+                  height: 18,width: 18,
                   decoration: const BoxDecoration(
                     color: Colors.black,
                     shape: BoxShape.circle

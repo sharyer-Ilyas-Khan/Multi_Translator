@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
@@ -24,13 +25,13 @@ class DictionaryView extends GetView<DictionaryController> {
        ),
         Expanded(child: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Obx(()=> controller.meaningFirst.value!=""||controller.inputText.value.isEmpty?
+          child: Obx(()=> controller.meaningFirst.value!=""?
           ListView(
               // crossAxisAlignment: CrossAxisAlignment.start,
               children:  [
                 Row(
                   children: [
-                    Text(controller.inputText.value,style: dictionaryTitle,),
+                    Text(controller.word.value,style: dictionaryTitle,),
                     IconButton(
                           onPressed: (){
                               controller.speak();
@@ -44,13 +45,19 @@ class DictionaryView extends GetView<DictionaryController> {
                   padding: const EdgeInsets.only(left: 18.0,top: 10),
                   child: Text(controller.meaningSecond.value,style: dictionaryDef,),
                 ),
-                const Text("More Details",style: dictionaryExample,),
-                RichText(text:TextSpan(
-                  children: [
-                    const TextSpan(text: "Part Of Speech:\t\t",style:dictionaryDef ),
-                    TextSpan(text: controller.partOfSpeech.value.toString().toUpperCase(),style:dictionaryMoreResult ),
-                  ]
-                )),
+                const Padding(
+                  padding:  EdgeInsets.only(top: 8.0),
+                  child:  Text("More Details",style: dictionaryExample,),
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(top: 8.0),
+                  child: RichText(text:TextSpan(
+                    children: [
+                      const TextSpan(text: "Part Of Speech:\t\t",style:dictionaryDef ),
+                      TextSpan(text: controller.partOfSpeech.value.toString().toUpperCase(),style:dictionaryMoreResult ),
+                    ]
+                  )),
+                ),
                 RichText(text:TextSpan(
                     children: [
                       const TextSpan(text: "Synonyms:\t\t",style:dictionaryDef ),
@@ -68,7 +75,8 @@ class DictionaryView extends GetView<DictionaryController> {
                  child: Text("ex:${controller.meaningThird.value}",style: dictionaryExampleText,),
                ),
               ],
-            ):Container(),
+            ):controller.isLoading.value?
+         const  SpinKitFadingCircle(color: AppColors.primaryColor,):Container(),
           ),
         ))
       ],
