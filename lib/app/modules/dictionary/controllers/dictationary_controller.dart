@@ -46,10 +46,10 @@ void load(status){
     try {
       String url="https://api.dictionaryapi.dev/api/v2/entries/en/${Uri.encodeFull(inputText.value)}";
       Response response=await GetConnect().get(url);
-      if(response.body[0]["title"]=="No Definitions Found"){
-        load(false);
-      }
-      else{
+      // if(response.body[0]["title"]=="No Definitions Found"){
+      //   load(false);
+      // }
+      // else{
         load(false);
         // word
         word.value=response.body[0]["word"].toString();
@@ -65,8 +65,8 @@ void load(status){
         meaningSecond.value=response.body[0]["meanings"][0]["definitions"][1]["definition"].toString();
         meaningThird.value=response.body[0]["meanings"][0]["definitions"][2]["definition"].toString();
         // print(response.body[0]["meanings"][0]["definitions"][2]["definition"].toString());
-
-      }
+      //
+      // }
 
 
 

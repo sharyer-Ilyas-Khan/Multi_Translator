@@ -39,7 +39,7 @@ class FromTextArea extends StatelessWidget {
             Obx(
                   ()=>  InkWell(
                 onTap: (){
-                  Get.to(()=>LanguagesView(type: "from"));
+                  // Get.to(()=>LanguagesView(type: "from"));
                 },
                 child: Container(
                   width: Get.width*0.35,
@@ -51,13 +51,15 @@ class FromTextArea extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0,right: 10.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children:  [
                         Text(languagesController.languages
-                        [languagesController.selectedFromIndex.value],style: fromDropStyle,),
-                        const RotatedBox(
-                          quarterTurns: 1,
-                        child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
+                        [0]
+                        // [languagesController.selectedFromIndex.value]
+                          ,style: fromDropStyle,),
+                        // const RotatedBox(
+                        //   quarterTurns: 1,
+                        // child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
                       ],
                     )
                 )
