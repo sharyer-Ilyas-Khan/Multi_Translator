@@ -1,9 +1,10 @@
 import 'package:get/get.dart';
 import 'package:flutter/material.dart';
 import 'package:translator/app/data/color_code.dart';
+import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/dashboard/views/bottom_nav_buttons.dart';
 class BottomNavBar extends StatelessWidget {
-  const BottomNavBar({Key? key}) : super(key: key);
+   BottomNavBar({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +23,7 @@ class BottomNavBar extends StatelessWidget {
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
+            children:  [
               BottomNavButtons(icon:"Assets/svg/translator.svg",index: 0),
               BottomNavButtons(icon:"Assets/svg/voice.svg",index: 1),
               BottomNavButtons(icon:"Assets/svg/camera.svg",index: 2),
@@ -34,4 +35,5 @@ class BottomNavBar extends StatelessWidget {
       ),
     );
   }
+
 }

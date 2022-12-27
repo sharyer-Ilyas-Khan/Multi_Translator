@@ -36,8 +36,7 @@ class FromTextArea extends StatelessWidget {
               padding:  EdgeInsets.all(2.0),
               child: Text("From:",style: fromTextStyle,),
             ),
-            Obx(
-                  ()=>  InkWell(
+            InkWell(
                 onTap: (){
                   // Get.to(()=>LanguagesView(type: "from"));
                 },
@@ -63,7 +62,7 @@ class FromTextArea extends StatelessWidget {
                       ],
                     )
                 )
-                ),
+
               ),
             )
           ],

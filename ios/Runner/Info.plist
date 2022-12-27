@@ -7,11 +7,11 @@
     <key>NSSpeechRecognitionUsageDescription</key>
     <string>Your message to user when the microphone is accessed for the first time</string>
     <key>NSPhotoLibraryUsageDescription</key>
-    <string>Your message to user when the photo is accessed for the first time</string>
+    <string>This App requires access to the photo library. would you like to access Your Photos</string>
     <key>NSCameraUsageDescription</key>
-    <string>Your message to user when the camera is accessed for the first time</string>
+    <string>All Language Translator" Would like to access the Camera</string>
     <key>NSMicrophoneUsageDescription</key>
-    <string>Your message to user when the microphone is accessed for the first time</string>
+    <string>Please give "All Language Translator" access to your microphone so I can hear you so and translate what you say into text.</string>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>

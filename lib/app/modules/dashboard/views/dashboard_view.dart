@@ -73,7 +73,7 @@ class DashboardView extends GetView<DashboardController> {
           SizedBox(
             height: Get.height*0.14,
             width: Get.width,
-            child: const BottomNavBar(),
+            child:  BottomNavBar(),
           ),
         ],
       ),

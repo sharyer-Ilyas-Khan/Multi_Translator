@@ -13,8 +13,8 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
     return Scaffold(
         resizeToAvoidBottomInset: false,
       body: Column(
-        children: const [
-          Expanded(child: FromTextArea()),
+        children:  [
+          const Expanded(child: FromTextArea()),
           Expanded(child: ToTextArea())
         ],
       )

@@ -5,12 +5,13 @@ import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
 
+import '../../../data/text_style.dart';
 import '../../multi_translator/views/from_text_area.dart';
 import '../../multi_translator/views/to_text_area.dart';
 class BottomNavButtons extends StatelessWidget {
   final icon;
   final index;
-  const BottomNavButtons({Key? key,this.icon,this.index}) : super(key: key);
+   BottomNavButtons({Key? key,this.icon,this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -39,4 +40,5 @@ class BottomNavButtons extends StatelessWidget {
         ),
     );
   }
+
 }
