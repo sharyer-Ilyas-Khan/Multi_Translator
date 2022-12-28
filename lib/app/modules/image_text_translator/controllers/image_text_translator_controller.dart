@@ -1,6 +1,7 @@
 import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
 class ImageTextTranslatorController extends GetxController {
   //TODO: Implement ImageTextTranslatorController
  ImagePicker? imagePicker;
@@ -25,7 +26,9 @@ final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 
   void pickImage()async{
   image=await imagePicker!.pickImage(source: ImageSource.gallery);
-  getTextFromImage(image);
+  Get.to(()=>CropImage(file: image,));
+  
+  // getTextFromImage(image);
 
   }
 void captureImage()async{

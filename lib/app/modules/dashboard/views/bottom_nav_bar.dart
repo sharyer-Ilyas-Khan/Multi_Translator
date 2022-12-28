@@ -9,7 +9,8 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.scaffoldColor,
+      // color: AppColors.scaffoldColor,
+      color: Colors.transparent,
       child: Center(
         child: Container(
           height:Get.height*0.08,

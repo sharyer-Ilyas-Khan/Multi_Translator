@@ -32,7 +32,7 @@ class ImageFromGallery extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SvgPicture.asset("Assets/svg/gallery.svg"),
+            SvgPicture.asset("Assets/svg/pickGallery.svg"),
             const Text("Image From Gallery",style: picker,)
           ],
         ),
