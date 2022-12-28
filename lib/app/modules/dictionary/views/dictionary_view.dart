@@ -19,7 +19,7 @@ class DictionaryView extends GetView<DictionaryController> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
        SizedBox(
-         height: Get.height*0.1,
+         height: Get.height*0.09,
          width: Get.width,
          child: const SearchBarDictionary(),
        ),

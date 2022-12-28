@@ -46,16 +46,16 @@ void load(status){
     try {
       String url="https://api.dictionaryapi.dev/api/v2/entries/en/${Uri.encodeFull(inputText.value)}";
       Response response=await GetConnect().get(url);
-      // if(response.body[0]["title"]=="No Definitions Found"){
-      //   load(false);
-      // }
-      // else{
+        print(response.body);
+
         load(false);
         // word
         word.value=response.body[0]["word"].toString();
         //api response word phonetics
-        audioUrl.value=response.body[0]["phonetics"][0]["audio"].toString();
+      if(response.body[0]["phonetics"].isNotEmpty){
         pronounceText.value=response.body[0]["phonetics"][0]["text"].toString();
+      }
+
         // word meanings
         partOfSpeech.value=response.body[0]["meanings"][0]["partOfSpeech"].toString();
         meaningFirst.value=response.body[0]["meanings"][0]["definitions"][0]["definition"].toString();
@@ -65,6 +65,7 @@ void load(status){
         meaningSecond.value=response.body[0]["meanings"][0]["definitions"][1]["definition"].toString();
         meaningThird.value=response.body[0]["meanings"][0]["definitions"][2]["definition"].toString();
         // print(response.body[0]["meanings"][0]["definitions"][2]["definition"].toString());
+
       //
       // }
 

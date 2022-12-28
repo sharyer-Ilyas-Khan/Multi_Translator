@@ -20,14 +20,10 @@ ValueNotifier<bool> isDialOpen=ValueNotifier(false);
       width: Get.width,
       color: AppColors.primaryColor,
       child: Padding(
-        padding:  EdgeInsets.only(left: Get.width*0.08,top: 5,right: 10),
+        padding:  EdgeInsets.only(left: Get.width*0.08,top: 30,right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            Align(
-              alignment: Alignment.topRight,
-              child: Icon(Icons.favorite_border,color: Colors.white,size: 25,),
-            ),
             Obx(()=> SizedBox(
                 height: Get.height*0.13,
                 width: Get.width*0.9,
@@ -73,10 +69,11 @@ ValueNotifier<bool> isDialOpen=ValueNotifier(false);
                   ),
                 ),
                 const Spacer(),
+                // SizedBox(width: 14,),
                 SpeedDial(
 
                   buttonSize:Size(Get.width*0.1,Get.height*0.04),
-                  childrenButtonSize: Size(Get.width*0.1,Get.height*0.04),
+                  childrenButtonSize: Size(Get.width*0.1,Get.height*0.035),
                   activeIcon: Icons.close,
                   openCloseDial:isDialOpen,
                   activeChild: Container(
@@ -101,13 +98,16 @@ ValueNotifier<bool> isDialOpen=ValueNotifier(false);
                   direction: SpeedDialDirection.left,
                   children: [
                     SpeedDialChild(
-                      child: const Icon(Icons.copy,size: 15,)
+                        child: const Icon(Icons.copy,size: 13,)
                     ),
                     SpeedDialChild(
-                        child: const Icon(Icons.share,size: 15)
+                        child: const Icon(Icons.share,size: 13)
                     ),
                     SpeedDialChild(
-                        child: const Icon(Icons.aspect_ratio,size: 15)
+                        child: const Icon(Icons.aspect_ratio,size: 13)
+                    ),
+                    SpeedDialChild(
+                      child: const Icon(Icons.favorite,color: Colors.red,size: 18,),
                     )
                   ],
                   child:  Container(
@@ -117,7 +117,8 @@ ValueNotifier<bool> isDialOpen=ValueNotifier(false);
                         shape: BoxShape.circle,
                         color: Colors.white,
                       ),
-                      child: const Icon(Icons.arrow_back_ios_outlined,color: Colors.black,)),),
+                      child: const Icon(Icons.arrow_back_ios_rounded,color: Colors.black,)),),
+
               ],
             )
           ],

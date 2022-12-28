@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -59,7 +60,7 @@ class DashboardView extends GetView<DashboardController> {
                      VoiceTranslatorView(),
                     const ImageTextTranslatorView(),
                     const DictionaryView(),
-                    MultiTranslatorView()
+                    MultiTranslatorView(ad:true,)
                   ],
                 ),
               )),
@@ -67,7 +68,7 @@ class DashboardView extends GetView<DashboardController> {
           Expanded(
               flex:2,
               child:
-              Container(color: Colors.amber,
+              Container(color: Colors.white,
               child: const Center(child: Text("AD"),),)),
           ///bottom nav bar
           SizedBox(

@@ -23,8 +23,8 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
           children: [
             Column(
               children: [
-                Expanded(child: FromTextArea()),
-                Expanded(child: ToTextArea()),
+                FromTextArea(),
+                ToTextArea(),
               ],
             ),
             Obx(

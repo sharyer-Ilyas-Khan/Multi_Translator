@@ -14,8 +14,8 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
         resizeToAvoidBottomInset: false,
       body: Column(
         children:  [
-          const Expanded(child: FromTextArea()),
-          Expanded(child: ToTextArea())
+          FromTextArea(),
+          ToTextArea()
         ],
       )
     );

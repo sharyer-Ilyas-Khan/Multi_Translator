@@ -8,7 +8,8 @@ import 'package:translator/app/modules/multi_translator/views/to_text_area.dart'
 import '../controllers/multi_translator_controller.dart';
 
 class MultiTranslatorView extends GetView<MultiTranslatorController> {
-   MultiTranslatorView({Key? key}) : super(key: key);
+  final ad;
+   MultiTranslatorView({Key? key,this.ad}) : super(key: key);
    late ScrollController scrollController;
   @override
   Widget build(BuildContext context) {
@@ -16,18 +17,22 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
     MultiTranslatorController controller=Get.put(MultiTranslatorController());
    return Scaffold(
         resizeToAvoidBottomInset: false,
-      floatingActionButton: FloatingActionButton(
-        onPressed: (){
-          controller.addPrefix();
-          controller.addLang();
-          controller.addIntoTranslation();
-          controller.addIntoList();
-          scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 200), curve: Curves.easeOut);
+      floatingActionButton: Padding(
+        padding:  EdgeInsets.only(bottom: ad?Get.height*0.04:Get.height*0.29,right: 0),
+        child: FloatingActionButton(
 
-        },
-        backgroundColor: Colors.white,
-        child: const Center(
-          child: Icon(Icons.add,color: AppColors.primaryColor,),
+          onPressed: (){
+            controller.addPrefix();
+            controller.addLang();
+            controller.addIntoTranslation();
+            controller.addIntoList();
+            scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 200), curve: Curves.easeOut);
+
+          },
+          backgroundColor: Colors.white,
+          child: const Center(
+            child: Icon(Icons.add,color: AppColors.primaryColor,),
+          ),
         ),
       ),
 

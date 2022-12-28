@@ -15,7 +15,7 @@ class SearchBarDictionary extends StatelessWidget {
 
         decoration: BoxDecoration(
           color: Colors.white,
-          borderRadius: BorderRadius.circular(5.0),
+          borderRadius: BorderRadius.circular(35.0),
           boxShadow: const [
             BoxShadow(color: Colors.black12,blurRadius: 2,spreadRadius: 0.8)
           ]
@@ -24,7 +24,10 @@ class SearchBarDictionary extends StatelessWidget {
         child: Row(
           children: [
             Expanded(child: Container(
-              color: Colors.white,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                borderRadius:  BorderRadius.only(topLeft:Radius.circular(34.0) ,bottomLeft:Radius.circular(34) ),
+              ),
               child:  Padding(
                 padding:  const EdgeInsets.only(left: 8.0,right: 8.0),
                 child:  TextField(
@@ -33,12 +36,16 @@ class SearchBarDictionary extends StatelessWidget {
                   decoration: const InputDecoration(
                     prefixIcon: Icon(Icons.search),
                     border: InputBorder.none,
+
                     hintText: "Search word here",
                     hintStyle: fromHintStyle
                   ),
                   onChanged: (value){
                     if(value.length>1){
                       controller.setText(value);
+                    }
+                    if(value.isEmpty){
+                      controller.inputText.value="";
                     }
 
                   },
@@ -47,18 +54,25 @@ class SearchBarDictionary extends StatelessWidget {
             )),
             Obx(()=> InkWell(
                 onTap: (){
-                  controller.load(true);
-                  controller.lookUp();
+                  if(controller.inputText.value.length>1){
+                    controller.load(true);
+                    controller.lookUp();
+                  }
+                  else{
+                    Get.snackbar("Please enter a word", "can not find meaning of empty space or a character",snackPosition:SnackPosition.BOTTOM,
+                        backgroundColor: Colors.black54,colorText: Colors.white );
+                  }
+
                 },
                 child: Container(
                   height: Get.height,
-                  width: 70,
+                  width: Get.width*0.25,
                   decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.only(topRight:Radius.circular(4.0) ,bottomRight:Radius.circular(4) ),
+                    borderRadius: const BorderRadius.only(topRight:Radius.circular(34.0) ,bottomRight:Radius.circular(34) ),
                     color: controller.inputText.value.length>1?AppColors.primaryColor:Colors.grey.shade700,
                   ),
                   child: const Center(
-                    child: Icon(Icons.check,color: Colors.white,size: 30,),
+                    child: Text("Search",style: dictionaryStyle,),
                   ),
 
                 ),
