@@ -30,41 +30,53 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
             Obx(
               () => Positioned(
                 right: controller.audioEnabled.value?0:30,
-                top: 0,
-                bottom: 0,
+                top: controller.audioEnabled.value?Get.height*0.172:Get.height*0.2,
                 child: controller.audioEnabled.value
-                    ? InkWell(
+                    ? AvatarGlow(
+
+                      repeat: true,
+                      endRadius: 60.0,
+                      showTwoGlows: true,
+                      glowColor: Colors.black87,
+
+                      child: InkWell(
                         onTap: () async {
-                            controller.audioEnable(false);
-                            speechToText.stop();
+                          controller.audioEnable(false);
+                          speechToText.stop();
 
                         },
-                        child: AvatarGlow(
-
-                          repeat: true,
-                          endRadius: 60.0,
-                          showTwoGlows: true,
-                          glowColor: Colors.black87,
-
-                          child: Container(
-                            height: 70,
-                            width: 60,
-                            decoration: const BoxDecoration(
-                                color: Colors.white,
-                                shape: BoxShape.circle,
-                                boxShadow: [
-                                  BoxShadow(
-                                      color: Colors.black12,
-                                      blurRadius: 3,
-                                      spreadRadius: 3)
-                                ]),
-                            child:const  Center(
-                              child: Icon(Icons.stop_circle_outlined,color: Colors.red,size: 30,)
-                            ),
+                        child: Container(
+                          height: 70,
+                          width: 60,
+                          decoration: const BoxDecoration(
+                              color: Colors.white,
+                              shape: BoxShape.circle,
+                              boxShadow: [
+                                BoxShadow(
+                                    color: Colors.black12,
+                                    blurRadius: 3,
+                                    spreadRadius: 3)
+                              ]),
+                          child:const  Center(
+                            child: Icon(Icons.stop_circle_outlined,color: Colors.red,size: 30,)
                           ),
                         ),
-                      )
-                    : InkWell(
+                      ),
+                    )
+                    : Container(
+                      height: 70,
+                      width: 60,
+                      decoration: const BoxDecoration(
+                          color: Colors.white,
+                          shape: BoxShape.circle,
+                          boxShadow: [
+                            BoxShadow(
+                                color: Colors.black12,
+                                blurRadius: 3,
+                                spreadRadius: 3)
+                          ]),
+                      child: InkWell(
+                        radius:80 ,
                         onTap: () async {
                           bool available = await speechToText.initialize();
 
@@ -89,26 +101,14 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                                 "The user has denied the use of speech recognition.");
                           }
                         },
-                        child: Container(
-                          height: 70,
-                          width: 60,
-                          decoration: const BoxDecoration(
-                              color: Colors.white,
-                              shape: BoxShape.circle,
-                              boxShadow: [
-                                BoxShadow(
-                                    color: Colors.black12,
-                                    blurRadius: 3,
-                                    spreadRadius: 3)
-                              ]),
-                          child: Center(
-                            child: SvgPicture.asset(
-                              "Assets/svg/voice.svg",
-                              color: AppColors.primaryColor,
-                            ),
+                        child: Center(
+                          child: SvgPicture.asset(
+                            "Assets/svg/voice.svg",
+                            color: AppColors.primaryColor,
                           ),
                         ),
                       ),
+                    ),
               ),
             )
           ],

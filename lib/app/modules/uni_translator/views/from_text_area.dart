@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/text_font_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
@@ -13,6 +14,7 @@ class FromTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
     UniTranslatorController uniController=Get.put(UniTranslatorController());
+    TextFontController fontController=Get.put(TextFontController());
     return Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -25,31 +27,37 @@ class FromTextArea extends StatelessWidget {
             SizedBox(
               height: Get.height*0.13,
               width: Get.width*0.9,
-              child:  TextField(
-                maxLines: 5,
-                minLines: 5,
-                style: textInputStyle,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Enter Text Here",
-                  hintStyle:fromHintStyle
+              child:  Obx(()=> TextField(
+                  maxLines: 5,
+                  minLines: 5,
+                  style: fontController.inputTextStyle(fontController.inputFont.value),
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Enter Text Here",
+                    hintStyle:fromHintStyle
+                  ),
+                  onChanged: (value) async {
+                    if(value.length>=40){
+                      fontController.setInputTextFont(20.0);
+                    }
+                    if(value.length<40){
+                      fontController.setInputTextFont(40.0);
+                    }
+                    int getIndex=await uniController.detectLanguage(value);
+                    languagesController.selectedFromIndex.value=getIndex;
+                    String translatedText=
+                    await uniController.getTranslateUrl(languagesController.languagesPrefix[
+                      getIndex
+                    ], languagesController.languagesPrefix[
+                    languagesController.selectedToIndex.value
+                    ], value);
+                    uniController.setText(translatedText);
+                    if(value.isEmpty){
+                      languagesController.selectedFromIndex.value=0;
+                    }
+                  },
                 ),
-                onChanged: (value) async {
-
-                  int getIndex=await uniController.detectLanguage(value);
-                  languagesController.selectedFromIndex.value=getIndex;
-                  String translatedText=
-                  await uniController.getTranslateUrl(languagesController.languagesPrefix[
-                    getIndex
-                  ], languagesController.languagesPrefix[
-                  languagesController.selectedToIndex.value
-                  ], value);
-                  uniController.setText(translatedText);
-                  if(value.isEmpty){
-                    languagesController.selectedFromIndex.value=0;
-                  }
-                },
               ),
             ),
             const Padding(

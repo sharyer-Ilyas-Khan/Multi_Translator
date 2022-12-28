@@ -26,7 +26,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
             controller.addLang();
             controller.addIntoTranslation();
             controller.addIntoList();
-            scrollController.animateTo(scrollController.position.maxScrollExtent, duration: Duration(milliseconds: 200), curve: Curves.easeOut);
+            scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
 
           },
           backgroundColor: Colors.white,
@@ -40,9 +40,10 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
             ()=>ListView.builder(
             itemCount:controller.listOfWidget.length,
             controller: scrollController,
+            addRepaintBoundaries: true,
+            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
             itemBuilder: (_,index){
               return controller.listOfWidget.value[index];
-
         }),
     )
     );

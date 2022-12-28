@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/text_font_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
+import '../../../controllers/menu_items_controller.dart';
 import '../../languages/views/languages_view.dart';
 import '../controllers/multi_translator_controller.dart';
 class ToTextArea extends StatelessWidget {
@@ -15,6 +17,8 @@ class ToTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
     MultiTranslatorController multiController=Get.put(MultiTranslatorController());
+    MenuItemsController menuItemsController=Get.put(MenuItemsController());
+    TextFontController fontController=Get.put(TextFontController());
     return  Container(
       height: Get.height*0.25,
       width: Get.width,
@@ -38,7 +42,7 @@ class ToTextArea extends StatelessWidget {
                 height: Get.height*0.13,
                 width: Get.width*0.9,
                 child: SingleChildScrollView(
-                  child: Text(multiController.listOfTranslation[id],style:textInputStyleTo ,),
+                  child: Text(multiController.listOfTranslation[id],style:fontController.outputTextStyle(fontController.inputFont.value) ,),
                 )
               ),
             ),
@@ -106,15 +110,28 @@ class ToTextArea extends StatelessWidget {
                   direction: SpeedDialDirection.left,
                   children: [
                     SpeedDialChild(
+                        onTap: (){
+                          menuItemsController.copyText(multiController.translatedText.value.toString());
+                        },
                         child: const Icon(Icons.copy,size: 13,)
                     ),
                     SpeedDialChild(
+                        onTap: (){
+                          menuItemsController.shareText(multiController.translatedText.value.toString());
+                        },
                         child: const Icon(Icons.share,size: 13)
                     ),
                     SpeedDialChild(
+                        onTap: (){
+                          isDialOpen.value=false;
+                          menuItemsController.viewFullScreen(multiController.translatedText.value.toString());
+                        },
                         child: const Icon(Icons.aspect_ratio,size: 13)
                     ),
                     SpeedDialChild(
+                      onTap: (){
+                        menuItemsController.addToFav(multiController.translatedText.value.toString());
+                      },
                       child: const Icon(Icons.favorite,color: Colors.red,size: 18,),
                     )
                   ],

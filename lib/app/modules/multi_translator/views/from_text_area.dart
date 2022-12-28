@@ -6,6 +6,8 @@ import 'package:translator/app/modules/languages/bindings/languages_binding.dart
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/languages/views/languages_view.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
+
+import '../../../controllers/text_font_controller.dart';
 class FromTextArea extends StatelessWidget {
   const FromTextArea({Key? key}) : super(key: key);
 
@@ -13,6 +15,7 @@ class FromTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
     MultiTranslatorController controller=Get.put(MultiTranslatorController());
+    TextFontController fontController=Get.put(TextFontController());
     return Container(
       height: Get.height*0.25,
       width: Get.width,
@@ -22,24 +25,38 @@ class FromTextArea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            SizedBox(
-              height: Get.height*0.13,
-              width: Get.width*0.9,
-              child:  TextField(
-                maxLines: 5,
-                minLines: 5,
-                style: textInputStyle,
-                keyboardType: TextInputType.emailAddress,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  hintText: "Enter Text Here",
-                  hintStyle:fromHintStyle
+            Obx(
+              ()=> SizedBox(
+                height: Get.height*0.13,
+                width: Get.width*0.9,
+                child:  TextField(
+                  maxLines: 5,
+                  minLines: 5,
+                  style: fontController.inputTextStyle(fontController.inputFont.value),
+                  keyboardType: TextInputType.emailAddress,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    hintText: "Enter Text Here",
+                    hintStyle:fromHintStyle
+                  ),
+                  onChanged: (value) async {
+                    if(value.length>=40){
+                      fontController.setInputTextFont(20.0);
+                    }
+                    if(value.length<40){
+                      fontController.setInputTextFont(40.0);
+                    }
+                    int getIndex=await controller.detectLanguage(value);
+                    languagesController.selectedFromIndex.value=getIndex;
+                    if(value.isEmpty){
+                      languagesController.selectedFromIndex.value=0;
+                    }
+                    controller.setTranslations(
+                        languagesController.languagesPrefix[languagesController.selectedFromIndex.value],
+                        value);
+                    print(getIndex);
+                  },
                 ),
-                onChanged: (value) async {
-                  controller.setTranslations(
-                      languagesController.languagesPrefix[languagesController.selectedFromIndex.value],
-                      value);
-                },
               ),
             ),
             const Padding(
@@ -50,7 +67,6 @@ class FromTextArea extends StatelessWidget {
                   ()=> InkWell(
                 onTap: (){
                   Get.to(()=>LanguagesView(type: "from") );
-
                 },
                 child: Container(
                   width: Get.width*0.35,

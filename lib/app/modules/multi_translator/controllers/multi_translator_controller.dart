@@ -78,4 +78,138 @@ void setTranslations(String sourceLan,content)async{
    void setText(text){
      translatedText.value=text;
    }
+    String lang="";
+    Future<int> detectLanguage(content) async {
+      lang="";
+      String url="https://translate.google.com.hk/translate_a/single?client=gtx&sl=auto&tl=eng&dt=t&q=${Uri.encodeFull(content)}";
+      Response response= await GetConnect().get(url);
+      List detectedLang=response.body[8][0];
+      if(detectedLang[0].toString().length>3){
+        lang=detectedLang[0].toString().split("-").first;
+      }
+      else{
+        lang=detectedLang[0].toString();
+      }
+      for(int i=0;i<languagesPrefix.length;i++){
+
+        if( languagesPrefix[i]==lang){
+          return i;
+        }
+      }
+      return 0;
+
+
+    }
+    List languages=[
+      "English",
+      "Spanish",
+      "German",
+      "Arabic",
+      "French",
+      "Italian",
+      "Urdu",
+      "Hindi",
+      "Dutch",
+      "Thai",
+      "Russian",
+      "Afrikaans",
+      "Chinese",
+      "Bengali",
+      "Czech",
+      "Danish",
+      "Estonian",
+      "Finnish",
+      "Georgian",
+      "Greek",
+      "Gujarati",
+      "Hungarian",
+      "Icelandic",
+      "Telugu",
+      "Tamil",
+      "Ukrainian",
+      "Romanian",
+      "Japanese",
+      "Korean",
+      "Irish",
+      "Indonesian",
+      "Hebrew",
+      "Kannada",
+      "Korean",
+      "Swedish",
+      "Polish",
+      "Farsi",
+      "Norwegian",
+      "Portuguese",
+      "Belarusian",
+      "Bulgarian",
+      "Catalan",
+      "Haitian Creole",
+      "Latvian",
+      "Lithuanian",
+      "Macedonian",
+      "Malay",
+      "Maltese",
+      "Slovak",
+      "Slovenian",
+      "Swahili",
+      "Vietnamese",
+    ];
+
+    List languagesPrefix=[
+      "en",
+      "es",
+      "de",
+      "ar",
+      "fr",
+      "it",
+      "ur",
+      "hi",
+      "nl",
+      "th",
+      "ru",
+      "af",
+      "zh",
+      "bn",
+      "cs",
+      "da",
+      "et",
+      "fi",
+      "ka",
+      "el",
+      "gu",
+      "hu",
+      "is",
+      "te",
+      "ta",
+      "uk",
+      "ro",
+      "ja",
+      "kn",
+      "ga",
+      "id",
+      "iw",
+      "kn",
+      "kn",
+      "sv",
+      "pl",
+      "fa",
+      "no",
+      "pt",
+      "be",
+      "bg",
+      "ca",
+      "gl",
+      "ht",
+      "lv",
+      "lt",
+      "mk",
+      "ms",
+      "mt",
+      "sk",
+      "sl",
+      "sw",
+      "vi",
+    ];
+
+
 }

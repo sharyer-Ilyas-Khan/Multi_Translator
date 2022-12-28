@@ -5,6 +5,7 @@ import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/voice_translator/controllers/voice_translator_controller.dart';
 
+import '../../../controllers/text_font_controller.dart';
 import '../../languages/views/languages_view.dart';
 class FromTextArea extends StatelessWidget {
   const FromTextArea({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class FromTextArea extends StatelessWidget {
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
     VoiceTranslatorController controller=Get.put(VoiceTranslatorController());
+    TextFontController fontController=Get.put(TextFontController());
     return Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -27,7 +29,7 @@ class FromTextArea extends StatelessWidget {
                 height: Get.height*0.13,
                 width: Get.width*0.9,
                 child: SingleChildScrollView(
-                  child: Text(controller.inputText.value,style:textInputStyle ,),
+                  child: Text(controller.inputText.value,style:fontController.inputTextStyle(fontController.inputFont.value),),
                 )
 
               ),

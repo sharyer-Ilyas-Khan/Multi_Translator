@@ -1,10 +1,13 @@
 import 'package:get/get.dart';
 
+import '../../../controllers/text_font_controller.dart';
+
 class VoiceTranslatorController extends GetxController {
   //TODO: Implement VoiceTranslatorController
   Rx<String> translatedText="...".obs;
   Rx<String> inputText="...".obs;
   RxBool audioEnabled=false.obs;
+  TextFontController fontController=Get.put(TextFontController());
   @override
   void onInit() {
     super.onInit();
@@ -27,7 +30,17 @@ class VoiceTranslatorController extends GetxController {
   }
   void setInputText(text){
     inputText.value=text;
+    if(inputText.value.length>40){
+      fontController.inputFont.value=20.0;
+    }
+    if(inputText.value.length<40){
+      fontController.inputFont.value=40.0;
+    }
   }
+  void getFont(){
+
+  }
+
   Future<String> getTranslateUrl(String sourceLan, String targetLan, String content)async {
     String TRANSLATE_BASE_URL = "https://translate.google.com.hk/";
     try {

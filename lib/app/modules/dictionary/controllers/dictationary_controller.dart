@@ -34,6 +34,7 @@ FlutterTts? flutterTts;
     inputText.value=value;
   }
   void speak(){
+    flutterTts!.setSpeechRate(0.3);
     flutterTts!.speak(inputText.value);
   }
 void load(status){
@@ -69,11 +70,8 @@ void load(status){
       //
       // }
 
-
-
-
     } catch (e) {
-     print(e.toString());
+     print("this is catch error${e.toString()}");
     }
   }
   }

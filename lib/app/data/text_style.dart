@@ -189,3 +189,10 @@ const dictionaryStyle=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
+const  textFullScreenStyle=TextStyle(
+    fontSize: 18,
+    color:Colors.black87,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w500,
+    letterSpacing: 0.0
+);
