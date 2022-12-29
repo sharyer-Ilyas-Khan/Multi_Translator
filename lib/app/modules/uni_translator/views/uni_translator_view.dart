@@ -7,14 +7,15 @@ import 'package:translator/app/modules/uni_translator/views/to_text_area.dart';
 import '../controllers/uni_translator_controller.dart';
 
 class UniTranslatorView extends GetView<UniTranslatorController> {
-  const UniTranslatorView({Key? key}) : super(key: key);
+  final text;
+  const UniTranslatorView({Key? key,this.text}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,
       body: Column(
         children:  [
-          FromTextArea(),
+          FromTextArea(text:text??""),
           ToTextArea()
         ],
       )

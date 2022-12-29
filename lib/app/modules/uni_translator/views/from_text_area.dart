@@ -8,13 +8,16 @@ import 'package:translator/app/modules/uni_translator/controllers/uni_translator
 
 import '../../languages/views/languages_view.dart';
 class FromTextArea extends StatelessWidget {
-  const FromTextArea({Key? key}) : super(key: key);
-
+  final text;
+   FromTextArea({Key? key,this.text}) : super(key: key);
+TextEditingController fromController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
     UniTranslatorController uniController=Get.put(UniTranslatorController());
     TextFontController fontController=Get.put(TextFontController());
+    fromController.text=text??"...";
+    text!=""?translate(uniController, languagesController, text):{};
     return Container(
       height: Get.height*0.24,
       width: Get.width,
@@ -28,6 +31,7 @@ class FromTextArea extends StatelessWidget {
               height: Get.height*0.13,
               width: Get.width*0.9,
               child:  Obx(()=> TextField(
+                controller: fromController,
                   maxLines: 5,
                   minLines: 5,
                   style: fontController.inputTextStyle(fontController.inputFont.value),
@@ -96,5 +100,17 @@ class FromTextArea extends StatelessWidget {
         ),
       ),
     );
+  }
+  Future<void> translate(uniController,languagesController,text) async {
+    int getIndex=await uniController.detectLanguage(text);
+    languagesController.selectedFromIndex.value=getIndex;
+    String translatedText=await uniController.getTranslateUrl(languagesController.languagesPrefix[
+    getIndex
+    ], languagesController.languagesPrefix[
+    languagesController.selectedToIndex.value
+    ], text);
+    print("translatedText");
+    print(translatedText);
+    uniController.setText(translatedText);
   }
 }

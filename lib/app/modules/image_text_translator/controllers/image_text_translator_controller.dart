@@ -1,13 +1,23 @@
+import 'dart:io';
+import 'package:flutter/material.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
+import 'package:translator/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
+import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
 class ImageTextTranslatorController extends GetxController {
   //TODO: Implement ImageTextTranslatorController
  ImagePicker? imagePicker;
  XFile? image;
  InputImage? inputImage;
+  Rx<File> file=File("path").obs;
+ RxBool imageReady=false.obs;
 final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
+// final textRecognizer = TextRecognizer(script: TextRecognitionScript.korean);
+DashboardController controller=Get.put(DashboardController());
   @override
   void onInit() {
     imagePicker=ImagePicker();
@@ -27,19 +37,24 @@ final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
   void pickImage()async{
   image=await imagePicker!.pickImage(source: ImageSource.gallery);
   Get.to(()=>CropImage(file: image,));
-  
   // getTextFromImage(image);
-
   }
+
 void captureImage()async{
   image=await imagePicker!.pickImage(source: ImageSource.camera);
-  getTextFromImage(image);
+  getTextFromImage(File(image!.path));
 }
-Future<void> getTextFromImage(XFile? image) async {
+
+Future<void> getTextFromImage(File? image) async {
+  print("recognizedText.text");
     if(image!=null){
       inputImage=InputImage.fromFilePath(image.path);
       final RecognizedText recognizedText = await textRecognizer.processImage(inputImage!);
-      print(recognizedText.text);
+      print(recognizedText.text.replaceAll("\n"," "));
+      controller.selectedIndex.value=0;
+
+      Get.off(DashboardView(text:recognizedText.text.replaceAll("\n"," ")));
+
     }
     else{
       print("Please Select an image");
@@ -47,7 +62,33 @@ Future<void> getTextFromImage(XFile? image) async {
 
 
 }
+void getCroppedImage(CroppedFile croppedFile){
+    file.value=File(croppedFile.path);
+    imageReady.value=true;
+}
+ Future<void> cropImage(image) async {
+   if (image != null) {
+     final croppedFile = await ImageCropper().cropImage(
+       sourcePath: image!.path,
+       compressFormat: ImageCompressFormat.jpg,
+       compressQuality: 100,
+       uiSettings: [
+         AndroidUiSettings(
+             toolbarTitle: 'Cropper',
+             toolbarColor: Colors.deepOrange,
+             toolbarWidgetColor: Colors.white,
+             initAspectRatio: CropAspectRatioPreset.original,
+             lockAspectRatio: false),
+         IOSUiSettings(
+           title: 'Cropper',
+         ),
+       ],
+     );
+     if (croppedFile != null) {
+      getCroppedImage(croppedFile);
 
-
+     }
+   }
+ }
 }
 

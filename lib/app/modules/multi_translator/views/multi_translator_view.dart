@@ -17,8 +17,9 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
     MultiTranslatorController controller=Get.put(MultiTranslatorController());
    return Scaffold(
         resizeToAvoidBottomInset: false,
+
       floatingActionButton: Padding(
-        padding:  EdgeInsets.only(bottom: ad?Get.height*0.04:Get.height*0.29,right: 0),
+        padding:  EdgeInsets.only(bottom: ad?Get.height*0.55:Get.height*0.55,right: 10),
         child: FloatingActionButton(
 
           onPressed: (){
@@ -29,6 +30,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
             scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
 
           },
+          elevation: 10,
           backgroundColor: Colors.white,
           child: const Center(
             child: Icon(Icons.add,color: AppColors.primaryColor,),

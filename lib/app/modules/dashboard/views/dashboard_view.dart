@@ -16,11 +16,13 @@ import '../../dictionary/views/dictionary_view.dart';
 import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
-   DashboardView({Key? key}) : super(key: key);
+  final text;
+   DashboardView({Key? key,this.text}) : super(key: key);
   List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title:  Obx(()=> Text(title[controller.selectedIndex.value],style:appBar,)),
@@ -46,16 +48,16 @@ class DashboardView extends GetView<DashboardController> {
         ],
       ),
       body: Stack(
-        
+
         children: [
           ///Screens toggle
           Obx(
             ()=> IndexedStack(
               index: controller.selectedIndex.value,
               children:  [
-                const UniTranslatorView(),
+                 UniTranslatorView(text:text??"..."),
                  VoiceTranslatorView(),
-                const ImageTextTranslatorView(),
+                  const ImageTextTranslatorView(),
                 const DictionaryView(),
                 MultiTranslatorView(ad:true,)
               ],

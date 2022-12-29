@@ -11,10 +11,13 @@ class CameraView extends StatelessWidget {
     CameraControllers controllers=Get.put(CameraControllers());
     return Obx(()=>
        controllers.isInitialized.value?
-       CameraPreview(
+       SizedBox(
+         height: Get.height,
+         child: CameraPreview(
 
-        controllers.controller,
+          controllers.controller,
 
-      ):Container(),);
+      ),
+       ):Container(),);
   }
 }
