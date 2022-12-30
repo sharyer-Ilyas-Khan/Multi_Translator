@@ -1,13 +1,16 @@
+import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/clear_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
+import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
 
-import '../../../data/text_style.dart';
-import '../../multi_translator/views/from_text_area.dart';
-import '../../multi_translator/views/to_text_area.dart';
+import '../../image_text_translator/controllers/camera_controller.dart';
+import '../../voice_translator/controllers/voice_translator_controller.dart';
+
 class BottomNavButtons extends StatelessWidget {
   final icon;
   final index;
@@ -16,11 +19,27 @@ class BottomNavButtons extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DashboardController controller=Get.put(DashboardController());
+    UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
     MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
+    CameraControllers cameraControllers=Get.put(CameraControllers());
+    VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorController());
     return  InkWell(
         onTap: (){
           if(index==4){
+            cameraControllers.disposeCamera();
             multiTranslatorController.clearList();
+          }
+          if(index==3){
+            cameraControllers.disposeCamera();
+          }
+          if(index==2){
+            cameraControllers.onInit();
+          }
+          if(index==1){
+            cameraControllers.disposeCamera();
+          }
+          if(index==0){
+            cameraControllers.disposeCamera();
           }
             controller.selectedOption(index);
 

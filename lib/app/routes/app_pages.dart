@@ -50,7 +50,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.UNI_TRANSLATOR,
-      page: () => const UniTranslatorView(),
+      page: () =>  UniTranslatorView(),
       binding: UniTranslatorBinding(),
     ),
     GetPage(

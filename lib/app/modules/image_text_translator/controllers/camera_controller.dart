@@ -3,18 +3,19 @@
 import 'package:get/get.dart';
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
 class CameraControllers extends GetxController {
   //TODO: Implement CameraController
    late List<CameraDescription> _cameras;
    late CameraController controller;
+   DashboardController dashboardController=Get.put(DashboardController());
    XFile? file;
    RxBool isInitialized=false.obs;
 RxBool flashOn=false.obs;
   @override
   void onInit() async{
-    await getCamera();
-
+   dashboardController.selectedIndex.value==2?await getCamera(): {};
     super.onInit();
   }
 
@@ -25,10 +26,17 @@ RxBool flashOn=false.obs;
 
   @override
   void onClose() {
+
     super.onClose();
   }
+  void disposeCamera(){
+    if(isInitialized.value==true){
+      controller.dispose();
+      isInitialized.value=false;
+    }
+
+  }
   void initializeCamera(){
-    print("Started");
     controller = CameraController(_cameras[0], ResolutionPreset.max);
     controller.initialize().then((_) {
       isInitialized.value=true;
@@ -48,6 +56,8 @@ RxBool flashOn=false.obs;
 
   void capturePicture()async{
    file= await controller.takePicture();
+   offFlash();
+
    Get.to(()=>CropImage(file: file,));
   }
   Future<void> getCamera() async {

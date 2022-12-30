@@ -8,8 +8,11 @@ import '../controllers/uni_translator_controller.dart';
 
 class UniTranslatorView extends GetView<UniTranslatorController> {
   final text;
-  const UniTranslatorView({Key? key,this.text}) : super(key: key);
+   UniTranslatorView({Key? key,this.text}) : super(key: key);
   @override
+  UniTranslatorController controller=Get.put(UniTranslatorController());
+  @override
+
   Widget build(BuildContext context) {
     return Scaffold(
         resizeToAvoidBottomInset: false,

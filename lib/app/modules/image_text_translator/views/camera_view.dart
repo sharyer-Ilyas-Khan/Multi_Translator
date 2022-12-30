@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:get/get.dart';
 import 'package:camera/camera.dart';
+import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/image_text_translator/controllers/camera_controller.dart';
 
 class CameraView extends StatelessWidget {
-  const CameraView({Key? key}) : super(key: key);
+   CameraView({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     CameraControllers controllers=Get.put(CameraControllers());
+    controllers.onInit();
     return Obx(()=>
        controllers.isInitialized.value?
        SizedBox(
@@ -18,6 +21,13 @@ class CameraView extends StatelessWidget {
           controllers.controller,
 
       ),
-       ):Container(),);
+       ):Container(
+         color: Colors.black,
+         height: Get.height,
+         child: Center(
+
+           child: SpinKitFadingCircle(color: AppColors.primaryColor ,),
+         ),
+       ),);
   }
 }

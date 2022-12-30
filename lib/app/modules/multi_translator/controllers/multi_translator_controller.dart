@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/clear_controller.dart';
 import 'package:translator/app/modules/multi_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/multi_translator/views/to_text_area.dart';
 
@@ -8,20 +9,24 @@ class MultiTranslatorController extends GetxController {
     RxList listOfWidget=[FromTextArea(),ToTextArea(id:1,)].obs;
     RxList listOfPrefix=["en","en"].obs;
     RxList listOfLang=["English","English"].obs;
-    RxList listOfTranslation=["...","..."].obs;
+    RxList listOfTranslation=["from.","to."].obs;
    Rx<String> translatedText="...".obs;
    String textContent='';
-
+   RxInt translatedIndex=1.obs;
+ClearController clearController=Get.put(ClearController());
 
    void clearList(){
      listOfPrefix=["en","en"].obs;
-     listOfTranslation=["...","..."].obs;
+     listOfTranslation=["from.","to."].obs;
      listOfLang=["English","English"].obs;
      listOfWidget=[FromTextArea(),ToTextArea(id:1,)].obs;
    }
   @override
   void onInit() {
-
+    clearController.clearLanguages();
+    clearController.clearCameraTranslator();
+    clearController.clearMicTranslator();
+    clearController.clearUniTranslator();
     super.onInit();
   }
 
@@ -99,6 +104,10 @@ void setTranslations(String sourceLan,content)async{
       return 0;
 
 
+    }
+
+    void setTranslatedId(id){
+      translatedIndex.value=id;
     }
     List languages=[
       "English",

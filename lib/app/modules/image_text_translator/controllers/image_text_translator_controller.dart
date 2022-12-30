@@ -4,10 +4,15 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:translator/app/controllers/clear_controller.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
-import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
+
+import 'camera_controller.dart';
+
+
+
 class ImageTextTranslatorController extends GetxController {
   //TODO: Implement ImageTextTranslatorController
  ImagePicker? imagePicker;
@@ -18,9 +23,15 @@ class ImageTextTranslatorController extends GetxController {
 final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 // final textRecognizer = TextRecognizer(script: TextRecognitionScript.korean);
 DashboardController controller=Get.put(DashboardController());
+ClearController clearController=Get.put(ClearController());
+  CameraControllers cameraControllers=Get.put(CameraControllers());
   @override
   void onInit() {
     imagePicker=ImagePicker();
+    clearController.clearLanguages();
+    clearController.clearUniTranslator();
+    clearController.clearMicTranslator();
+    clearController.clearMultiTranslator();
     super.onInit();
   }
 
@@ -54,6 +65,8 @@ Future<void> getTextFromImage(File? image) async {
       controller.selectedIndex.value=0;
 
       Get.off(DashboardView(text:recognizedText.text.replaceAll("\n"," ")));
+      cameraControllers.isInitialized.value=false;
+      cameraControllers.controller.dispose();
 
     }
     else{

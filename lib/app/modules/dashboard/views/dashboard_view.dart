@@ -55,7 +55,7 @@ class DashboardView extends GetView<DashboardController> {
             ()=> IndexedStack(
               index: controller.selectedIndex.value,
               children:  [
-                 UniTranslatorView(text:text??"..."),
+                 UniTranslatorView(text:text??""),
                  VoiceTranslatorView(),
                   const ImageTextTranslatorView(),
                 const DictionaryView(),

@@ -7,11 +7,10 @@ import 'package:translator/app/modules/voice_translator/controllers/voice_transl
 
 class ClearController extends GetxController {
   //TODO: Implement ClearController
-UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
-MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
-CameraControllers cameraControllers=Get.put(CameraControllers());
-LanguagesController languagesController=Get.put(LanguagesController());
-VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorController());
+// UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
+// MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
+// CameraControllers cameraControllers=Get.put(CameraControllers());
+// VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorController());
   final count = 0.obs;
   @override
   void onInit() {
@@ -28,21 +27,29 @@ VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorContr
     super.onClose();
   }
   void clearUniTranslator(){
-    uniTranslatorController.translatedText.value="";
-    uniTranslatorController.textContent="";
-    languagesController.languagesPrefix=languagesController.languagesPrefix[0];
-    languagesController.languages=languagesController.languages[0];
+    // uniTranslatorController.translatedText.value="";
+    // uniTranslatorController.textContent="";
 
 
   }
   void clearMicTranslator(){
+// voiceTranslatorController.translatedText.value="";
+// voiceTranslatorController.inputText.value="...";
+// voiceTranslatorController.audioEnabled.value=false;
 
   }
   void clearCameraTranslator(){
-
+    // cameraControllers.controller.stopImageStream();
+    // cameraControllers.file=null;
+    // cameraControllers.flashOn.value=false;
+    // cameraControllers.isInitialized.value=false;
   }
   void clearMultiTranslator(){
 
+  }
+  void clearLanguages(){
+    // languagesController.languagesPrefix=languagesController.languagesPrefix[0];
+    // languagesController.languages=languagesController.languages[0];
   }
 
 

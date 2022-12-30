@@ -4,6 +4,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
+import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/image_text_translator/views/camera_view.dart';
 
 import '../controllers/camera_controller.dart';
@@ -15,9 +16,10 @@ class ImageTextTranslatorView extends GetView<ImageTextTranslatorController> {
   Widget build(BuildContext context) {
     ImageTextTranslatorController controller=Get.put(ImageTextTranslatorController());
     CameraControllers controllers=Get.put(CameraControllers());
+    DashboardController dashboardController=Get.put(DashboardController());
     return  Stack(
           children: [
-            const CameraView(),
+            Obx(()=> dashboardController.selectedIndex.value==2?CameraView():Center(child: CircularProgressIndicator(),)),
             Positioned(
               bottom: Get.height*0.13,
               // left: 0,

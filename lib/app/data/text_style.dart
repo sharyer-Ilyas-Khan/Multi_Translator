@@ -9,6 +9,12 @@ color:Colors.white,
 fontFamily: "robob",
 letterSpacing: 0.0
 );
+const delete=TextStyle(
+    fontSize: 20,
+    color:Colors.white,
+    fontFamily: "robob",
+    letterSpacing: 0.0
+);
 const splashSubHeading=TextStyle(
     fontSize: 30,
     color:Colors.white,

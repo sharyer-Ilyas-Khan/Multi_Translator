@@ -39,14 +39,20 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
       ),
 
       body:Obx(
-            ()=>ListView.builder(
-            itemCount:controller.listOfWidget.length,
-            controller: scrollController,
-            addRepaintBoundaries: true,
-            keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-            itemBuilder: (_,index){
-              return controller.listOfWidget.value[index];
+            ()=>SizedBox(
+              height: Get.height*0.76,
+              child: ListView.builder(
+              itemCount:controller.listOfWidget.length,
+              controller: scrollController,
+              addRepaintBoundaries: true,
+              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+              itemBuilder: (_,index){
+
+                  return controller.listOfWidget[index];
+
+
         }),
+            ),
     )
     );
   }
