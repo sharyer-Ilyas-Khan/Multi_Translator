@@ -20,6 +20,7 @@ class CropImage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         iconTheme: IconThemeData(
             color: Colors.grey.shade700
         ),
@@ -50,6 +51,9 @@ class CropImage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
+                    onTap: (){
+                      controller.cropImage(File(file.path));
+                    },
                     child: Container(
                       height: Get.height * 0.05,
                       width: Get.width * 0.1,
@@ -59,7 +63,7 @@ class CropImage extends StatelessWidget {
 
                       ),
                       child: Center(
-                        child: Icon(Icons.refresh, color: Colors.black,),
+                        child: Icon(Icons.crop, color: Colors.black,),
                       ),
 
                     ),
@@ -86,6 +90,9 @@ class CropImage extends StatelessWidget {
 
                   ),
                   InkWell(
+                    onTap: (){
+                      Navigator.pop(context);
+                    },
                     child: Container(
                       height: Get.height * 0.05,
                       width: Get.width * 0.1,

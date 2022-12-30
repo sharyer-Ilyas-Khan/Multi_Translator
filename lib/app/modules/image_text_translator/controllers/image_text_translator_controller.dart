@@ -48,7 +48,10 @@ ClearController clearController=Get.put(ClearController());
 
   void pickImage()async{
   image=await imagePicker!.pickImage(source: ImageSource.gallery);
-  Get.to(()=>CropImage(file: image,));
+  if(image!=null){
+    Get.to(()=>CropImage(file: image,));
+  }
+
   // getTextFromImage(image);
   }
 
