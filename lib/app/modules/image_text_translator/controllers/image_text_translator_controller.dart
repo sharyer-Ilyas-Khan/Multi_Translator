@@ -9,6 +9,7 @@ import 'package:translator/app/modules/dashboard/controllers/dashboard_controlle
 import 'package:translator/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
 
+import '../../dashboard/bindings/dashboard_binding.dart';
 import 'camera_controller.dart';
 
 
@@ -51,22 +52,22 @@ ClearController clearController=Get.put(ClearController());
   // getTextFromImage(image);
   }
 
-void captureImage()async{
-  image=await imagePicker!.pickImage(source: ImageSource.camera);
-  getTextFromImage(File(image!.path));
-}
+// void captureImage()async{
+//   image=await imagePicker!.pickImage(source: ImageSource.camera);
+//   getTextFromImage(File(image!.path));
+// }
 
-Future<void> getTextFromImage(File? image) async {
+Future<void> getTextFromImage(File? image,context) async {
   print("recognizedText.text");
     if(image!=null){
       inputImage=InputImage.fromFilePath(image.path);
       final RecognizedText recognizedText = await textRecognizer.processImage(inputImage!);
       print(recognizedText.text.replaceAll("\n"," "));
-      controller.selectedIndex.value=0;
+      controller.selectedOption(0);
+      cameraControllers.disposeCamera();
+      controller.setText(recognizedText.text.replaceAll("\n"," "));
+      Navigator.pop(context);
 
-      Get.off(DashboardView(text:recognizedText.text.replaceAll("\n"," ")));
-      cameraControllers.isInitialized.value=false;
-      cameraControllers.controller.dispose();
 
     }
     else{

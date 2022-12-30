@@ -17,7 +17,7 @@ class FromTextArea extends StatelessWidget {
     MultiTranslatorController controller=Get.put(MultiTranslatorController());
     TextFontController fontController=Get.put(TextFontController());
     return Container(
-      height: Get.height*0.25,
+      height: Get.height*0.26,
       width: Get.width,
       color: AppColors.scaffoldColor,
       child: Padding(

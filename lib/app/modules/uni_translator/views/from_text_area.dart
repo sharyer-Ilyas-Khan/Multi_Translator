@@ -19,7 +19,7 @@ TextEditingController fromController=TextEditingController();
     fromController.text=text??"...";
     text!=""?translate(uniController, languagesController, text):{};
     return Container(
-      height: Get.height*0.24,
+      height: Get.height*0.26,
       width: Get.width,
       color: AppColors.scaffoldColor,
       child: Padding(

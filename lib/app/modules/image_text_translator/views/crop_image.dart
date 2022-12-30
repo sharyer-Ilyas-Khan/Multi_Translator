@@ -67,7 +67,8 @@ class CropImage extends StatelessWidget {
                   Center(
                     child: InkWell(
                       onTap: (){
-                        controller.getTextFromImage(File(controller.file.value.path));
+                        controller.getTextFromImage(File(controller.file.value.path),context);
+
                       },
                       child: Container(
                         height: Get.height * 0.06,

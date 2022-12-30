@@ -4,6 +4,7 @@ class DashboardController extends GetxController {
   //TODO: Implement DashboardController
 
   final  selectedIndex = 0.obs;
+  final  extractedText = "".obs;
   @override
   void onInit() {
     super.onInit();
@@ -21,5 +22,8 @@ class DashboardController extends GetxController {
 
  void selectedOption(index){
     selectedIndex.value=index;
+ }
+ void setText(text){
+    extractedText.value=text;
  }
 }

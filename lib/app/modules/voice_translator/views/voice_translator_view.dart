@@ -30,7 +30,7 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
             Obx(
               () => Positioned(
                 right: controller.audioEnabled.value?0:30,
-                top: controller.audioEnabled.value?Get.height*0.172:Get.height*0.2,
+                top: controller.audioEnabled.value?Get.height*0.19:Get.height*0.22,
                 child: controller.audioEnabled.value
                     ? AvatarGlow(
 

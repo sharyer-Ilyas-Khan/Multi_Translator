@@ -21,7 +21,7 @@ ValueNotifier<bool> isDialOpen=ValueNotifier(false);
     TextFontController fontController=Get.put(TextFontController());
 
     return  Container(
-      height: Get.height*0.24,
+      height: Get.height*0.26,
       width: Get.width,
       color: AppColors.primaryColor,
       child: Padding(

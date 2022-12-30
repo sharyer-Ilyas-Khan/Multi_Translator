@@ -19,7 +19,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
         resizeToAvoidBottomInset: false,
 
       floatingActionButton: Padding(
-        padding:  EdgeInsets.only(bottom: ad?Get.height*0.55:Get.height*0.55,right: 10),
+        padding:  EdgeInsets.only(bottom: ad?Get.height*0.54:Get.height*0.54,right: 12),
         child: FloatingActionButton(
 
           onPressed: (){
@@ -47,10 +47,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
               addRepaintBoundaries: true,
               keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
               itemBuilder: (_,index){
-
-                  return controller.listOfWidget[index];
-
-
+                return controller.listOfWidget.value[index];
         }),
             ),
     )

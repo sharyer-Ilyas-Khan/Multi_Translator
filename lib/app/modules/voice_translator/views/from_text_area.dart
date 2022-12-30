@@ -16,7 +16,7 @@ class FromTextArea extends StatelessWidget {
     VoiceTranslatorController controller=Get.put(VoiceTranslatorController());
     TextFontController fontController=Get.put(TextFontController());
     return Container(
-      height: Get.height*0.24,
+      height: Get.height*0.26,
       width: Get.width,
       color: AppColors.scaffoldColor,
       child: Padding(
@@ -52,7 +52,7 @@ class FromTextArea extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0,right: 10.0),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children:  [
                         Text(languagesController.languages
                         [0]

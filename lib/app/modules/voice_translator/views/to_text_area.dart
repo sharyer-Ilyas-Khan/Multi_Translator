@@ -19,7 +19,7 @@ class ToTextArea extends StatelessWidget {
     MenuItemsController menuItemsController=Get.put(MenuItemsController());
     TextFontController fontController=Get.put(TextFontController());
     return  Container(
-      height: Get.height*0.24,
+      height: Get.height*0.26,
       width: Get.width,
       color: AppColors.primaryColor,
       child: Padding(
@@ -32,9 +32,8 @@ class ToTextArea extends StatelessWidget {
                 height: Get.height*0.13,
                 width: Get.width*0.9,
                 child: SingleChildScrollView(
-                  child: Text(controller.translatedText.value,style:fontController.outputTextStyle(fontController.inputFont.value) ,),
+                  child: Text(controller.translatedText.value,style:fontController.outputTextStyle(fontController.inputFont.value),),
                 )
-
               ),
             ),
 
