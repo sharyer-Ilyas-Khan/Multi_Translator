@@ -8,9 +8,8 @@ import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/voice_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/voice_translator/views/to_text_area.dart';
-
 import '../controllers/voice_translator_controller.dart';
-
+import 'package:permission_handler/permission_handler.dart';
 class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
   VoiceTranslatorView({Key? key}) : super(key: key);
   stt.SpeechToText speechToText = stt.SpeechToText();
@@ -79,28 +78,40 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                       child: InkWell(
                         radius:80 ,
                         onTap: () async {
-                          bool available = await speechToText.initialize();
 
-                          if (available) {
-                            controller.audioEnable(true);
-                            speechToText.listen(onResult: (value) async {
-                              String recognizedText=value.recognizedWords;
-                              controller.setInputText(recognizedText);
-                              String translation=await controller.getTranslateUrl(languagesController.languagesPrefix[
-                              languagesController.selectedFromIndex.value
-                              ], languagesController.languagesPrefix[
-                              languagesController.selectedToIndex.value
-                              ], recognizedText);
-                              controller.setText(translation);
-                            },);
-
-
-
-
-                          } else {
-                            print(
-                                "The user has denied the use of speech recognition.");
+                          PermissionStatus microphone;
+                         microphone=await Permission.microphone.status;
+                          print(microphone);
+                          if(microphone.isPermanentlyDenied){
+                            await openAppSettings();
                           }
+                          if(microphone.isDenied){
+
+                            microphone=await Permission.microphone.request();
+                          }
+                          if(microphone.isGranted){
+                            bool available = await speechToText.initialize();
+                            if (available) {
+
+                              controller.audioEnable(true);
+                              speechToText.listen(onResult: (value) async {
+                                String recognizedText=value.recognizedWords;
+                                controller.setInputText(recognizedText);
+                                String translation=await controller.getTranslateUrl(languagesController.languagesPrefix[
+                                languagesController.selectedFromIndex.value
+                                ], languagesController.languagesPrefix[
+                                languagesController.selectedToIndex.value
+                                ], recognizedText);
+                                controller.setText(translation);
+                              },);
+
+
+
+
+                            }
+                          }
+
+
                         },
                         child: Center(
                           child: SvgPicture.asset(

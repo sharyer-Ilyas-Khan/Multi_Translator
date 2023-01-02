@@ -2,6 +2,7 @@
 
 import 'package:camera/camera.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
 class CameraControllers extends GetxController {
@@ -11,9 +12,11 @@ class CameraControllers extends GetxController {
    DashboardController dashboardController=Get.put(DashboardController());
    XFile? file;
    RxBool isInitialized=false.obs;
+   RxString errorText="".obs;
 RxBool flashOn=false.obs;
   @override
   void onInit() async{
+
    dashboardController.selectedIndex.value==2?await getCamera(): {};
     super.onInit();
   }
@@ -60,8 +63,23 @@ RxBool flashOn=false.obs;
    Get.to(()=>CropImage(file: file,));
   }
   Future<void> getCamera() async {
-    _cameras = await availableCameras();
-    initializeCamera();
+    PermissionStatus camera;
+    camera=await Permission.camera.status;
+    print(camera);
+    if(camera.isDenied){
+      errorText.value="Please allow permission to use camera.";
+      camera=await Permission.camera.request();
+    }
+    if(camera.isPermanentlyDenied){
+      errorText.value="Please allow permission to use camera.";
+      await openAppSettings();
+    }
+
+    if(camera.isGranted){
+      _cameras = await availableCameras();
+      initializeCamera();
+    }
+
   }
    void onFlash(){
     controller.setFlashMode(FlashMode.torch);

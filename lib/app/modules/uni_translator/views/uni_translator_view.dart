@@ -13,14 +13,17 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
   @override
 
   Widget build(BuildContext context) {
-    return Scaffold(
-        resizeToAvoidBottomInset: false,
-      body: Column(
-        children:  [
-          FromTextArea(text:text??""),
-          ToTextArea()
-        ],
-      )
+    return Hero(
+      tag: "0",
+      child: Scaffold(
+          resizeToAvoidBottomInset: false,
+        body: Column(
+          children:  [
+            FromTextArea(text:text??""),
+            ToTextArea()
+          ],
+        )
+      ),
     );
   }
 }

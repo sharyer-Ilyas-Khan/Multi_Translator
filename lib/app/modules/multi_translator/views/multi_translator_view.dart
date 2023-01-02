@@ -50,7 +50,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                   addRepaintBoundaries: true,
                   keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
                   itemBuilder: (_,index){
-                    return controller.listOfWidget.value[index];
+                    return controller.listOfWidget[index];
             }),
                 ),
     ),

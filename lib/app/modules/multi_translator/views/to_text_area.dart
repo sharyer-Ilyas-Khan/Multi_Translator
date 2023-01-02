@@ -22,7 +22,7 @@ class ToTextArea extends StatelessWidget {
     MenuItemsController menuItemsController=Get.put(MenuItemsController());
     TextFontController fontController=Get.put(TextFontController());
 
-    return  Container(
+    return  id=="zero"?Container():Container(
       decoration: const BoxDecoration(
           color: AppColors.primaryColor,
           boxShadow: [
@@ -38,7 +38,7 @@ class ToTextArea extends StatelessWidget {
         trailingActions: <SwipeAction>[
           SwipeAction(
               onTap: (CompletionHandler handler) async {
-                multiController.listOfWidget[id]=Container();
+                multiController.listOfWidget[id]=ToTextArea(id: "zero");
                 multiController.listOfTranslation[id]="";
                 multiController.listOfLang[id]="";
                 multiController.listOfPrefix[id]="";
@@ -156,26 +156,26 @@ class ToTextArea extends StatelessWidget {
                       children: [
                         SpeedDialChild(
                             onTap: (){
-                              menuItemsController.copyText(multiController.translatedText.value.toString());
+                              menuItemsController.copyText(multiController.listOfTranslation[id].toString());
                             },
                             child: const Icon(Icons.copy,size: 13,)
                         ),
                         SpeedDialChild(
                             onTap: (){
-                              menuItemsController.shareText(multiController.translatedText.value.toString());
+                              menuItemsController.shareText(multiController.listOfTranslation[id].toString());
                             },
                             child: const Icon(Icons.share,size: 13)
                         ),
                         SpeedDialChild(
                             onTap: (){
                               isDialOpen.value=false;
-                              menuItemsController.viewFullScreen(multiController.translatedText.value.toString());
+                              menuItemsController.viewFullScreen(multiController.listOfTranslation[id].toString());
                             },
                             child: const Icon(Icons.aspect_ratio,size: 13)
                         ),
                         SpeedDialChild(
                           onTap: (){
-                            menuItemsController.addToFav(multiController.translatedText.value.toString());
+                            menuItemsController.addToFav(multiController.listOfTranslation[id].toString());
                           },
                           child: const Icon(Icons.favorite,color: Colors.red,size: 18,),
                         )

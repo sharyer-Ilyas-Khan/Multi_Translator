@@ -15,6 +15,7 @@ dependencies:
   flutter_launcher_icons: ^0.11.0
   change_app_package_name: ^1.1.0
   lottie: ^1.4.3
+  sqflite: ^2.2.2
   share_plus: ^4.4.0
   store_checker: ^1.1.0
   flutter_rating_bar: ^4.0.1
@@ -23,6 +24,7 @@ dependencies:
   avatar_glow: ^2.0.2
   flutter_tts: ^3.6.2
   flutter_spinkit: ^5.1.0
+  permission_handler: ^10.2.0
   google_mlkit_text_recognition: ^0.5.0
   image_picker: ^0.8.6
   image_cropper: ^3.0.1
@@ -43,7 +45,6 @@ flutter_icons:
 flutter:
   uses-material-design: true
   assets:
-    - Assets/images/
     - Assets/svg/
     - Assets/icon/
     - Assets/lottie/

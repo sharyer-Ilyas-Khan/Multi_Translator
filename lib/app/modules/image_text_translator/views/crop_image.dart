@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/image_text_translator/controllers/image_text_translator_controller.dart';
@@ -29,15 +30,16 @@ class CropImage extends StatelessWidget {
         children: [
        Obx(
          ()=> Expanded(
-                child: Container(
+                child: controller.file.value.path!=""?Container(
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: controller.imageReady.value?
-                          FileImage(File(controller.file.value.path),):FileImage(File("new")),
+                          image:
+                          // controller.imageReady.value?
+                          FileImage(File(controller.file.value.path),),
                           fit: BoxFit.fitWidth
                       )
                   ),
-                ),
+                ):Container(),
             ),
        ),
           Container(

@@ -50,15 +50,22 @@ void load(status){
     try {
       String url="https://api.dictionaryapi.dev/api/v2/entries/en/${Uri.encodeFull(inputText.value)}";
       Response response=await GetConnect().get(url);
-        print(response.body);
 
+
+      if(response.statusText=="Not Found"){
         load(false);
+        errorText.value="No Data Found";
+      }
+      else{
+        errorText.value="";
+        load(false);
+
         // word
         word.value=response.body[0]["word"].toString();
         //api response word phonetics
-      if(response.body[0]["phonetics"].isNotEmpty){
-        pronounceText.value=response.body[0]["phonetics"][0]["text"].toString();
-      }
+        if(response.body[0]["phonetics"].isNotEmpty){
+          pronounceText.value=response.body[0]["phonetics"][0]["text"].toString();
+        }
 
         // word meanings
         partOfSpeech.value=response.body[0]["meanings"][0]["partOfSpeech"].toString();
@@ -70,12 +77,15 @@ void load(status){
         meaningThird.value=response.body[0]["meanings"][0]["definitions"][2]["definition"].toString();
         // print(response.body[0]["meanings"][0]["definitions"][2]["definition"].toString());
 
-      //
-      // }
+        //
+        // }
+      }
+
 
     } catch (e) {
      print("this is catch error${e.toString()}");
-     errorText.value="No Data Found";
+
+
     }
   }
   }

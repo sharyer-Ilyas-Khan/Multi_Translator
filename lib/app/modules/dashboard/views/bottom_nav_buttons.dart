@@ -43,6 +43,7 @@ class BottomNavButtons extends StatelessWidget {
             dictionaryController.errorText.value="";
             dictionaryController.inputText.value="";
 
+
           }
           if(index==3){
             cameraControllers.disposeCamera();
@@ -106,6 +107,7 @@ void clearUniTranslator(){
   uniTranslatorController.textContent="";
   languagesController.selectedFromIndex.value=0;
   languagesController.selectedToIndex.value=0;
+  controller.extractedText.value="";
 }
 
 }
