@@ -4,43 +4,88 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/controllers/clear_controller.dart';
 import 'package:translator/app/data/color_code.dart';
+import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
 import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
 
+import '../../dictionary/controllers/dictationary_controller.dart';
 import '../../image_text_translator/controllers/camera_controller.dart';
+import '../../languages/controllers/languages_controller.dart';
 import '../../voice_translator/controllers/voice_translator_controller.dart';
 
 class BottomNavButtons extends StatelessWidget {
   final icon;
   final index;
    BottomNavButtons({Key? key,this.icon,this.index}) : super(key: key);
-
+  late DashboardController controller;
+  late LanguagesController languagesController;
+  late UniTranslatorController uniTranslatorController;
+  late MultiTranslatorController multiTranslatorController;
+  late CameraControllers cameraControllers;
+  late VoiceTranslatorController voiceTranslatorController;
+  late  DictionaryController dictionaryController;
   @override
   Widget build(BuildContext context) {
-    DashboardController controller=Get.put(DashboardController());
-    UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
-    MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
-    CameraControllers cameraControllers=Get.put(CameraControllers());
-    VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorController());
+     controller=Get.put(DashboardController());
+     languagesController=Get.put(LanguagesController());
+     uniTranslatorController=Get.put(UniTranslatorController());
+     multiTranslatorController=Get.put(MultiTranslatorController());
+     cameraControllers=Get.put(CameraControllers());
+     dictionaryController=Get.put(DictionaryController());
+     voiceTranslatorController=Get.put(VoiceTranslatorController());
     return  InkWell(
         onTap: (){
           if(index==4){
             cameraControllers.disposeCamera();
-            multiTranslatorController.clearList();
+            clearUniTranslator();
+            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.audioEnabled.value=false;
+            voiceTranslatorController.inputText.value="...";
+            dictionaryController.inputController.value.clear();
+            dictionaryController.errorText.value="";
+            dictionaryController.inputText.value="";
+
           }
           if(index==3){
             cameraControllers.disposeCamera();
+            multiTranslatorController.clearList();
+            clearUniTranslator();
+            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.audioEnabled.value=false;
+            voiceTranslatorController.inputText.value="...";
           }
           if(index==2){
             cameraControllers.onInit();
+            multiTranslatorController.clearList();
+            clearUniTranslator();
+            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.audioEnabled.value=false;
+            voiceTranslatorController.inputText.value="...";
+            dictionaryController.inputController.value.clear();
+            dictionaryController.errorText.value="";
+            dictionaryController.inputText.value="";
           }
           if(index==1){
             cameraControllers.disposeCamera();
+            multiTranslatorController.clearList();
+            dictionaryController.inputController.value.clear();
+            dictionaryController.errorText.value="";
+            dictionaryController.inputText.value="";
+            clearUniTranslator();
           }
           if(index==0){
             cameraControllers.disposeCamera();
+            multiTranslatorController.clearList();
+            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.audioEnabled.value=false;
+            voiceTranslatorController.inputText.value="...";
+            dictionaryController.inputController.value.clear();
+            dictionaryController.errorText.value="";
+            dictionaryController.inputText.value="";
+
           }
+
             controller.selectedOption(index);
 
         },
@@ -59,5 +104,11 @@ class BottomNavButtons extends StatelessWidget {
         ),
     );
   }
+void clearUniTranslator(){
+  uniTranslatorController.translatedText.value="...";
+  uniTranslatorController.textContent="";
+  languagesController.selectedFromIndex.value=0;
+  languagesController.selectedToIndex.value=0;
+}
 
 }

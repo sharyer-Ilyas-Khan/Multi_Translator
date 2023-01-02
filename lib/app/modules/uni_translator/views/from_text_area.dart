@@ -109,8 +109,6 @@ TextEditingController fromController=TextEditingController();
     ], languagesController.languagesPrefix[
     languagesController.selectedToIndex.value
     ], text);
-    print("translatedText");
-    print(translatedText);
     uniController.setText(translatedText);
   }
 }

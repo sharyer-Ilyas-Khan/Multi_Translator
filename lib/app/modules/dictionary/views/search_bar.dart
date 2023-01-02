@@ -30,25 +30,28 @@ class SearchBarDictionary extends StatelessWidget {
               ),
               child:  Padding(
                 padding:  const EdgeInsets.only(left: 8.0,right: 8.0),
-                child:  TextField(
-                  style: dictionaryInput,
-                  keyboardType: TextInputType.emailAddress,
-                  decoration: const InputDecoration(
-                    prefixIcon: Icon(Icons.search),
-                    border: InputBorder.none,
+                child:  Obx(
+                  ( )=>TextField(
+                    controller: controller.inputController.value,
+                    style: dictionaryInput,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: const InputDecoration(
+                      prefixIcon: Icon(Icons.search),
+                      border: InputBorder.none,
 
-                    hintText: "Search word here",
-                    hintStyle: fromHintStyle
+                      hintText: "Search word here",
+                      hintStyle: fromHintStyle
+                    ),
+                    onChanged: (value){
+                      if(value.length>1){
+                        controller.setText(value);
+                      }
+                      if(value.isEmpty){
+                        controller.inputText.value="";
+                      }
+
+                    },
                   ),
-                  onChanged: (value){
-                    if(value.length>1){
-                      controller.setText(value);
-                    }
-                    if(value.isEmpty){
-                      controller.inputText.value="";
-                    }
-
-                  },
                 ),
               ),
             )),

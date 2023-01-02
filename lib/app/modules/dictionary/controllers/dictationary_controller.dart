@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 class DictionaryController extends GetxController {
@@ -7,6 +8,7 @@ RxString inputText="".obs;
 RxString partOfSpeech="".obs;
 RxString word="".obs;
 RxString meaningFirst="".obs;
+RxString errorText="".obs;
 RxString meaningSecond="".obs;
 RxString meaningThird="".obs;
 RxBool isLoading=false.obs;
@@ -15,6 +17,7 @@ RxString pronounceText="".obs;
 RxList synonyms=[].obs;
 RxList antonyms=[].obs;
 FlutterTts? flutterTts;
+Rx<TextEditingController> inputController=TextEditingController().obs;
   @override
   void onInit() {
      flutterTts= FlutterTts();
@@ -72,6 +75,7 @@ void load(status){
 
     } catch (e) {
      print("this is catch error${e.toString()}");
+     errorText.value="No Data Found";
     }
   }
   }
