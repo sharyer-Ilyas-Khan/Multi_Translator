@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:translator/app/modules/splash/bindings/splash_binding.dart';
 

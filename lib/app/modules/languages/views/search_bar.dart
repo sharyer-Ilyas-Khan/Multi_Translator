@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:get/get.dart';
 import 'package:translator/app/data/text_style.dart';
-import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 class SearchBarLanguages extends StatelessWidget {
   const SearchBarLanguages({Key? key}) : super(key: key);
 

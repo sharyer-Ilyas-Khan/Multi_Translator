@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:get/get.dart';
-import 'package:async/async.dart';
 import 'package:translator/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:translator/app/modules/dashboard/views/dashboard_view.dart';
 class SplashController extends GetxController {

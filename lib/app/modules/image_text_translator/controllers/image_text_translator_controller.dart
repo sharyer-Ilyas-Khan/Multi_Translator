@@ -1,15 +1,13 @@
 import 'dart:io';
+
 import 'package:flutter/material.dart';
-import 'package:image_cropper/image_cropper.dart';
 import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
+import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:translator/app/controllers/clear_controller.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
-import 'package:translator/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
 
-import '../../dashboard/bindings/dashboard_binding.dart';
 import 'camera_controller.dart';
 
 
@@ -24,15 +22,10 @@ class ImageTextTranslatorController extends GetxController {
 final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 // final textRecognizer = TextRecognizer(script: TextRecognitionScript.korean);
 DashboardController controller=Get.put(DashboardController());
-ClearController clearController=Get.put(ClearController());
   CameraControllers cameraControllers=Get.put(CameraControllers());
   @override
   void onInit() {
     imagePicker=ImagePicker();
-    clearController.clearLanguages();
-    clearController.clearUniTranslator();
-    clearController.clearMicTranslator();
-    clearController.clearMultiTranslator();
     super.onInit();
   }
 

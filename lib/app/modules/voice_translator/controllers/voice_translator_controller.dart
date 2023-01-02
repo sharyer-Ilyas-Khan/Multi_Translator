@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-import 'package:translator/app/controllers/clear_controller.dart';
 
 import '../../../controllers/text_font_controller.dart';
 
@@ -9,13 +8,8 @@ class VoiceTranslatorController extends GetxController {
   Rx<String> inputText="...".obs;
   RxBool audioEnabled=false.obs;
   TextFontController fontController=Get.put(TextFontController());
-  ClearController clearController=Get.put(ClearController());
   @override
   void onInit() {
-    clearController.clearLanguages();
-    clearController.clearCameraTranslator();
-    clearController.clearUniTranslator();
-    clearController.clearMultiTranslator();
     super.onInit();
   }
 

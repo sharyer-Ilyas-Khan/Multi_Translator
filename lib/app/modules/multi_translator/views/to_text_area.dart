@@ -38,8 +38,10 @@ class ToTextArea extends StatelessWidget {
         trailingActions: <SwipeAction>[
           SwipeAction(
               onTap: (CompletionHandler handler) async {
-                multiController.listOfWidget.removeAt(id);
-                // multiController.listOfTranslation.removeAt(id);
+                multiController.listOfWidget[id]=Container();
+                multiController.listOfTranslation[id]="";
+                multiController.listOfLang[id]="";
+                multiController.listOfPrefix[id]="";
               },
               // performsFirstActionWithFullSwipe: true,
               widthSpace: Get.width*0.4,

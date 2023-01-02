@@ -1,7 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
-import 'package:get/get.dart';
 import 'package:flutter_tts/flutter_tts.dart';
+import 'package:get/get.dart';
 class DictionaryController extends GetxController {
 
 RxString inputText="".obs;

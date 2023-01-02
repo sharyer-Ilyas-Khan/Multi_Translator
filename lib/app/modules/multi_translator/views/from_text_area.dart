@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
-import 'package:translator/app/modules/languages/bindings/languages_binding.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/languages/views/languages_view.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
@@ -32,6 +31,7 @@ class FromTextArea extends StatelessWidget {
                 child:  TextField(
                   maxLines: 5,
                   minLines: 5,
+                  controller: controller.fromTextController.value,
                   style: fontController.inputTextStyle(fontController.inputFont.value),
                   keyboardType: TextInputType.emailAddress,
                   decoration: const InputDecoration(

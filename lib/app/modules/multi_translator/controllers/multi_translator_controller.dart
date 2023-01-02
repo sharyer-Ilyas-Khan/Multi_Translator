@@ -1,32 +1,31 @@
-import 'package:flutter/cupertino.dart';
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:translator/app/controllers/clear_controller.dart';
 import 'package:translator/app/modules/multi_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/multi_translator/views/to_text_area.dart';
 
 class MultiTranslatorController extends GetxController {
   //TODO: Implement MultiTranslatorController
-    RxList listOfWidget=[FromTextArea(),ToTextArea(id:0,)].obs;
-    RxList listOfPrefix=["en","en"].obs;
-    RxList listOfLang=["English","English"].obs;
+    RxList<Widget> listOfWidget=<Widget>[ToTextArea(id:0,)].obs;
+
+    RxList listOfPrefix=["en"].obs;
+    RxList listOfLang=["English"].obs;
     RxList listOfTranslation=["..."].obs;
    Rx<String> translatedText="...".obs;
    String textContent='';
    RxInt translatedIndex=1.obs;
-ClearController clearController=Get.put(ClearController());
+   Rx<TextEditingController> fromTextController=TextEditingController().obs;
 
    void clearList(){
-     listOfPrefix=["en","en"].obs;
+     listOfPrefix=["en"].obs;
      listOfTranslation=["..."].obs;
-     listOfLang=["English","English"].obs;
-     listOfWidget=[FromTextArea(),ToTextArea(id:0,)].obs;
+     listOfLang=["English"].obs;
+     listOfWidget=[ToTextArea(id:0,)].obs;
+     textContent="";
+     fromTextController.value.clear();
    }
   @override
   void onInit() {
-    clearController.clearLanguages();
-    clearController.clearCameraTranslator();
-    clearController.clearMicTranslator();
-    clearController.clearUniTranslator();
     super.onInit();
   }
 
@@ -40,7 +39,7 @@ ClearController clearController=Get.put(ClearController());
     super.onClose();
   }
 void addIntoList(){
-    listOfWidget.add(ToTextArea(id:listOfWidget.length-1));
+    listOfWidget.add(ToTextArea(id:listOfWidget.length));
 }
 void addPrefix(){
     listOfPrefix.add("en");
@@ -51,8 +50,9 @@ void addIntoTranslation(){
    void addLang(){
      listOfLang.add("English");
    }
-/// todo: need an index of prefix
-   ///
+void updateIdList(){
+
+}
 void setTranslations(String sourceLan,content)async{
     for(int i=0;i<listOfPrefix.length;i++){
       String translatedText= await getTranslateUrl(

@@ -1,20 +1,11 @@
-import 'dart:convert';
-
 import 'package:get/get.dart';
-import 'package:translator/app/controllers/clear_controller.dart';
-import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
 class UniTranslatorController extends GetxController {
   //TODO: Implement UniTranslatorController
   Rx<String> translatedText="...".obs;
-  ClearController clearController=Get.put(ClearController());
   String textContent='';
   @override
   void onInit() {
-    clearController.clearLanguages();
-    clearController.clearCameraTranslator();
-    clearController.clearMicTranslator();
-    clearController.clearMultiTranslator();
     super.onInit();
   }
 

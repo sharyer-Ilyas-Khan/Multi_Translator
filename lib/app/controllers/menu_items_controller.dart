@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
-import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 
 class MenuItemsController extends GetxController {

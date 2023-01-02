@@ -1,10 +1,7 @@
-import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:translator/app/controllers/clear_controller.dart';
 import 'package:translator/app/data/color_code.dart';
-import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
 import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
@@ -90,8 +87,8 @@ class BottomNavButtons extends StatelessWidget {
 
         },
         child: Obx(()=> Container(
-            height:60,
-            width: 60,
+            height:Get.height*0.1,
+            width: Get.width*0.13,
             decoration:  BoxDecoration(
               shape: BoxShape.circle,
               color: controller.selectedIndex.value==index?

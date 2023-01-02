@@ -1,13 +1,14 @@
 
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:get/get.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/voice_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/voice_translator/views/to_text_area.dart';
-import 'package:avatar_glow/avatar_glow.dart';
+
 import '../controllers/voice_translator_controller.dart';
 
 class VoiceTranslatorView extends GetView<VoiceTranslatorController> {

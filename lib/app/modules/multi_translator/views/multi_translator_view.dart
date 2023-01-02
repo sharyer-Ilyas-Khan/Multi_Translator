@@ -1,9 +1,9 @@
-import 'package:flutter/material.dart';
 
+
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/multi_translator/views/from_text_area.dart';
-import 'package:translator/app/modules/multi_translator/views/to_text_area.dart';
 
 import '../controllers/multi_translator_controller.dart';
 
@@ -38,19 +38,24 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
         ),
       ),
 
-      body:Obx(
-            ()=>SizedBox(
-              height: Get.height*0.76,
-              child: ListView.builder(
-              itemCount:controller.listOfWidget.length,
-              controller: scrollController,
-              addRepaintBoundaries: true,
-              keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
-              itemBuilder: (_,index){
-                return controller.listOfWidget.value[index];
-        }),
-            ),
-    )
+      body:Column(
+        children: [
+          FromTextArea(),
+          Obx(
+                ()=>SizedBox(
+                  height: Get.height*0.48,
+                  child: ListView.builder(
+                  itemCount:controller.listOfWidget.length,
+                  controller: scrollController,
+                  addRepaintBoundaries: true,
+                  keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+                  itemBuilder: (_,index){
+                    return controller.listOfWidget.value[index];
+            }),
+                ),
+    ),
+        ],
+      )
     );
   }
 

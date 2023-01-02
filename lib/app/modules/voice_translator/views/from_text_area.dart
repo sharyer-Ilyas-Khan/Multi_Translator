@@ -6,7 +6,6 @@ import 'package:translator/app/modules/languages/controllers/languages_controlle
 import 'package:translator/app/modules/voice_translator/controllers/voice_translator_controller.dart';
 
 import '../../../controllers/text_font_controller.dart';
-import '../../languages/views/languages_view.dart';
 class FromTextArea extends StatelessWidget {
   const FromTextArea({Key? key}) : super(key: key);
 

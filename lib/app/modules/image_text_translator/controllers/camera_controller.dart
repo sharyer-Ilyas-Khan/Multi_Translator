@@ -1,8 +1,7 @@
 
 
-import 'package:get/get.dart';
 import 'package:camera/camera.dart';
-import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
 class CameraControllers extends GetxController {

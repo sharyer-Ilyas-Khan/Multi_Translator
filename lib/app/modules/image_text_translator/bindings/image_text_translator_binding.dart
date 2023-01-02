@@ -1,5 +1,4 @@
 import 'package:get/get.dart';
-
 import 'package:translator/app/modules/image_text_translator/controllers/camera_controller.dart';
 
 import '../controllers/image_text_translator_controller.dart';

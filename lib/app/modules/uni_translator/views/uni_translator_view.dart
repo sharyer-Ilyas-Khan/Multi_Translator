@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:translator/app/modules/uni_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/uni_translator/views/to_text_area.dart';

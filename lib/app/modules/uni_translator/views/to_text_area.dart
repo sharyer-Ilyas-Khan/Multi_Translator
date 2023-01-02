@@ -1,14 +1,15 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/controllers/menu_items_controller.dart';
 import 'package:translator/app/controllers/text_font_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
+
 import '../../languages/views/languages_view.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import '../controllers/uni_translator_controller.dart';
 class ToTextArea extends StatelessWidget {
    ToTextArea({Key? key}) : super(key: key);

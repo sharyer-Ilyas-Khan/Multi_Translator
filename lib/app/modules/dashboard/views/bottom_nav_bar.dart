@@ -1,7 +1,5 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
-import 'package:translator/app/data/color_code.dart';
-import 'package:translator/app/data/text_style.dart';
+import 'package:get/get.dart';
 import 'package:translator/app/modules/dashboard/views/bottom_nav_buttons.dart';
 class BottomNavBar extends StatelessWidget {
    BottomNavBar({Key? key}) : super(key: key);
