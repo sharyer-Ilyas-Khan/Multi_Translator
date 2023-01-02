@@ -1,3 +1,7 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 class DashboardController extends GetxController {
@@ -25,5 +29,28 @@ class DashboardController extends GetxController {
  }
  void setText(text){
     extractedText.value=text;
+ }
+ void showExitDialog(){
+    Get.defaultDialog(
+      title: "Warning",
+      content: Column(
+        children: [
+          Text("Are you sure to quit")
+        ],
+      ),
+      actions: [
+        TextButton(onPressed: (){
+          if(GetPlatform.isIOS){
+            exit(1);
+          }
+          else{
+            SystemNavigator.pop();
+          }
+        }, child: Text("Yes",style: TextStyle(color: Colors.grey.shade500),)),
+        TextButton(onPressed: (){
+          Get.close(1);
+        }, child: Text("No")),
+      ]
+    );
  }
 }

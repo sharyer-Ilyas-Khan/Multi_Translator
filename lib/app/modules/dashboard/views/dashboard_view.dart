@@ -20,64 +20,70 @@ class DashboardView extends GetView<DashboardController> {
   List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      
-      resizeToAvoidBottomInset: false,
-      appBar: AppBar(
-        title:  Obx(()=> Text(title[controller.selectedIndex.value],style:appBar,)),
-        centerTitle: true,
-        elevation: 0.0,
-        backgroundColor: Colors.white,
-        leading: InkWell(
-          onTap: (){
-              Get.to(()=>const DarwerView(),
-                  transition: Transition.fadeIn
-              );
-          },
-         child:  Padding(
-           padding: const EdgeInsets.all(15.0),
-           child: SvgPicture.asset("Assets/svg/nevigationbar.svg"),
-         )
-        ),
-        actions: [
-          IconButton(
-            onPressed: (){},
-            icon: const Icon(Icons.settings,color: AppColors.appBarIconColor,),
-          ),
-        ],
-      ),
-      body: Stack(
+    return WillPopScope(
+      onWillPop: (){
+        controller.showExitDialog();
+        return Future(() => false);
+      },
+      child: Scaffold(
 
-        children: [
-          ///Screens toggle
-          Obx(
-            ()=> IndexedStack(
-              index: controller.selectedIndex.value,
-              children:  [
-                 UniTranslatorView(text:controller.extractedText.value??""),
-                 VoiceTranslatorView(),
-                  const ImageTextTranslatorView(),
-                const DictionaryView(),
-                MultiTranslatorView(ad:true,)
-              ],
-            ),
+        resizeToAvoidBottomInset: false,
+        appBar: AppBar(
+          title:  Obx(()=> Text(title[controller.selectedIndex.value],style:appBar,)),
+          centerTitle: true,
+          elevation: 0.0,
+          backgroundColor: Colors.white,
+          leading: InkWell(
+            onTap: (){
+                Get.to(()=>const DarwerView(),
+                    transition: Transition.fadeIn
+                );
+            },
+           child:  Padding(
+             padding: const EdgeInsets.all(15.0),
+             child: SvgPicture.asset("Assets/svg/nevigationbar.svg"),
+           )
           ),
-          // /// ads container
-          // Expanded(
-          //     flex:2,
-          //     child:
-          //     Container(color: Colors.white,
-          //     child: const Center(child: Text("AD"),),)),
-          ///bottom nav bar
-          Positioned(
-            bottom: 0,
-            child: SizedBox(
-              height: Get.height*0.14,
-              width: Get.width,
-              child:  BottomNavBar(),
+          actions: [
+            IconButton(
+              onPressed: (){},
+              icon: const Icon(Icons.settings,color: AppColors.appBarIconColor,),
             ),
-          ),
-        ],
+          ],
+        ),
+        body: Stack(
+
+          children: [
+            ///Screens toggle
+            Obx(
+              ()=> IndexedStack(
+                index: controller.selectedIndex.value,
+                children:  [
+                   UniTranslatorView(text:controller.extractedText.value??""),
+                   VoiceTranslatorView(),
+                    const ImageTextTranslatorView(),
+                  const DictionaryView(),
+                  MultiTranslatorView(ad:true,)
+                ],
+              ),
+            ),
+            // /// ads container
+            // Expanded(
+            //     flex:2,
+            //     child:
+            //     Container(color: Colors.white,
+            //     child: const Center(child: Text("AD"),),)),
+            ///bottom nav bar
+            Positioned(
+              bottom: 0,
+              child: SizedBox(
+                height: Get.height*0.14,
+                width: Get.width,
+                child:  BottomNavBar(),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

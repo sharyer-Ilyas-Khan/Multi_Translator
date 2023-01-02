@@ -7,7 +7,7 @@ import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
-
+import 'package:get/get.dart';
 import 'camera_controller.dart';
 
 
@@ -48,26 +48,30 @@ DashboardController controller=Get.put(DashboardController());
   // getTextFromImage(image);
   }
 
-// void captureImage()async{
-//   image=await imagePicker!.pickImage(source: ImageSource.camera);
-//   getTextFromImage(File(image!.path));
-// }
 
-Future<void> getTextFromImage(File? image,context) async {
+Future<void> getTextFromImage(File? images,context) async {
   print("recognizedText.text");
-    if(image!=null){
-      inputImage=InputImage.fromFilePath(image.path);
+    if(images!=null){
+      inputImage=InputImage.fromFilePath(images.path);
       final RecognizedText recognizedText = await textRecognizer.processImage(inputImage!);
-      print(recognizedText.text.replaceAll("\n"," "));
       controller.selectedOption(0);
       cameraControllers.disposeCamera();
-      controller.setText(recognizedText.text.replaceAll("\n"," "));
+      if(recognizedText.text.isEmpty){
+        Get.snackbar("Recognition failed!", "Please take a clear image of the text.",snackPosition:SnackPosition.TOP,
+            backgroundColor: Colors.black54,colorText: Colors.white );
+      }else{
+        controller.setText(recognizedText.text.replaceAll("\n"," "));
+      }
+
+      image=null;
+
       Navigator.pop(context);
 
 
     }
     else{
-      print("Please Select an image");
+      Get.snackbar("Failed!", "Please select an image.",snackPosition:SnackPosition.TOP,
+          backgroundColor: Colors.black54,colorText: Colors.white );
     }
 
 
@@ -85,10 +89,11 @@ void getCroppedImage(CroppedFile croppedFile){
        uiSettings: [
          AndroidUiSettings(
              toolbarTitle: 'Cropper',
-             toolbarColor: Colors.deepOrange,
-             toolbarWidgetColor: Colors.white,
+             toolbarColor: Colors.white,
+             toolbarWidgetColor: Colors.black,
              initAspectRatio: CropAspectRatioPreset.original,
-             lockAspectRatio: false),
+             lockAspectRatio: false
+         ),
          IOSUiSettings(
            title: 'Cropper',
          ),

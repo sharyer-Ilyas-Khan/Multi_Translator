@@ -12,7 +12,6 @@ class SearchBarDictionary extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(left: 12.0,top: 15.0,bottom: 10.0,right: 12.0),
       child: Container(
-
         decoration: BoxDecoration(
           color: Colors.white,
           borderRadius: BorderRadius.circular(35.0),
@@ -23,7 +22,8 @@ class SearchBarDictionary extends StatelessWidget {
         
         child: Row(
           children: [
-            Expanded(child: Container(
+            Expanded(
+                child: Container(
               decoration: const BoxDecoration(
                   color: Colors.white,
                 borderRadius:  BorderRadius.only(topLeft:Radius.circular(34.0) ,bottomLeft:Radius.circular(34) ),
@@ -58,11 +58,12 @@ class SearchBarDictionary extends StatelessWidget {
             Obx(()=> InkWell(
                 onTap: (){
                   if(controller.inputText.value.length>1){
+                    controller.errorText.value="";
                     controller.load(true);
                     controller.lookUp();
                   }
                   else{
-                    Get.snackbar("Please enter a word", "can not find meaning of empty space or a character",snackPosition:SnackPosition.BOTTOM,
+                    Get.snackbar("Please enter a word", "can not find meaning of empty space or a character",snackPosition:SnackPosition.TOP,
                         backgroundColor: Colors.black54,colorText: Colors.white );
                   }
 
