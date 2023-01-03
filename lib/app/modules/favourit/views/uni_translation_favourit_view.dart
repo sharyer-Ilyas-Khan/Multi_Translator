@@ -1,19 +1,18 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:translator/app/modules/favourit/views/favourite_uni_card.dart';
 
-class UniTranslationFavouritView extends GetView {
-  const UniTranslationFavouritView({Key? key}) : super(key: key);
+class UniTranslationFavouriteView extends GetView {
+  const UniTranslationFavouriteView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return ListView(
 
-      body: Center(
-        child: Text(
-          'UniTranslationFavouritView is working',
-          style: TextStyle(fontSize: 20),
-        ),
-      ),
+        children: [
+          FavouriteUniCardView(),
+          FavouriteUniCardView(),
+        ],
     );
   }
 }

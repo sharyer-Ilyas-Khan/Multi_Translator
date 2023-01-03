@@ -40,9 +40,9 @@ class FavouriteView extends GetView<FavouritController> {
       body: TabBarView(
         controller: controller.tabController,
         children: const [
-          UniTranslationFavouritView(),
+          UniTranslationFavouriteView(),
           VoiceTranslationFavouritView(),
-          MultiTranslationFavouritView()
+          MultiTranslationFavouriteView()
         ],
       )
     );
