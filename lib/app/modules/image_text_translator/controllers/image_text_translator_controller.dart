@@ -103,6 +103,9 @@ void getCroppedImage(CroppedFile croppedFile){
       getCroppedImage(croppedFile);
 
      }
+     else{
+       Get.close(1);
+     }
    }
  }
 }

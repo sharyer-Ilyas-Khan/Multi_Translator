@@ -64,21 +64,25 @@ RxBool flashOn=false.obs;
   }
   Future<void> getCamera() async {
     PermissionStatus camera;
-    camera=await Permission.camera.status;
-    print(camera);
-    if(camera.isDenied){
-      errorText.value="Please allow permission to use camera.";
-      camera=await Permission.camera.request();
-    }
-    if(camera.isPermanentlyDenied){
-      errorText.value="Please allow permission to use camera.";
-      await openAppSettings();
-    }
+    camera=await Permission.camera.request().then((value) async {
+      print(value);
+      if(value.isDenied){
+        errorText.value="Please allow permission to use camera.";
+        camera=await Permission.camera.request();
+      }
+      if(value.isPermanentlyDenied){
+        errorText.value="Please allow permission to use camera.";
+        await openAppSettings();
+      }
+      if(value.isGranted){
+        _cameras = await availableCameras();
+        initializeCamera();
+      }
 
-    if(camera.isGranted){
-      _cameras = await availableCameras();
-      initializeCamera();
-    }
+        return value;
+    });
+    // camera=await Permission.camera.status;
+    // print(camera);
 
   }
    void onFlash(){

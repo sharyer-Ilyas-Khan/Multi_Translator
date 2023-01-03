@@ -28,6 +28,13 @@ const appBar=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
+const tabBar=TextStyle(
+    fontSize: 14,
+    color:AppColors.appBarIconColor,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
 const fromHintStyle=TextStyle(
     fontSize: 15,
     color:Colors.grey,

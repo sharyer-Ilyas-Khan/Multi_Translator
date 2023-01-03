@@ -9,14 +9,36 @@ import '../controllers/darwer_controller.dart';
 class DrawerOption extends StatelessWidget {
   final String? icon;
   final String? text;
-  const DrawerOption({Key? key,this.icon,this.text}) : super(key: key);
+  final int? index;
+  const DrawerOption({Key? key,this.icon,this.text,this.index}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     DarwerController controller=Get.put(DarwerController());
     return InkWell(
       onTap: (){
-        if(text=="Quit"){
+        if(index==1){
+          controller.removeAd();
+        }
+        if(index==2){
+          controller.favourite();
+        }
+        if(index==3){
+          controller.history();
+        }
+        if(index==4){
+          controller.feedback();
+        }
+        if(index==5){
+          controller.rateUs();
+        }
+        if(index==6){
+          controller.share();
+        }
+        if(index==7){
+          controller.privacy();
+        }
+        if(index==8){
           controller.exit();
         }
       },

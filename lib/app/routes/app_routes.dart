@@ -16,6 +16,7 @@ abstract class Routes {
   static const RATE_US = _Paths.RATE_US;
   static const HISTORY = _Paths.HISTORY;
   static const LANGUAGES = _Paths.LANGUAGES;
+  static const FAVOURIT = _Paths.FAVOURIT;
 }
 
 abstract class _Paths {
@@ -33,4 +34,5 @@ abstract class _Paths {
   static const RATE_US = '/rate-us';
   static const HISTORY = '/history';
   static const LANGUAGES = '/languages';
+  static const FAVOURIT = '/favourit';
 }

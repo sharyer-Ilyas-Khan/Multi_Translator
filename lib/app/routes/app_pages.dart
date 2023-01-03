@@ -6,6 +6,8 @@ import '../modules/dashboard/bindings/dashboard_binding.dart';
 import '../modules/dashboard/views/dashboard_view.dart';
 import '../modules/dictionary/bindings/dictationary_binding.dart';
 import '../modules/dictionary/views/dictionary_view.dart';
+import '../modules/favourit/bindings/favourit_binding.dart';
+import '../modules/favourit/views/favourit_view.dart';
 import '../modules/feedback/bindings/feedback_binding.dart';
 import '../modules/feedback/views/feedback_view.dart';
 import '../modules/history/bindings/history_binding.dart';
@@ -50,17 +52,17 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.UNI_TRANSLATOR,
-      page: () =>  UniTranslatorView(),
+      page: () => UniTranslatorView(),
       binding: UniTranslatorBinding(),
     ),
     GetPage(
       name: _Paths.MULTI_TRANSLATOR,
-      page: () =>  MultiTranslatorView(),
+      page: () => MultiTranslatorView(),
       binding: MultiTranslatorBinding(),
     ),
     GetPage(
       name: _Paths.VOICE_TRANSLATOR,
-      page: () =>  VoiceTranslatorView(),
+      page: () => VoiceTranslatorView(),
       binding: VoiceTranslatorBinding(),
     ),
     GetPage(
@@ -90,8 +92,13 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.LANGUAGES,
-      page: () =>  LanguagesView(),
+      page: () => LanguagesView(),
       binding: LanguagesBinding(),
+    ),
+    GetPage(
+      name: _Paths.FAVOURIT,
+      page: () => const FavouriteView(),
+      binding: FavouritBinding(),
     ),
   ];
 }

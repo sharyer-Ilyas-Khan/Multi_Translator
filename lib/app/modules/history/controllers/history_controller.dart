@@ -1,11 +1,13 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class HistoryController extends GetxController {
+class HistoryController extends GetxController with GetTickerProviderStateMixin {
   //TODO: Implement HistoryController
+late TabController tabController;
 
-  final count = 0.obs;
   @override
   void onInit() {
+    tabController=TabController(length: 3, vsync: this);
     super.onInit();
   }
 
@@ -19,5 +21,4 @@ class HistoryController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
 }
