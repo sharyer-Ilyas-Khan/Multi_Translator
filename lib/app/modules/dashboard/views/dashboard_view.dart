@@ -49,6 +49,11 @@ class DashboardView extends GetView<DashboardController> {
           actions: [
             IconButton(
               onPressed: (){
+                // controller.checkForWidgetLaunch();
+                // controller.startBackgroundUpdate();
+                // controller.stopBackgroundUpdate();
+                // controller.loadData();
+                controller.sendAndUpdate();
 
               },
               icon: const Icon(Icons.settings,color: AppColors.appBarIconColor,),

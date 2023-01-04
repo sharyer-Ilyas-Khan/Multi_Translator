@@ -5,7 +5,7 @@ import '../controllers/feedback_controller.dart';
 class FeedbackBinding extends Bindings {
   @override
   void dependencies() {
-    Get.lazyPut<FeedbackController>(
+    Get.put(
       () => FeedbackController(),
     );
   }

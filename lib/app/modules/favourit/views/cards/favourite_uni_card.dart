@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -49,21 +51,43 @@ class FavouriteUniCardView extends GetView {
                       Text("Form : ${data['from']}",style: toTextStyle,),
 
                       IconButton(onPressed: (){
-                        Get.defaultDialog(title: 'Warning',content: Text("Are you sure you want to delete. You can not undo this action"),actions: [
-                          TextButton(onPressed: (){
-                            if(type=='uni'){
-                              favouriteDatabaseController.removeFromUniFavourite(data['id']);
-                            }
-                            if(type=='voice'){
-                              favouriteDatabaseController.removeFromVoiceFavourite(data['id']);
-                            }
-                            Get.close(1);
+                        Get.defaultDialog(
+                            title: "Warning",
+                            radius: 12,
+                            titlePadding: EdgeInsets.only(right: Get.width*0.55,top: 20,left: 20),
+                            content: Padding(
+                              padding:  EdgeInsets.only(right: 15,left: 15),
+                              child: SizedBox(
+                                height: Get.height*0.1,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                   const  Text("Are you sure you want to Delete? This action is not revers able.",style: fromHintStyle,),
 
-                          }, child: Text("Yes",style: TextStyle(color: Colors.grey),)),
-                          TextButton(onPressed: (){
-                            Get.close(1);
-                          }, child: Text("No",style: TextStyle(color: AppColors.primaryColor),)),
-                        ]);
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+                                        TextButton(onPressed: (){
+                                          Get.close(1);
+                                        }, child:Text("Cancel",style: fromTextStyle,)),
+                                        SizedBox(width: 10,),
+                                        TextButton(onPressed: (){
+                                          if(type=='uni'){
+                                            favouriteDatabaseController.removeFromUniFavourite(data['id']);
+                                          }
+                                          if(type=='voice'){
+                                            favouriteDatabaseController.removeFromVoiceFavourite(data['id']);
+                                          }
+                                          Get.close(1);
+                                        }, child:Text("Okay",style: fromTextStyle)),
+                                      ],
+                                    )
+                                  ],
+                                ),
+                              ),
+                            ),
+                           );
 
                       }, icon: Icon(Icons.delete,color: Colors.white,),padding: EdgeInsets.zero,)
                     ],

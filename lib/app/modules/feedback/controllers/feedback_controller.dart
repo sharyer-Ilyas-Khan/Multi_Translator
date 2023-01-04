@@ -1,11 +1,14 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class FeedbackController extends GetxController {
   //TODO: Implement FeedbackController
 
-  final count = 0.obs;
+  RxDouble rating = 0.0.obs;
+  FocusNode myFocusNode=FocusNode();
   @override
   void onInit() {
+
     super.onInit();
   }
 
@@ -16,8 +19,18 @@ class FeedbackController extends GetxController {
 
   @override
   void onClose() {
+
     super.onClose();
   }
-
-  void increment() => count.value++;
+  void requestFocus(){
+    myFocusNode.requestFocus();
+  }
+  void closeFocus(){
+    myFocusNode.dispose();
+  }
+void submit(){
+  Get.close(1);
+  Get.snackbar("Thanks", "Your review is successfully submitted",snackPosition:SnackPosition.TOP,
+      backgroundColor: Colors.black54,colorText: Colors.white );
+}
 }

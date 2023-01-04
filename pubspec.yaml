@@ -29,7 +29,10 @@ dependencies:
   image_picker: ^0.8.6
   image_cropper: ^3.0.1
   flutter_swipe_action_cell: ^3.0.6
+  url_launcher: ^6.1.7
   camera: ^0.10.1
+  home_widget: ^0.1.6
+  workmanager: ^0.5.1
 
 dev_dependencies: 
   flutter_lints: 2.0.1
@@ -47,7 +50,7 @@ flutter:
   assets:
     - Assets/svg/
     - Assets/icon/
-    - Assets/lottie/
+    - Assets/images/
     -
   fonts:
     - family: robor

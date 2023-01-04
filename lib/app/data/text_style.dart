@@ -36,8 +36,22 @@ const tabBar=TextStyle(
     letterSpacing: 0.0
 );
 const fromHintStyle=TextStyle(
-    fontSize: 15,
+    fontSize: 14,
     color:Colors.grey,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const rateUsHeading=TextStyle(
+    fontSize: 16,
+    color:Colors.black,
+    fontFamily: "robob",
+    fontWeight: FontWeight.w600,
+    letterSpacing: 0.0
+);
+const rateUsDetailsStyle=TextStyle(
+    fontSize: 15,
+    color:Colors.black26,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0

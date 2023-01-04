@@ -12,7 +12,7 @@ class FeedbackView extends GetView<FeedbackController> {
         title: const Text('FeedbackView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'FeedbackView is working',
           style: TextStyle(fontSize: 20),
