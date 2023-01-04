@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
-import 'package:translator/app/modules/favourit/views/uni_translation_favourit_view.dart';
+import 'package:translator/app/modules/favourit/views/tabs/uni_translation_favourit_view.dart';
 import 'package:translator/app/modules/history/views/multi_translation_history_view.dart';
 import 'package:translator/app/modules/history/views/uni_translation_history_view.dart';
 import 'package:translator/app/modules/history/views/voice_translation_history_view.dart';

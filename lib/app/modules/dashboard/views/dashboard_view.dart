@@ -2,6 +2,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/favourite_database_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/darwer/views/darwer_view.dart';
@@ -20,6 +21,7 @@ class DashboardView extends GetView<DashboardController> {
   List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
   @override
   Widget build(BuildContext context) {
+    FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
     return WillPopScope(
       onWillPop: (){
         controller.showExitDialog();
@@ -46,7 +48,9 @@ class DashboardView extends GetView<DashboardController> {
           ),
           actions: [
             IconButton(
-              onPressed: (){},
+              onPressed: (){
+
+              },
               icon: const Icon(Icons.settings,color: AppColors.appBarIconColor,),
             ),
           ],

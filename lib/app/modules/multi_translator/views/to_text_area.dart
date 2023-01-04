@@ -175,7 +175,14 @@ class ToTextArea extends StatelessWidget {
                         ),
                         SpeedDialChild(
                           onTap: (){
-                            menuItemsController.addToFav(multiController.listOfTranslation[id].toString());
+                            menuItemsController.addToFav(
+                                languagesController.languages[languagesController.selectedFromIndex.value].toString(),
+                                multiController.textContent.toString(),
+                                multiController.listOfLang.toList(),
+                                multiController.listOfTranslation.toList(),
+                                "multi"
+
+                            );
                           },
                           child: const Icon(Icons.favorite,color: Colors.red,size: 18,),
                         )

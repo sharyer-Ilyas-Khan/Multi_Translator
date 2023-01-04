@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:translator/app/data/text_style.dart';
-import 'package:translator/app/modules/favourit/views/multi_translation_favourit_view.dart';
-import 'package:translator/app/modules/favourit/views/uni_translation_favourit_view.dart';
-import 'package:translator/app/modules/favourit/views/voice_translation_favourit_view.dart';
+import 'package:translator/app/modules/favourit/views/tabs/multi_translation_favourit_view.dart';
+import 'package:translator/app/modules/favourit/views/tabs/uni_translation_favourit_view.dart';
+import 'package:translator/app/modules/favourit/views/tabs/voice_translation_favourit_view.dart';
 import '../../../data/color_code.dart';
 import '../controllers/favourit_controller.dart';
 

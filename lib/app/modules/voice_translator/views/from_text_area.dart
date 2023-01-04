@@ -57,9 +57,10 @@ class FromTextArea extends StatelessWidget {
                         [0]
                         // [languagesController.selectedFromIndex.value]
                           ,style: fromDropStyle,),
-                        const RotatedBox(
-                          quarterTurns: 1,
-                        child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
+                        Text(""),
+                        // const RotatedBox(
+                        //   quarterTurns: 1,
+                        // child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
                       ],
                     )
                 )

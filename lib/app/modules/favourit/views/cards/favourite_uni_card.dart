@@ -4,10 +4,15 @@ import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 
+import '../../../../controllers/favourite_database_controller.dart';
+
 class FavouriteUniCardView extends GetView {
-  const FavouriteUniCardView({Key? key}) : super(key: key);
+  final data;
+  final type;
+  const FavouriteUniCardView({Key? key,this.data,this.type}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
     return  Padding(
       padding: const EdgeInsets.only(left: 15.0,right: 15.0,top: 15.0),
       child: Container(
@@ -37,7 +42,32 @@ class FavouriteUniCardView extends GetView {
                 width: Get.width*0.9,
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),
-                  child: Text("Form : ENGLISH",style: toTextStyle,),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("Form : ${data['from']}",style: toTextStyle,),
+
+                      IconButton(onPressed: (){
+                        Get.defaultDialog(title: 'Warning',content: Text("Are you sure you want to delete. You can not undo this action"),actions: [
+                          TextButton(onPressed: (){
+                            if(type=='uni'){
+                              favouriteDatabaseController.removeFromUniFavourite(data['id']);
+                            }
+                            if(type=='voice'){
+                              favouriteDatabaseController.removeFromVoiceFavourite(data['id']);
+                            }
+                            Get.close(1);
+
+                          }, child: Text("Yes",style: TextStyle(color: Colors.grey),)),
+                          TextButton(onPressed: (){
+                            Get.close(1);
+                          }, child: Text("No",style: TextStyle(color: AppColors.primaryColor),)),
+                        ]);
+
+                      }, icon: Icon(Icons.delete,color: Colors.white,),padding: EdgeInsets.zero,)
+                    ],
+                  ),
                 ),
               ),
               Padding(
@@ -45,7 +75,7 @@ class FavouriteUniCardView extends GetView {
                 child: SizedBox(
                   height: Get.height*0.1,
                   width: Get.width*0.85,
-                  child: SingleChildScrollView(child: Text("How are you my friend. How are you my friend. How are you my friend. How are you my friend. How are you my friend. How are you my friend. How are you my friend. How are you my friend. How are you my friend. How are you my friend. v How are you my friend.How are you my friend. How are you my friend. How are you my friend.",
+                  child: SingleChildScrollView(child: Text(data['from_data'],
                     overflow: TextOverflow.fade,style: fromHintStyle,)),
                 ),
               ),
@@ -56,14 +86,14 @@ class FavouriteUniCardView extends GetView {
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
-                child: Text("To : URDU",style: fromTextStyle,),
+                child: Text("To : ${data['to']}",style: fromTextStyle,),
               ),
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: SizedBox(
                   height: Get.height*0.1,
                   width: Get.width*0.85,
-                  child: SingleChildScrollView(child: Text(" تم کیسے ھو میرے دوست؟ تم کیسے ھو میرے دوست؟ تم کیسے ھو میرے دوست؟ تم کیسے ھو میرے دوست؟ تم کیسے ھو میرے دوست؟ تم کیسے ھو میرے دوست؟  تم کیسے ھو میرے دوست؟ تم کیسے ھو میرے دوست؟ تم کیسے ھو میرے دوست؟  تم کیسے ھو میرے دوست؟تم کیسے ھو میرے دوست؟تم کیسے ھو میرے دوست؟",
+                  child: SingleChildScrollView(child: Text(data['to_data'],
                     overflow:TextOverflow.fade,style: fromHintStyle,)),
                 ),
               ),

@@ -38,6 +38,12 @@ void setText(text){
     }
   }
   String lang="";
+
+
+
+
+
+
   Future<int> detectLanguage(content) async {
     lang="";
     String url="https://translate.google.com.hk/translate_a/single?client=gtx&sl=auto&tl=eng&dt=t&q=${Uri.encodeFull(content)}";

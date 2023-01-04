@@ -3,10 +3,13 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/favourite_database_controller.dart';
+import 'package:translator/app/controllers/history_database_controller.dart';
 
 class DashboardController extends GetxController {
   //TODO: Implement DashboardController
-
+  FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
+  HistoryDatabaseController historyDatabaseController=Get.put(HistoryDatabaseController());
   final  selectedIndex = 0.obs;
   final  extractedText = "".obs;
   @override

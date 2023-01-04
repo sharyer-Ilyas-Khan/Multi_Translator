@@ -124,7 +124,14 @@ ValueNotifier<bool> isDialOpen=ValueNotifier(false);
                     ),
                     SpeedDialChild(
                       onTap: (){
-                        menuItemsController.addToFav(uniController.translatedText.value.toString());
+                        menuItemsController.addToFav(
+                            languagesController.languages[languagesController.selectedFromIndex.value].toString(),
+                            uniController.textContent.toString(),
+                            languagesController.languages[languagesController.selectedToIndex.value].toString(),
+                            uniController.translatedText.value.toString(),
+                          "uni"
+
+                        );
                       },
                       child: const Icon(Icons.favorite,color: Colors.red,size: 18,),
                     )

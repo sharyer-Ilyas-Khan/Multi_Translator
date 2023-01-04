@@ -192,7 +192,7 @@ const dictionaryMoreResult=TextStyle(
 const  toolTipStyle=TextStyle(
     fontSize: 12,
     color:Colors.black,
-    fontFamily: "robob",
+    fontFamily: "robor",
     letterSpacing: 0.0
 );
 const dictionaryStyle=TextStyle(
