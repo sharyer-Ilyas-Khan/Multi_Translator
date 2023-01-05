@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../controllers/text_font_controller.dart';
@@ -22,7 +23,8 @@ class VoiceTranslatorController extends GetxController {
   void onClose() {
     super.onClose();
   }
-  void audioEnable(status){
+
+    void audioEnable(status){
     audioEnabled.value=status;
   }
   void setText(text){

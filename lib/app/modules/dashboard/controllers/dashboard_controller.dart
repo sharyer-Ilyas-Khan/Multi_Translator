@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'dart:math';
 
+import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -29,6 +30,22 @@ class DashboardController extends GetxController {
   void onInit() {
     HomeWidget.setAppGroupId('group.appwudgets');
     HomeWidget.registerBackgroundCallback(backgroundCallback);
+    AwesomeNotifications().initialize(
+        'resource://drawable/notification_icon',
+        [
+          // notification icon
+          NotificationChannel(
+            channelGroupKey: 'basic_test',
+            channelKey: 'basic',
+            channelName: 'Basic notifications',
+            channelDescription: 'Notification channel for basic tests',
+            channelShowBadge: false,
+            importance: NotificationImportance.High,
+          ),
+          //add more notification type with different configuration
+
+        ]
+    );
 
     super.onInit();
   }
@@ -58,7 +75,7 @@ print("On ready on Ready");
  void showExitDialog(){
     Get.defaultDialog(
       title: "Quit",
-      titlePadding: EdgeInsets.only(right: Get.width*0.65,top: 20,left: 20),
+      titlePadding: EdgeInsets.only(right: Get.width*0.64,top: 20,left: 20),
       content: Padding(
         padding:  EdgeInsets.only(right: 15,left: 15),
         child: SizedBox(

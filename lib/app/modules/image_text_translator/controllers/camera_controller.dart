@@ -65,7 +65,6 @@ RxBool flashOn=false.obs;
   Future<void> getCamera() async {
     PermissionStatus camera;
     camera=await Permission.camera.request().then((value) async {
-      print(value);
       if(value.isDenied){
         errorText.value="Please allow permission to use camera.";
         camera=await Permission.camera.request();
@@ -81,8 +80,7 @@ RxBool flashOn=false.obs;
 
         return value;
     });
-    // camera=await Permission.camera.status;
-    // print(camera);
+
 
   }
    void onFlash(){

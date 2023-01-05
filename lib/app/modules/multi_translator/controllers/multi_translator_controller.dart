@@ -105,7 +105,12 @@ void setTranslations(String sourceLan,content)async{
 
 
     }
-
+    FocusNode myFocusNode=FocusNode();
+    void removeFocus() {
+      if (myFocusNode.hasFocus) {
+        myFocusNode.unfocus();
+      }
+    }
     void setTranslatedId(id){
       translatedIndex.value=id;
     }

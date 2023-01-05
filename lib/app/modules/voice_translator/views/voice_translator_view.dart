@@ -78,38 +78,33 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                       child: InkWell(
                         radius:80 ,
                         onTap: () async {
-
-                          PermissionStatus microphone;
-                         microphone=await Permission.microphone.status;
-                          print(microphone);
-                          if(microphone.isPermanentlyDenied){
-                            await openAppSettings();
-                          }
-                          if(microphone.isDenied){
-
-                            microphone=await Permission.microphone.request();
-                          }
-                          if(microphone.isGranted){
-                            bool available = await speechToText.initialize();
-                            if (available) {
-
-                              controller.audioEnable(true);
-                              speechToText.listen(onResult: (value) async {
-                                String recognizedText=value.recognizedWords;
-                                controller.setInputText(recognizedText);
-                                String translation=await controller.getTranslateUrl(languagesController.languagesPrefix[
-                                languagesController.selectedFromIndex.value
-                                ], languagesController.languagesPrefix[
-                                languagesController.selectedToIndex.value
-                                ], recognizedText);
-                                controller.setText(translation);
-                              },);
-
-
-
+                          bool available = await speechToText.initialize();
+                            bool permissionAvailable = await speechToText.hasPermission;
+                            print(permissionAvailable);
+                            if (permissionAvailable || available) {
+                              if(available){
+                                  controller.audioEnable(true);
+                                  speechToText.listen(onResult: (value) async {
+                                  String recognizedText=value.recognizedWords;
+                                  controller.setInputText(recognizedText);
+                                  String translation=await controller.getTranslateUrl(languagesController.languagesPrefix[
+                                  languagesController.selectedFromIndex.value
+                                  ], languagesController.languagesPrefix[
+                                  languagesController.selectedToIndex.value
+                                  ], recognizedText);
+                                  controller.setText(translation);
+                                  },);
+                              }
+                            }
+                              else{
+                                PermissionStatus speech=await Permission.speech.request();
+                                if(speech.isPermanentlyDenied){
+                                  await openAppSettings();
+                                }
 
                             }
-                          }
+
+
 
 
                         },

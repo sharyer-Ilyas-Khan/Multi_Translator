@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 
 class UniTranslatorController extends GetxController {
   //TODO: Implement UniTranslatorController
   Rx<String> translatedText="...".obs;
   String textContent='';
+
   @override
   void onInit() {
     super.onInit();
@@ -18,7 +20,12 @@ class UniTranslatorController extends GetxController {
   void onClose() {
     super.onClose();
 
-
+}
+FocusNode myFocusNode=FocusNode();
+void removeFocus(){
+  if(myFocusNode.hasFocus){
+    myFocusNode.unfocus();
+  }
 
 }
 void setText(text){

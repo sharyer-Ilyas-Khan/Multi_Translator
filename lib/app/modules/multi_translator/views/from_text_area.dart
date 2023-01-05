@@ -31,6 +31,7 @@ class FromTextArea extends StatelessWidget {
                 child:  TextField(
                   maxLines: 5,
                   minLines: 5,
+                  focusNode: controller.myFocusNode,
                   controller: controller.fromTextController.value,
                   style: fontController.inputTextStyle(fontController.inputFont.value),
                   keyboardType: TextInputType.emailAddress,

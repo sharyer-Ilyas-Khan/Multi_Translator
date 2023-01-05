@@ -18,7 +18,7 @@ class FavouriteUniCardView extends GetView {
     return  Padding(
       padding: const EdgeInsets.only(left: 15.0,right: 15.0,top: 15.0),
       child: Container(
-        height: Get.height*0.35,
+        height: Get.height*0.36,
 
         decoration: BoxDecoration(
             color: Colors.white,

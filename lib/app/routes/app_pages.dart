@@ -14,6 +14,8 @@ import '../modules/history/bindings/history_binding.dart';
 import '../modules/history/views/history_view.dart';
 import '../modules/image_text_translator/bindings/image_text_translator_binding.dart';
 import '../modules/image_text_translator/views/image_text_translator_view.dart';
+import '../modules/in_app_purchase_ui/bindings/in_app_purchase_ui_binding.dart';
+import '../modules/in_app_purchase_ui/views/in_app_purchase_ui_view.dart';
 import '../modules/languages/bindings/languages_binding.dart';
 import '../modules/languages/views/languages_view.dart';
 import '../modules/multi_translator/bindings/multi_translator_binding.dart';
@@ -99,6 +101,11 @@ class AppPages {
       name: _Paths.FAVOURIT,
       page: () => const FavouriteView(),
       binding: FavouritBinding(),
+    ),
+    GetPage(
+      name: _Paths.IN_APP_PURCHASE_UI,
+      page: () => const InAppPurchaseUiView(),
+      binding: InAppPurchaseUiBinding(),
     ),
   ];
 }

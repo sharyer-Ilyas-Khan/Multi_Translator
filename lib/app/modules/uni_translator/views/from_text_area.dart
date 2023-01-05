@@ -32,6 +32,7 @@ TextEditingController fromController=TextEditingController();
               width: Get.width*0.9,
               child:  Obx(()=> TextField(
                 controller: fromController,
+                  focusNode: uniController.myFocusNode,
                   maxLines: 5,
                   minLines: 5,
                   style: fontController.inputTextStyle(fontController.inputFont.value),

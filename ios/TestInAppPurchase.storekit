@@ -1,0 +1,33 @@
+{
+  "identifier" : "CF7D741C",
+  "nonRenewingSubscriptions" : [
+
+  ],
+  "products" : [
+{
+      "displayPrice" : "0.99",
+      "familyShareable" : false,
+      "internalID" : "8EB85A19",
+      "localizations" : [
+        {
+          "description" : "",
+          "displayName" : "TestInAppPurchase",
+          "locale" : "en_US"
+        }
+      ],
+      "productID" : "ios.test.purchased",
+      "referenceName" : "testAppPurchase",
+      "type" : "NonConsumable"
+    }
+  ],
+  "settings" : {
+
+  },
+  "subscriptionGroups" : [
+
+  ],
+  "version" : {
+    "major" : 2,
+    "minor" : 0
+  }
+}

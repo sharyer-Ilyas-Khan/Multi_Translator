@@ -17,6 +17,7 @@ abstract class Routes {
   static const HISTORY = _Paths.HISTORY;
   static const LANGUAGES = _Paths.LANGUAGES;
   static const FAVOURIT = _Paths.FAVOURIT;
+  static const IN_APP_PURCHASE_UI = _Paths.IN_APP_PURCHASE_UI;
 }
 
 abstract class _Paths {
@@ -35,4 +36,5 @@ abstract class _Paths {
   static const HISTORY = '/history';
   static const LANGUAGES = '/languages';
   static const FAVOURIT = '/favourit';
+  static const IN_APP_PURCHASE_UI = '/in-app-purchase-ui';
 }

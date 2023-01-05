@@ -10,12 +10,14 @@ void main() {
   WidgetsFlutterBinding.ensureInitialized();
   Workmanager().initialize(callbackDispatcher, isInDebugMode: kDebugMode);
   runApp(
-    GetMaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: "Application",
-      initialBinding: SplashBinding(),
-      initialRoute: AppPages.INITIAL,
-      getPages: AppPages.routes,
+    RestartWidget(
+      child: GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Application",
+        initialBinding: SplashBinding(),
+        initialRoute: AppPages.INITIAL,
+        getPages: AppPages.routes,
+      ),
     ),
   );
 }
@@ -41,5 +43,41 @@ void callbackDispatcher() {
       return !value.contains(false);
     });
   });
+}
+
+class RestartWidget extends StatefulWidget {
+  RestartWidget({this.child});
+
+  final Widget? child;
+
+  static void restartApp(BuildContext context) {
+    context.findAncestorStateOfType<_RestartWidgetState>()?.restartApp();
+  }
+
+  @override
+  State<StatefulWidget> createState() {
+    return _RestartWidgetState();
+  }
+}
+
+class _RestartWidgetState extends State<RestartWidget> {
+  Key key = UniqueKey();
+
+  void restartApp() {
+    setState(() {
+      key = UniqueKey();
+    });
+  }
+
+
+  @override
+  Widget build(BuildContext context) {
+    return KeyedSubtree(
+      key: key,
+      child: widget.child ?? Container (
+
+      ),
+    );
+  }
 }
 
