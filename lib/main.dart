@@ -28,11 +28,11 @@ void callbackDispatcher() {
     return Future.wait<bool?>([
 
       HomeWidget.saveWidgetData(
-        'title',
-        'Updated from Background',
+        '',
+        '',
       ),
       HomeWidget.saveWidgetData(
-        'message',
+        '',
         '${now.hour.toString().padLeft(2, '0')}:${now.minute.toString().padLeft(2, '0')}',
       ),
       HomeWidget.updateWidget(

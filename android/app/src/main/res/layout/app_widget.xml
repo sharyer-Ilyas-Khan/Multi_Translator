@@ -1,30 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/widget_container"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/whole_widget_bg"
     android:orientation="vertical"
-    android:background="#111111"
-    android:alpha="0.2"
-
-    android:padding="8dp"
-    android:id="@+id/widget_container">
-    <TextView
-        android:id="@+id/widget_title"
+    android:weightSum="1"
+    >
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        tools:text="Title" />
-    <TextView
-        android:id="@+id/widget_message"
+        android:layout_height="90dp"
+        android:src="@drawable/top"
+        android:scaleType="fitXY"
+
+
+        />
+
+    <ImageView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="36sp"
-        android:textStyle="bold"
-        tools:text="message" />
+        android:layout_height="50dp"
+        android:src="@drawable/bot"
+        android:scaleType="fitXY"
+        android:layout_margin="15dp"
 
+        />
 
-
-</LinearLayout>
+    </LinearLayout>
