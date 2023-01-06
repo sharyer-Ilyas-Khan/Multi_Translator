@@ -23,7 +23,8 @@ class DictionaryView extends GetView<DictionaryController> {
          child: const SearchBarDictionary(),
        ),
         Obx(
-          ()=> controller.errorText.value==""?Expanded(child: Padding(
+          ()=> controller.errorText.value==""?
+          Expanded(child: Padding(
             padding: const EdgeInsets.all(20.0),
             child: Obx(()=> controller.meaningFirst.value!=""?
             ListView(
@@ -74,6 +75,7 @@ class DictionaryView extends GetView<DictionaryController> {
                    padding: const EdgeInsets.only(left: 18.0,top: 10),
                    child: Text("ex:${controller.meaningThird.value}",style: dictionaryExampleText,),
                  ),
+
                 ],
               ):controller.isLoading.value?
            const  SpinKitFadingCircle(color: AppColors.primaryColor,):Container(),
@@ -81,6 +83,19 @@ class DictionaryView extends GetView<DictionaryController> {
           )):Expanded(child: Center(
             child: Text(controller.errorText.value),
           )),
+        ),
+        Container(
+          height: Get.height*0.3,
+          width: Get.width,
+          decoration: const BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage("Assets/images/native.png"),
+                  fit: BoxFit.fill
+              )
+          ),
+        ),
+        SizedBox(
+          height: Get.height*0.12,
         )
       ],
     ),

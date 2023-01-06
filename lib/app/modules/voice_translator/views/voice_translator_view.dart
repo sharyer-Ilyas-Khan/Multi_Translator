@@ -25,6 +25,16 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
               children: [
                 FromTextArea(),
                 ToTextArea(),
+                Container(
+                  height: Get.height*0.24,
+                  width: Get.width,
+                  decoration: const BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("Assets/images/native.png"),
+                          fit: BoxFit.fill
+                      )
+                  ),
+                ),
               ],
             ),
             Obx(

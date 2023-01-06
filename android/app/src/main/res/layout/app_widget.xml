@@ -4,12 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_margin="8dp"
     android:orientation="vertical"
-    android:background="@drawable/widget_background"
+    android:background="#111111"
+    android:alpha="0.2"
+
     android:padding="8dp"
     android:id="@+id/widget_container">
-
     <TextView
         android:id="@+id/widget_title"
         android:layout_width="match_parent"
@@ -17,11 +17,14 @@
         android:textSize="36sp"
         android:textStyle="bold"
         tools:text="Title" />
-
     <TextView
         android:id="@+id/widget_message"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="Message" />
+        android:textSize="36sp"
+        android:textStyle="bold"
+        tools:text="message" />
+
+
+
 </LinearLayout>

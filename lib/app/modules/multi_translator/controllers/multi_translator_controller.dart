@@ -26,6 +26,7 @@ class MultiTranslatorController extends GetxController {
    }
   @override
   void onInit() {
+
     super.onInit();
   }
 
@@ -53,6 +54,7 @@ void addIntoTranslation(){
 void updateIdList(){
 
 }
+
 void setTranslations(String sourceLan,content)async{
     for(int i=0;i<listOfPrefix.length;i++){
       String translatedText= await getTranslateUrl(

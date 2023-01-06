@@ -5,6 +5,7 @@ import 'package:get/get.dart';
 import 'package:google_mlkit_text_recognition/google_mlkit_text_recognition.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:translator/app/controllers/speaker_controller.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/image_text_translator/views/crop_image.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,7 @@ class ImageTextTranslatorController extends GetxController {
 final textRecognizer = TextRecognizer(script: TextRecognitionScript.latin);
 // final textRecognizer = TextRecognizer(script: TextRecognitionScript.korean);
 DashboardController controller=Get.put(DashboardController());
+SpeakerController speakerController=Get.put(SpeakerController());
   CameraControllers cameraControllers=Get.put(CameraControllers());
   @override
   void onInit() {
@@ -61,6 +63,7 @@ Future<void> getTextFromImage(File? images,context) async {
             backgroundColor: Colors.black54,colorText: Colors.white );
       }else{
         controller.setText(recognizedText.text.replaceAll("\n"," "));
+        // speakerController.checkAvailableFrom(prefix);
       }
 
       image=null;

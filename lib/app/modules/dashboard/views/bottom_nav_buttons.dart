@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/speaker_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
@@ -22,6 +23,7 @@ class BottomNavButtons extends StatelessWidget {
   late CameraControllers cameraControllers;
   late VoiceTranslatorController voiceTranslatorController;
   late  DictionaryController dictionaryController;
+  late  SpeakerController speakerController;
   @override
   Widget build(BuildContext context) {
      controller=Get.put(DashboardController());
@@ -31,6 +33,7 @@ class BottomNavButtons extends StatelessWidget {
      cameraControllers=Get.put(CameraControllers());
      dictionaryController=Get.put(DictionaryController());
      voiceTranslatorController=Get.put(VoiceTranslatorController());
+     speakerController=Get.put(SpeakerController());
     return  InkWell(
         onTap: (){
           if(index==4){
@@ -42,10 +45,13 @@ class BottomNavButtons extends StatelessWidget {
             dictionaryController.inputController.value.clear();
             dictionaryController.errorText.value="";
             dictionaryController.inputText.value="";
-
+            speakerController.isAvailableTo.value=false;
+            speakerController.isAvailableFrom.value=false;
 
           }
           if(index==3){
+            speakerController.isAvailableTo.value=false;
+            speakerController.isAvailableFrom.value=false;
             cameraControllers.disposeCamera();
             multiTranslatorController.clearList();
             clearUniTranslator();
@@ -54,6 +60,8 @@ class BottomNavButtons extends StatelessWidget {
             voiceTranslatorController.inputText.value="...";
           }
           if(index==2){
+            speakerController.isAvailableTo.value=false;
+            speakerController.isAvailableFrom.value=false;
             cameraControllers.onInit();
             multiTranslatorController.clearList();
             clearUniTranslator();
@@ -65,6 +73,8 @@ class BottomNavButtons extends StatelessWidget {
             dictionaryController.inputText.value="";
           }
           if(index==1){
+            speakerController.isAvailableTo.value=false;
+            speakerController.isAvailableFrom.value=false;
             cameraControllers.disposeCamera();
             multiTranslatorController.clearList();
             dictionaryController.inputController.value.clear();
@@ -73,6 +83,8 @@ class BottomNavButtons extends StatelessWidget {
             clearUniTranslator();
           }
           if(index==0){
+            speakerController.isAvailableTo.value=false;
+            speakerController.isAvailableFrom.value=false;
             cameraControllers.disposeCamera();
             multiTranslatorController.clearList();
             voiceTranslatorController.translatedText.value="...";
@@ -81,7 +93,6 @@ class BottomNavButtons extends StatelessWidget {
             dictionaryController.inputController.value.clear();
             dictionaryController.errorText.value="";
             dictionaryController.inputText.value="";
-
           }
 
             controller.selectedOption(index);

@@ -1,11 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/speaker_controller.dart';
 
 class UniTranslatorController extends GetxController {
   //TODO: Implement UniTranslatorController
   Rx<String> translatedText="...".obs;
   String textContent='';
-
+SpeakerController speakerController=Get.put(SpeakerController());
   @override
   void onInit() {
     super.onInit();
@@ -38,6 +39,7 @@ void setText(text){
      String url="${TRANSLATE_BASE_URL}translate_a/single?client=gtx&sl=${sourceLan}&tl=${targetLan}&dt=t&q=${Uri.encodeFull(content)}";
     Response response=await GetConnect().get(url);
     // print(response.body);
+     speakerController.checkAvailableTo(targetLan);
     var result=response.body[0][0];
     return result[0];
     } catch (e) {

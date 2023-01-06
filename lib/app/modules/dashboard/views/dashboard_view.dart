@@ -46,19 +46,19 @@ class DashboardView extends GetView<DashboardController> {
              child: SvgPicture.asset("Assets/svg/nevigationbar.svg"),
            )
           ),
-          actions: [
-            IconButton(
-              onPressed: (){
-                // controller.checkForWidgetLaunch();
-                // controller.startBackgroundUpdate();
-                // controller.stopBackgroundUpdate();
-                // controller.loadData();
-                controller.sendAndUpdate();
-
-              },
-              icon: const Icon(Icons.settings,color: AppColors.appBarIconColor,),
-            ),
-          ],
+          // actions: [
+          //   IconButton(
+          //     onPressed: (){
+          //       // controller.checkForWidgetLaunch();
+          //       // controller.startBackgroundUpdate();
+          //       // controller.stopBackgroundUpdate();
+          //       // controller.loadData();
+          //       controller.sendAndUpdate();
+          //
+          //     },
+          //     icon: const Icon(Icons.settings,color: AppColors.appBarIconColor,),
+          //   ),
+          // ],
         ),
         body: Stack(
 
@@ -82,6 +82,7 @@ class DashboardView extends GetView<DashboardController> {
             //     child:
             //     Container(color: Colors.white,
             //     child: const Center(child: Text("AD"),),)),
+
             ///bottom nav bar
             Positioned(
               bottom: 0,

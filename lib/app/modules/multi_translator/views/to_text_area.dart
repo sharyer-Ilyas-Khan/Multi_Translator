@@ -8,6 +8,7 @@ import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
 import '../../../controllers/menu_items_controller.dart';
+import '../../../controllers/speaker_controller.dart';
 import '../../languages/views/languages_view.dart';
 import '../controllers/multi_translator_controller.dart';
 class ToTextArea extends StatelessWidget {
@@ -21,8 +22,7 @@ class ToTextArea extends StatelessWidget {
     MultiTranslatorController multiController=Get.put(MultiTranslatorController());
     MenuItemsController menuItemsController=Get.put(MenuItemsController());
     TextFontController fontController=Get.put(TextFontController());
-
-    return  id=="zero"?Container():GestureDetector(
+   return  id=="zero"?Container():GestureDetector(
       onTap: (){
         multiController.removeFocus();
       },
@@ -83,18 +83,17 @@ class ToTextArea extends StatelessWidget {
               ]
             ),
             child: Padding(
-              padding:  EdgeInsets.only(left: Get.width*0.08,top: 30,right: 10),
+              padding:  EdgeInsets.only(left: Get.width*0.08,top: 10,right: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children:  [
                   Obx(()=> SizedBox(
                       height: Get.height*0.13,
-                      width: Get.width*0.9,
+                      width: Get.width*0.8,
                       child: SingleChildScrollView(
                         child: Text(multiController.listOfTranslation[id],style:fontController.outputTextStyle(fontController.inputFont.value) ,),
                       )
-                    ),
-                  ),
+                    ),),
                   const Padding(
                     padding:  EdgeInsets.all(2.0),
                     child: Text("To:",style: toTextStyle,),

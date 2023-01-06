@@ -8,11 +8,11 @@ import '../controllers/uni_translator_controller.dart';
 class UniTranslatorView extends GetView<UniTranslatorController> {
   final text;
    UniTranslatorView({Key? key,this.text}) : super(key: key);
-  @override
   UniTranslatorController controller=Get.put(UniTranslatorController());
   @override
 
   Widget build(BuildContext context) {
+    print(text);
     return Scaffold(
         resizeToAvoidBottomInset: false,
       body: Column(
@@ -22,7 +22,17 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
               onTap: (){
                 controller.removeFocus();
               },
-              child: ToTextArea())
+              child: ToTextArea()),
+          Container(
+            height: Get.height*0.25,
+            width: Get.width,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage("Assets/images/small ad.png"),
+                    // fit: BoxFit.fill
+                )
+            ),
+          ),
         ],
       )
     );

@@ -33,6 +33,15 @@ class TextFontController extends GetxController {
         letterSpacing: 0.0
     );
   }
+ TextStyle inputTextHintStyle(font){
+   return TextStyle(
+       fontSize: font,
+       color:Colors.black26,
+       fontFamily: "robor",
+       fontWeight: FontWeight.w900,
+       letterSpacing: 0.0
+   );
+ }
   void setOutputTextFont(font){
 outputFont.value=font;
   }

@@ -9,6 +9,7 @@ import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
+import '../../../controllers/speaker_controller.dart';
 import '../../languages/views/languages_view.dart';
 import '../controllers/uni_translator_controller.dart';
 class ToTextArea extends StatelessWidget {
@@ -20,23 +21,45 @@ ValueNotifier<bool> isDialOpen=ValueNotifier(false);
     UniTranslatorController uniController=Get.put(UniTranslatorController());
     MenuItemsController menuItemsController=Get.put(MenuItemsController());
     TextFontController fontController=Get.put(TextFontController());
-
+    SpeakerController speakerController=Get.put(SpeakerController());
+    uniController.translatedText.value!="..."?speakerController.checkAvailableTo(languagesController.languagesPrefix
+    [languagesController.selectedToIndex.value]):{};
     return  Container(
       height: Get.height*0.26,
       width: Get.width,
       color: AppColors.primaryColor,
       child: Padding(
-        padding:  EdgeInsets.only(left: Get.width*0.08,top: 30,right: 10),
+        padding:  EdgeInsets.only(left: Get.width*0.08,top: 10,right: 10),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children:  [
-            Obx(()=> SizedBox(
-                height: Get.height*0.13,
-                width: Get.width*0.9,
-                child:SingleChildScrollView(
-                  child: Text(uniController.translatedText.value,style:fontController.outputTextStyle(fontController.inputFont.value) ,),
-                )
+            SizedBox(
+              height: Get.height*0.13,
+              width: Get.width,
+              child: Stack(
+                children: [
+                  Obx(()=> SizedBox(
+                      height: Get.height*0.13,
+                      width: Get.width*0.8,
+                      child:SingleChildScrollView(
+                        child: Text(uniController.translatedText.value,style:fontController.outputTextStyle(fontController.inputFont.value) ,),
+                      )
 
+                    ),
+                  ),
+                  Obx(
+                    ()=> Positioned(right:0,top: 0,
+                        child: IconButton(onPressed: (){
+                          if(speakerController.isAvailableTo.value){
+                            speakerController.speakTo(uniController.translatedText.value);
+                          }else{
+                            Get.snackbar("Sorry!", "Speaker is unAvailable.",snackPosition:SnackPosition.TOP,
+                                backgroundColor: Colors.black54,colorText: Colors.white );
+                          }
+
+                        }, icon: Icon(Icons.volume_up),color: speakerController.isAvailableTo.value?Colors.white:Colors.black26,)),
+                  )
+                ],
               ),
             ),
             const Padding(
