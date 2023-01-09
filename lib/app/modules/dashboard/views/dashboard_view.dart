@@ -31,29 +31,28 @@ class DashboardView extends GetView<DashboardController> {
       child: Scaffold(
 
         resizeToAvoidBottomInset: false,
-        appBar: AppBar(
-          title:  Obx(()=> Text(title[controller.selectedIndex.value],style:appBar,)),
-          centerTitle: true,
-          elevation: 0.0,
-          backgroundColor: Colors.white,
-          leading: InkWell(
-            onTap: (){
-                Get.to(()=>const DarwerView(),
-                    transition: Transition.fadeIn
-                );
-            },
-           child:  Padding(
-             padding: const EdgeInsets.all(15.0),
-             child: SvgPicture.asset("Assets/svg/nevigationbar.svg"),
-           )
-          ),
-        ),
+        // appBar: AppBar(
+        //   title:  Obx(()=> Text(title[controller.selectedIndex.value],style:appBar,)),
+        //   centerTitle: true,
+        //   elevation: 0.0,
+        //   backgroundColor: Colors.white,
+        //   leading: InkWell(
+        //     onTap: (){
+        //         Get.to(()=>const DarwerView(),
+        //             transition: Transition.fadeIn
+        //         );
+        //     },
+        //    child:  Padding(
+        //      padding: const EdgeInsets.all(15.0),
+        //      child: SvgPicture.asset("Assets/svg/nevigationbar.svg"),
+        //    )
+        //   ),
+        // ),
         bottomNavigationBar: BottomNavBar(),
-        body: Stack(
-
-          children: [
-            ///Screens toggle
-            Obx(
+        body: SafeArea(
+          child: Expanded(
+            flex: 9,
+            child: Obx(
               ()=> IndexedStack(
                 index: controller.selectedIndex.value,
                 children:  [
@@ -65,23 +64,7 @@ class DashboardView extends GetView<DashboardController> {
                 ],
               ),
             ),
-            // /// ads container
-            // Expanded(
-            //     flex:2,
-            //     child:
-            //     Container(color: Colors.white,
-            //     child: const Center(child: Text("AD"),),)),
-
-            ///bottom nav bar
-            // Positioned(
-            //   bottom: 0,
-            //   child: SizedBox(
-            //     height: Get.height*0.14,
-            //     width: Get.width,
-            //     child:  BottomNavBar(),
-            //   ),
-            // ),
-          ],
+          ),
         ),
       ),
     );

@@ -8,6 +8,8 @@ import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/voice_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/voice_translator/views/to_text_area.dart';
+import '../../../data/text_style.dart';
+import '../../languages/views/languages_view.dart';
 import '../controllers/voice_translator_controller.dart';
 import 'package:permission_handler/permission_handler.dart';
 class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
@@ -23,16 +25,55 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
           children: [
             Column(
               children: [
-                FromTextArea(),
-                ToTextArea(),
-                Container(
-                  height: Get.height*0.24,
-                  width: Get.width,
-                  decoration: const BoxDecoration(
-                      image: DecorationImage(
-                          image: AssetImage("Assets/images/native.png"),
-                          fit: BoxFit.fill
-                      )
+                Expanded(
+                  flex: 1,
+                  child: Container(
+                    height: Get.height*0.1,
+                    width: Get.width,
+                    color: Colors.transparent,
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        InkWell(
+                          onTap: (){
+                            Get.to(()=>LanguagesView(type: "from"));
+                          },
+                          child: Obx(
+                                ()=> Text(
+                              "${languagesController.languages
+                              [languagesController.selectedFromIndex.value]
+                              }",style: fromDropStyle,),
+                          ),
+                        ),
+                        Icon(Icons.swap_horiz),
+                        InkWell(
+                          onTap: (){
+                            Get.to(()=>LanguagesView(type: "to"));
+                          },
+                          child: Obx(
+                                ()=> Text(
+                              "${languagesController.languages
+                              [languagesController.selectedToIndex.value]
+                              }",style: fromDropStyle,),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Expanded( flex: 3,child: FromTextArea()),
+                Expanded( flex: 3,child: ToTextArea()),
+                Expanded(
+                  flex: 4,
+                  child: Container(
+                    height: Get.height*0.24,
+                    width: Get.width,
+                    decoration: const BoxDecoration(
+                        image: DecorationImage(
+                            image: AssetImage("Assets/images/large ad.png"),
+                            fit: BoxFit.fill
+                        )
+                    ),
                   ),
                 ),
               ],
@@ -40,7 +81,7 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
             Obx(
               () => Positioned(
                 right: controller.audioEnabled.value?0:30,
-                top: controller.audioEnabled.value?Get.height*0.19:Get.height*0.22,
+                top: controller.audioEnabled.value?Get.height*0.23:Get.height*0.26,
                 child: controller.audioEnabled.value
                     ? AvatarGlow(
 

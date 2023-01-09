@@ -58,7 +58,7 @@ const rateUsDetailsStyle=TextStyle(
 );
  const  fromDropStyle=TextStyle(
     fontSize: 15,
-    color:Colors.black87,
+    color:Colors.blue,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
