@@ -7,29 +7,21 @@ class BottomNavBar extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height:Get.height*0.1,
+      width: Get.width,
       // color: AppColors.scaffoldColor,
-      color: Colors.transparent,
-      child: Center(
-        child: Container(
-          height:Get.height*0.08,
-          width: Get.width*0.85,
-          decoration: BoxDecoration(
-            color: Colors.white,
-            borderRadius: BorderRadius.circular(50),
-            boxShadow: const [
-              BoxShadow(color: Colors.black12,spreadRadius: 3,blurRadius: 3)
-            ]
-          ),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children:  [
-              BottomNavButtons(icon:"Assets/svg/translator.svg",index: 0),
-              BottomNavButtons(icon:"Assets/svg/voice.svg",index: 1),
-              BottomNavButtons(icon:"Assets/svg/camera.svg",index: 2),
-              BottomNavButtons(icon:"Assets/svg/diary.svg",index: 3),
-              BottomNavButtons(icon: "Assets/svg/multitranslator.svg",index: 4),
-            ],
-          )
+      color: Colors.white,
+      child: Padding(
+        padding: const EdgeInsets.only(bottom: 12.0),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children:  [
+            BottomNavButtons(icon:"Assets/svg/translator.svg",index: 0,text: "Translator",),
+            BottomNavButtons(icon:"Assets/svg/voice.svg",index: 1,text: "Voice"),
+            BottomNavButtons(icon:"Assets/svg/camera.svg",index: 2,text: "Camera"),
+            BottomNavButtons(icon:"Assets/svg/diary.svg",index: 3,text: "Dictionary"),
+            BottomNavButtons(icon: "Assets/svg/multitranslator.svg",index: 4,text: "Multi-Tra.."),
+          ],
         ),
       ),
     );

@@ -24,7 +24,7 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
               },
               child: ToTextArea()),
           Container(
-            height: Get.height*0.25,
+            height: Get.height*0.2,
             width: Get.width,
             decoration: const BoxDecoration(
                 image: DecorationImage(

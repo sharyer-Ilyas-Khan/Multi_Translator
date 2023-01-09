@@ -1,4 +1,5 @@
 
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
@@ -46,20 +47,8 @@ class DashboardView extends GetView<DashboardController> {
              child: SvgPicture.asset("Assets/svg/nevigationbar.svg"),
            )
           ),
-          // actions: [
-          //   IconButton(
-          //     onPressed: (){
-          //       // controller.checkForWidgetLaunch();
-          //       // controller.startBackgroundUpdate();
-          //       // controller.stopBackgroundUpdate();
-          //       // controller.loadData();
-          //       controller.sendAndUpdate();
-          //
-          //     },
-          //     icon: const Icon(Icons.settings,color: AppColors.appBarIconColor,),
-          //   ),
-          // ],
         ),
+        bottomNavigationBar: BottomNavBar(),
         body: Stack(
 
           children: [
@@ -84,14 +73,14 @@ class DashboardView extends GetView<DashboardController> {
             //     child: const Center(child: Text("AD"),),)),
 
             ///bottom nav bar
-            Positioned(
-              bottom: 0,
-              child: SizedBox(
-                height: Get.height*0.14,
-                width: Get.width,
-                child:  BottomNavBar(),
-              ),
-            ),
+            // Positioned(
+            //   bottom: 0,
+            //   child: SizedBox(
+            //     height: Get.height*0.14,
+            //     width: Get.width,
+            //     child:  BottomNavBar(),
+            //   ),
+            // ),
           ],
         ),
       ),

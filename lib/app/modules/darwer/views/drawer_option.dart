@@ -10,10 +10,12 @@ class DrawerOption extends StatelessWidget {
   final String? icon;
   final String? text;
   final int? index;
-  const DrawerOption({Key? key,this.icon,this.text,this.index}) : super(key: key);
+  final  color;
+  const DrawerOption({Key? key,this.icon,this.text,this.index,this.color}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+
     DarwerController controller=Get.put(DarwerController());
     return InkWell(
       onTap: (){
@@ -43,15 +45,36 @@ class DrawerOption extends StatelessWidget {
         }
       },
       child: Padding(
-        padding: const EdgeInsets.only(left: 35.0,right: 18.0,top: 10.0),
-        child: SizedBox(
-              height: Get.height*0.06,
-          child: Row(
-            children: [
-              SvgPicture.asset("Assets/svg/$icon.svg",height: 20,),
-              const SizedBox(width: 30),
-              Text(text!,style: drawerOptions,)
-            ],
+        padding: const EdgeInsets.only(left: 15.0,right: 20.0,top: 10.0),
+        child: Container(
+           
+              height: Get.height*0.07,
+      decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.circular(12.0)
+          ),
+          child: Padding(
+            padding: const EdgeInsets.only(left: 15.0),
+            child: Row(
+              children: [
+                Container(
+                    height: 40,
+                    width: 40,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(10.0),
+                      color: color
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset("Assets/svg/$icon.svg",height: 20,color: Colors.white,),
+                    )),
+                const SizedBox(width: 30),
+                Text(text!,style: drawerOptions,),
+                Spacer(),
+                Icon(Icons.arrow_forward_ios,color: Colors.grey,size: 15,),
+                const SizedBox(width: 20),
+              ],
+            ),
           ),
         ),
       ),

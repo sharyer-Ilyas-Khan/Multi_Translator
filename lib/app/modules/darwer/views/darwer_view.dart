@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/text_style.dart';
@@ -9,58 +10,48 @@ class DarwerView extends GetView<DarwerController> {
   const DarwerView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.white,
-          centerTitle: false,
-          elevation: 0.0,
-          iconTheme: const IconThemeData(
-            color: Colors.black87,
-            size: 19,
+    return Scaffold(
+      backgroundColor: CupertinoColors.extraLightBackgroundGray,
+        body: CustomScrollView(
+            slivers: [
+              const CupertinoSliverNavigationBar(
+               stretch: true,
+                largeTitle: Text('Settings'),
+                automaticallyImplyLeading: false,
+                backgroundColor: CupertinoColors.extraLightBackgroundGray,
+                // trailing: Icon(CupertinoIcons.add_circled),
+              ),
+      SliverList(
+          delegate: SliverChildListDelegate(
+        [
+          const DrawerOption(icon: "removeads", text: "Remove Ads", index: 1,color: Colors.blue),
+
+         DrawerOption(icon: "fav", text: "Favourite", index: 2,color: Colors.red.shade600),
+         const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Text(
+                    "Review section",
+                    style: appBarDrawer,
+                  ),
+                ),
+          const DrawerOption(icon: "feedback", text: "Feedback", index: 4,color: Colors.blue),
+          const DrawerOption(icon: "rateus", text: "Rate us", index: 5,color: Colors.blue),
+          const DrawerOption(icon: "share", text: "Share", index: 6,color: Colors.amber),
+
+          const Padding(
+            padding: EdgeInsets.all(20.0),
+            child: Text(
+              "Privacy section",
+              style: appBarDrawer,
+            ),
           ),
-          title: const  Text("All languages translator",style: appBarDrawer,),
-        ),
-      body: ListView(
-        children:  const [
-        // Padding(
-        //   padding: const EdgeInsets.only(left: 35.0,right: 18.0,top: 10.0),
-        //   child: SizedBox(
-        //     height: Get.height*0.06,
-        //     child: Row(
-        //       children: [
-        //         Container(
-        //           height: 18,width: 18,
-        //           decoration: const BoxDecoration(
-        //             color: Colors.black,
-        //             shape: BoxShape.circle
-        //           ),
-        //         ),
-        //         const SizedBox(width: 30),
-        //         const Text("App Languages",style: drawerLangOptions,)
-        //       ],
-        //     ),
-        //   ),
-        // ),
-          DrawerOption(icon: "removeads",text: "Remove Ads",index:1),
-             DrawerOption(icon: "fav",text: "Favourite",index:2),
-             // const DrawerOption(icon: "history",text: "History",index:3),
-          Padding(
-            padding:  EdgeInsets.all(20.0),
-            child: Text("App section",style: appBarDrawer,),
-          ),
-          DrawerOption(icon: "feedback",text: "Feedback",index:4),
-          DrawerOption(icon: "rateus",text: "Rate us",index:5),
-          DrawerOption(icon: "share",text: "Share",index:6),
-          Padding(
-            padding:  EdgeInsets.all(20.0),
-            child: Text("Privacy section",style: appBarDrawer,),
-          ),
-          DrawerOption(icon: "privacy",text: "Privacy policy",index:7),
-          DrawerOption(icon: "quit",text: "Quit",index:8),
+          const DrawerOption(icon: "privacy", text: "Privacy policy", index: 7,color: Colors.purple),
+          const DrawerOption(icon: "quit", text: "Quit", index: 8,color: Colors.grey),
+
+        ]
+      ))
 
 
-        ],
-      )
-    );
+    ]));
   }
 }

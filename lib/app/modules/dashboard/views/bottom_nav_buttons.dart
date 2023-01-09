@@ -15,7 +15,8 @@ import '../../voice_translator/controllers/voice_translator_controller.dart';
 class BottomNavButtons extends StatelessWidget {
   final icon;
   final index;
-   BottomNavButtons({Key? key,this.icon,this.index}) : super(key: key);
+  final text;
+   BottomNavButtons({Key? key,this.icon,this.index,this.text}) : super(key: key);
   late DashboardController controller;
   late LanguagesController languagesController;
   late UniTranslatorController uniTranslatorController;
@@ -101,13 +102,19 @@ class BottomNavButtons extends StatelessWidget {
         child: Obx(()=> Container(
             height:Get.height*0.1,
             width: Get.width*0.13,
-            decoration:  BoxDecoration(
-              shape: BoxShape.circle,
-              color: controller.selectedIndex.value==index?
-              AppColors.secondaryColor:Colors.transparent
-            ),
             child: Center(
-              child: SvgPicture.asset(icon),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  SvgPicture.asset(icon,color: controller.selectedIndex.value==index?
+                  AppColors.primaryColor:Colors.grey,height: 20,),
+                  Text(text,style: TextStyle(
+                    fontSize: 10,
+                    color: controller.selectedIndex.value==index?
+                    AppColors.primaryColor:Colors.grey,
+                  ),)
+                ],
+              ),
             ),
           ),
         ),

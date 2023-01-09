@@ -19,7 +19,7 @@ class ImageTextTranslatorView extends GetView<ImageTextTranslatorController> {
           children: [
             Obx(()=> dashboardController.selectedIndex.value==2?CameraView():Center(child: CircularProgressIndicator(),)),
             Positioned(
-              bottom: Get.height*0.13,
+              bottom: Get.height*0.05,
               // left: 0,
               right: Get.width*0.4,
               child: InkWell(
@@ -47,7 +47,7 @@ class ImageTextTranslatorView extends GetView<ImageTextTranslatorController> {
               ),
             ),
             Positioned(
-              bottom: Get.height*0.15,
+              bottom: Get.height*0.065,
               right:  Get.width*0.25,
               child: Obx(()=>controllers.flashOn.value==false?
               InkWell(
@@ -88,7 +88,7 @@ class ImageTextTranslatorView extends GetView<ImageTextTranslatorController> {
               ),
             ),
             Positioned(
-              bottom: Get.height*0.15,
+              bottom: Get.height*0.065,
               left: Get.width*0.25,
               child: InkWell(
                 onTap: (){

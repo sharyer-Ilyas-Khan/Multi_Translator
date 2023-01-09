@@ -14,20 +14,22 @@ import '../../../data/text_style.dart';
 
 
 
-class DashboardController extends GetxController {
+class DashboardController extends GetxController with GetTickerProviderStateMixin {
 
   FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
   HistoryDatabaseController historyDatabaseController=Get.put(HistoryDatabaseController());
   final  selectedIndex = 0.obs;
   final  extractedText = "".obs;
 
-
+  late TabController tabController;
 
   TextEditingController _titleController = TextEditingController();
   TextEditingController _messageController = TextEditingController();
 
   @override
-  void onInit() {
+  void onInit()
+  {
+    tabController = TabController(length: 5, vsync: this);
     HomeWidget.setAppGroupId('group.appwudgets');
     HomeWidget.registerBackgroundCallback(backgroundCallback);
     AwesomeNotifications().initialize(

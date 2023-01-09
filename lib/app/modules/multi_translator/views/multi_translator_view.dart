@@ -44,7 +44,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
         children: [
           Obx(
             ()=>controller.listOfWidget.length==1? Container(
-              height: Get.height*0.24,
+              height: Get.height*0.2,
               width: Get.width,
               decoration: const BoxDecoration(
                   image: DecorationImage(
