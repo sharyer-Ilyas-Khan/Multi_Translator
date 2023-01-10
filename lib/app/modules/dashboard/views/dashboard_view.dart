@@ -50,19 +50,16 @@ class DashboardView extends GetView<DashboardController> {
         // ),
         bottomNavigationBar: BottomNavBar(),
         body: SafeArea(
-          child: Expanded(
-            flex: 9,
-            child: Obx(
-              ()=> IndexedStack(
-                index: controller.selectedIndex.value,
-                children:  [
-                   UniTranslatorView(text:controller.extractedText.value??""),
-                   VoiceTranslatorView(),
-                    const ImageTextTranslatorView(),
-                  const DictionaryView(),
-                  MultiTranslatorView(ad:true,)
-                ],
-              ),
+          child: Obx(
+            ()=> IndexedStack(
+              index: controller.selectedIndex.value,
+              children:  [
+                 UniTranslatorView(text:controller.extractedText.value??""),
+                 VoiceTranslatorView(),
+                  const ImageTextTranslatorView(),
+                const DictionaryView(),
+                MultiTranslatorView(ad:true,)
+              ],
             ),
           ),
         ),

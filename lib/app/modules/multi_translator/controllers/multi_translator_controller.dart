@@ -10,8 +10,8 @@ class MultiTranslatorController extends GetxController {
 
     RxList listOfPrefix=["en"].obs;
     RxList listOfLang=["English"].obs;
-    RxList listOfTranslation=["..."].obs;
-   Rx<String> translatedText="...".obs;
+    RxList listOfTranslation=["Translation"].obs;
+   Rx<String> translatedText="Translation".obs;
    String textContent='';
    RxInt translatedIndex=1.obs;
    Rx<TextEditingController> fromTextController=TextEditingController().obs;

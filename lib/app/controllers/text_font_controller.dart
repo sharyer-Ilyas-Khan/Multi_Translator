@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class TextFontController extends GetxController {
- RxDouble inputFont=40.0.obs;
- RxDouble outputFont=40.0.obs;
+ RxDouble inputFont=25.0.obs;
+ RxDouble outputFont=25.0.obs;
   @override
   void onInit() {
     super.onInit();
@@ -27,7 +27,7 @@ class TextFontController extends GetxController {
   TextStyle inputTextStyle(font){
     return TextStyle(
         fontSize: font,
-        color:Colors.black87,
+        color:Colors.black54,
         fontFamily: "robor",
         fontWeight: FontWeight.w900,
         letterSpacing: 0.0
@@ -48,7 +48,7 @@ outputFont.value=font;
   TextStyle outputTextStyle(font){
     return TextStyle(
         fontSize: font,
-        color:Colors.white,
+        color:Colors.black54,
         fontFamily: "robor",
         fontWeight: FontWeight.w900,
         letterSpacing: 1.0

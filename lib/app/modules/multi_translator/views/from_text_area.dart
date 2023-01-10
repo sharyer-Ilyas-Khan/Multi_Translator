@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/controllers/speaker_controller.dart';
 import 'package:translator/app/data/color_code.dart';
@@ -20,86 +21,127 @@ String inputText="";
     return Container(
       height: Get.height*0.26,
       width: Get.width,
-      color: AppColors.scaffoldColor,
+      decoration: BoxDecoration(
+          color: Colors.white,
+      ),
       child: Padding(
-        padding:  EdgeInsets.only(left: Get.width*0.08,top: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding:  EdgeInsets.only(left: 15.0,top: 5),
+        child: Stack(
           children:  [
-            SizedBox(
-              height: Get.height*0.13,
-              width: Get.width,
-              child: Obx(
-                ()=> SizedBox(
-                  height: Get.height*0.13,
-                  width: Get.width*0.8,
-                  child:  TextField(
-                    maxLines: 5,
-                    minLines: 5,
-                    focusNode: controller.myFocusNode,
-                    controller: controller.fromTextController.value,
-                    style: fontController.inputTextStyle(fontController.inputFont.value),
-                    keyboardType: TextInputType.emailAddress,
-                    decoration:  InputDecoration(
-                      border: InputBorder.none,
-                      hintText: "Enter Text Here",
-                      hintStyle:fontController.inputTextHintStyle(fontController.inputFont.value),
-                    ),
-                    onChanged: (value) async {
-                      inputText=value;
-
-                      if(value.length>=40){
-                        fontController.setInputTextFont(20.0);
-                      }
-                      if(value.length<40){
-                        fontController.setInputTextFont(40.0);
-                      }
-                      int getIndex=await controller.detectLanguage(value);
-                      languagesController.selectedFromIndex.value=getIndex;
-                      if(value.isEmpty){
-                        languagesController.selectedFromIndex.value=0;
-                      }
-                      controller.setTranslations(
-                          languagesController.languagesPrefix[languagesController.selectedFromIndex.value],
-                          value);
-
-                    },
-                  ),
-                ),
-              ),
-            ),
-            const Padding(
-              padding:  EdgeInsets.all(2.0),
-              child: Text("From:",style: fromTextStyle,),
-            ),
             Obx(
                   ()=> InkWell(
                 onTap: (){
                   Get.to(()=>LanguagesView(type: "from") );
                 },
                 child: Container(
-                  width: Get.width*0.35,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black54,width: 2),
-                    borderRadius: BorderRadius.circular(25)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0,right: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:  [
-                        Text( languagesController.languages
-                        [languagesController.selectedFromIndex.value],style: fromDropStyle,),
-                        const RotatedBox(
-                          quarterTurns: 1,
-                        child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
-                      ],
+                    width: Get.width*0.35,
+                    height: 40,
+                    decoration: BoxDecoration(
+                       color: Colors.grey.shade200,
+                        borderRadius: BorderRadius.circular(25)
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.only(left: 15.0,right: 10.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children:  [
+                            Text( "From: ${languagesController.languages
+                                  [languagesController.selectedFromIndex.value
+                                   ]
+                                    }",style: fromDropStyle,),
+                            Icon(Icons.arrow_drop_down_sharp,color: Colors.blue,size: 20,)
+                          ],
+                        )
                     )
-                )
                 ),
               ),
-            )
+            ),
+            Positioned(
+              bottom: 0,
+              child: SizedBox(
+                height: Get.height*0.13,
+                width: Get.width,
+                child: Obx(
+                  ()=> SizedBox(
+                    height: Get.height*0.13,
+                    width: Get.width*0.8,
+                    child:  TextField(
+                      maxLines: 5,
+                      minLines: 5,
+                      focusNode: controller.myFocusNode,
+                      controller: controller.fromTextController.value,
+                      style: fontController.inputTextStyle(fontController.inputFont.value),
+                      keyboardType: TextInputType.emailAddress,
+                      decoration:  InputDecoration(
+                        border: InputBorder.none,
+                        hintText: "Enter Text Here",
+                        hintStyle:fontController.inputTextHintStyle(fontController.inputFont.value),
+                      ),
+                      onChanged: (value) async {
+                        inputText=value;
+
+                        if(value.length>=40){
+                          fontController.setInputTextFont(18.0);
+                        }
+                        if(value.length<40){
+                          fontController.setInputTextFont(25.0);
+                        }
+                        int getIndex=await controller.detectLanguage(value);
+                        languagesController.selectedFromIndex.value=getIndex;
+                        if(value.isEmpty){
+                          languagesController.selectedFromIndex.value=0;
+                        }
+                        controller.setTranslations(
+                            languagesController.languagesPrefix[languagesController.selectedFromIndex.value],
+                            value);
+
+                      },
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            Positioned(right:0,bottom: 0,left: 0,
+                child: Row(
+                  children: [
+                    IconButton(
+                      padding:EdgeInsets.only(right: 0),
+                      onPressed: () {
+                        // menuItemsController.addToFav(
+                        //     languagesController.languages[
+                        //     languagesController.selectedFromIndex.value]
+                        //         .toString(),
+                        //     uniController.textContent.toString(),
+                        //     languagesController.languages[
+                        //     languagesController.selectedToIndex.value]
+                        //         .toString(),
+                        //     uniController.translatedText.value.toString(),
+                        //     "uni");
+                        },
+                      icon: Icon(Icons.favorite_border),
+                      color: Colors.grey.shade400,
+                      iconSize: 20,
+                    ),
+                    IconButton(onPressed: (){
+                      print(speakerController.isAvailableFrom.value);
+                      // if(speakerController.isAvailableFrom.value){
+                      //   inputText!=""?speakerController.speakFrom(inputText):speakerController.speakFrom(text);
+                      //
+                      // }else{
+                      //   Get.snackbar("Sorry!", "Speaker is unAvailable.",snackPosition:SnackPosition.TOP,
+                      //       backgroundColor: Colors.black54,colorText: Colors.white );
+                      // }
+
+                    }, icon: SvgPicture.asset("Assets/svg/pronouncer.svg",),
+
+                    ),
+                    IconButton(onPressed: (){
+
+
+                    }, icon: SvgPicture.asset("Assets/svg/full_screen.svg")),
+                  ],
+                )),
+
           ],
         ),
       ),

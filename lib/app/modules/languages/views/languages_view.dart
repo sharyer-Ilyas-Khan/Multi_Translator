@@ -24,13 +24,56 @@ class LanguagesView extends GetView<LanguagesController> {
         centerTitle: true,
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
+          InkWell(
+      highlightColor: Colors.transparent,
+      onTap: (){
+        // controller.setIndex(index,type,id);
+        Navigator.pop(context);
+      },
+      child: Padding(
+        padding: const EdgeInsets.only(left: 18.0,right: 18.0,top:0.0,bottom: 0.0),
+        child: SizedBox(
+          height: Get.height*0.06,
+          child: Center(
+            child: Padding(
+              padding: const EdgeInsets.only(left: 18.0,right: 18.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children:const  [
+                  Icon(Icons.check_rounded,
+                    size: 20,),
+                    // color: controller.selectedIndex.value==index?Colors.grey.shade700:Colors.transparent,),
+                   SizedBox(width: 25,),
+                  Text("Auto Detect",style: languageTitle,),
+
+                ],
+              ),
+            ),
+          ),
+        ),
+      ),
+    ),
+          const Divider(color: Colors.black26,),
+          const Padding(
+            padding: EdgeInsets.only(left: 20.0),
+            child: Text("Recent Language",style: languageTitleHeading,),
+          ),
           SizedBox(
             height: Get.height*0.1,
             width: Get.width*0.96,
-            child: const SearchBarLanguages(
+            child: Column(
+              children: const [
 
-            ),
+                Text("Auto Detect"),
+              ],
+            )
+          ),
+          const Divider(color: Colors.black26,),
+          const Padding(
+            padding: EdgeInsets.only(left: 20.0),
+            child: Text("All language",style: languageTitleHeading,),
           ),
           Expanded(
               child: ListView.builder(
@@ -44,37 +87,21 @@ class LanguagesView extends GetView<LanguagesController> {
                       Navigator.pop(context);
                     },
                     child: Padding(
-                    padding: const EdgeInsets.only(left: 18.0,right: 18.0,top:12.0,bottom: 12.0),
-                    child: Container(
-                      height: Get.height*0.073,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(90),
-                        color: controller.selectedIndex.value==index?AppColors.secondaryColor:Colors.white,
-                        boxShadow: const [
-                          BoxShadow(
-                            color: Colors.black12,
-                            spreadRadius: 0.1,
-                            blurRadius: 0.1,
-
-                          ),
-                        ]
-                      ),
+                    padding: const EdgeInsets.only(left: 18.0,right: 18.0,top:0.0,bottom: 0.0),
+                    child: SizedBox(
+                      height: Get.height*0.06,
                       child: Center(
                         child: Padding(
                           padding: const EdgeInsets.only(left: 18.0,right: 18.0),
                           child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            mainAxisAlignment: MainAxisAlignment.start,
                             children: [
+                              Icon(Icons.check_rounded,
+                                size: 20,
+                                color: controller.selectedIndex.value==index?Colors.grey.shade700:Colors.transparent,),
+                              const SizedBox(width: 25,),
                               Text(languages[index],style: languageTitle,),
-                              Container(
-                                height: 18,
-                                width: 20,
-                                decoration: BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  color: controller.selectedIndex.value==index?Colors.grey.shade700:Colors.transparent,
-                                  border: Border.all(color: Colors.grey.shade700,width: 2)
-                                ),
-                              )
+
                             ],
                           ),
                         ),

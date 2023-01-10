@@ -1,14 +1,26 @@
+
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:translator/app/controllers/speaker_controller.dart';
 
 class UniTranslatorController extends GetxController {
   //TODO: Implement UniTranslatorController
-  Rx<String> translatedText="...".obs;
+  Rx<String> translatedText="Translation".obs;
   String textContent='';
+  RxBool isNativeLoaded=false.obs;
+  NativeAd? nativeAd;
 SpeakerController speakerController=Get.put(SpeakerController());
   @override
   void onInit() {
+    print("object");
+    print("object");
+    print("object");
+
+    print("object");
+    loadNativeAd();
     super.onInit();
   }
 
@@ -73,6 +85,35 @@ void setText(text){
     return 0;
 
 
+  }
+  void loadNativeAd() {
+    nativeAd = NativeAd(
+        request: const AdRequest(),
+        adUnitId: "ca-app-pub-3940256099942544/1044960115",
+        factoryId:  (Platform.isIOS)?'largeNative':'flightNative',
+        listener: NativeAdListener(
+            onAdLoaded: (ad) {
+              // callEvent("flight_no_native_ad_loaded_flight");
+              //   WidgetsBinding.instance.removeObserver(this);
+              isNativeLoaded.value = true;
+              // widget.remoteController.dashboardNativeClicked(false);
+
+            },
+            onAdFailedToLoad: (ad, error) {
+              ad.dispose();
+              isNativeLoaded.value = false;
+              // widget.remoteController.dashboardNativeClicked(false);
+              // callEvent("flight_no_native_ad_failed_flight");
+              print('failed to load the ad native');
+            },
+            onAdClicked: (ad) {
+              // WidgetsBinding.instance.addObserver(this);
+              // widget.remoteController.dashboardNativeClicked(true);
+              // callEvent("flight_no_native_ad_clicked_flight");
+            }
+        )
+    );
+    nativeAd!.load();
   }
   List languages=[
     "English",

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
@@ -17,11 +18,14 @@ class FromTextArea extends StatelessWidget {
     return Container(
       height: Get.height*0.26,
       width: Get.width,
-      color: AppColors.scaffoldColor,
+
+      decoration: BoxDecoration(
+          color: Colors.white,
+          border: Border.all(color: Colors.black12,width: 0.5)
+      ),
       child: Padding(
-        padding:  EdgeInsets.only(left: Get.width*0.08,top: 30),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
+        padding:  const EdgeInsets.only(left: 15,top: 5),
+        child: Stack(
           children:  [
             Obx(
               ()=> SizedBox(
@@ -33,40 +37,57 @@ class FromTextArea extends StatelessWidget {
 
               ),
             ),
-            const Padding(
-              padding:  EdgeInsets.all(2.0),
-              child: Text("From:",style: fromTextStyle,),
-            ),
-            InkWell(
-                onTap: (){
-                  // Get.to(()=>LanguagesView(type: "from"));
-                },
-                child: Container(
-                  width: Get.width*0.35,
-                  height: 40,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.black54,width: 2),
-                    borderRadius: BorderRadius.circular(25)
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0,right: 10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children:  [
-                        Text(languagesController.languages
-                        [0]
-                        // [languagesController.selectedFromIndex.value]
-                          ,style: fromDropStyle,),
-                        Text(""),
-                        // const RotatedBox(
-                        //   quarterTurns: 1,
-                        // child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.black,size: 15,))
-                      ],
-                    )
-                )
+            Positioned(right:0,bottom: 0,left: 0,
+                child: Row(
+                  children: [
+                    IconButton(
+                      onPressed: () {
+                        // menuItemsController.addToFav(
+                        //     languagesController.languages[
+                        //     languagesController.selectedFromIndex.value]
+                        //         .toString(),
+                        //     uniController.textContent.toString(),
+                        //     languagesController.languages[
+                        //     languagesController.selectedToIndex.value]
+                        //         .toString(),
+                        //     uniController.translatedText.value.toString(),
+                        //     "uni");
+                        },
+                      icon: Icon(Icons.mic),
+                      color: Colors.black,
+                      iconSize: 20,
+                    ),
+                    IconButton(onPressed: (){
+                      // if(speakerController.isAvailableFrom.value){
+                      //   inputText!=""?speakerController.speakFrom(inputText):speakerController.speakFrom(text);
+                      //
+                      // }else{
+                      //   Get.snackbar("Sorry!", "Speaker is unAvailable.",snackPosition:SnackPosition.TOP,
+                      //       backgroundColor: Colors.black54,colorText: Colors.white );
+                      // }
 
-              ),
-            )
+                    }, icon: SvgPicture.asset("Assets/svg/pronouncer.svg",),
+
+                    ),
+                    IconButton(onPressed: (){
+                      // if(speakerController.isAvailableFrom.value){
+                      //   inputText!=""?speakerController.speakFrom(inputText):speakerController.speakFrom(text);
+                      //
+                      // }else{
+                      //   Get.snackbar("Sorry!", "Speaker is unAvailable.",snackPosition:SnackPosition.TOP,
+                      //       backgroundColor: Colors.black54,colorText: Colors.white );
+                      // }
+
+                    }, icon: SvgPicture.asset("Assets/svg/pronouncer.svg",),
+
+                    ),
+                    Spacer(),
+                    IconButton(onPressed: (){
+
+
+                    }, icon: SvgPicture.asset("Assets/svg/full_screen.svg")),
+                  ],
+                )),
           ],
         ),
       ),

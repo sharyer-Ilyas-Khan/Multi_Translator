@@ -1,16 +1,22 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 
 import '../../../controllers/text_font_controller.dart';
 
 class VoiceTranslatorController extends GetxController {
   //TODO: Implement VoiceTranslatorController
-  Rx<String> translatedText="...".obs;
-  Rx<String> inputText="...".obs;
+  Rx<String> translatedText="Translation".obs;
+  Rx<String> inputText="Speak".obs;
   RxBool audioEnabled=false.obs;
+  RxBool isNativeLoaded=false.obs;
+  NativeAd? nativeAd;
   TextFontController fontController=Get.put(TextFontController());
   @override
   void onInit() {
+    loadNativeAd();
     super.onInit();
   }
 
@@ -54,6 +60,35 @@ class VoiceTranslatorController extends GetxController {
     } catch (e) {
       return "....";
     }
+  }
+  void loadNativeAd() {
+    nativeAd = NativeAd(
+        request: const AdRequest(),
+        adUnitId: "ca-app-pub-3940256099942544/1044960115",
+        factoryId:  (Platform.isIOS)?'largeNative':'flightNative',
+        listener: NativeAdListener(
+            onAdLoaded: (ad) {
+              // callEvent("flight_no_native_ad_loaded_flight");
+              //   WidgetsBinding.instance.removeObserver(this);
+                isNativeLoaded.value = true;
+                // widget.remoteController.dashboardNativeClicked(false);
+
+            },
+            onAdFailedToLoad: (ad, error) {
+              ad.dispose();
+                isNativeLoaded.value = false;
+                // widget.remoteController.dashboardNativeClicked(false);
+              // callEvent("flight_no_native_ad_failed_flight");
+              print('failed to load the ad native');
+            },
+            onAdClicked: (ad) {
+              // WidgetsBinding.instance.addObserver(this);
+              // widget.remoteController.dashboardNativeClicked(true);
+              // callEvent("flight_no_native_ad_clicked_flight");
+            }
+        )
+    );
+    nativeAd!.load();
   }
 }
 

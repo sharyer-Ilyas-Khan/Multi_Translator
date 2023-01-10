@@ -64,18 +64,18 @@ const rateUsDetailsStyle=TextStyle(
     letterSpacing: 0.0
 );
 const  textInputStyle=TextStyle(
-    fontSize: 40,
+    fontSize: 25,
     color:Colors.black87,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
 const  textInputStyleTo=TextStyle(
-    fontSize: 40,
+    fontSize: 25,
     color:Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 1.0
+    letterSpacing: 0.0
 );
 const  fromTextStyle=TextStyle(
     fontSize: 15,
@@ -93,14 +93,14 @@ const toHintStyle=TextStyle(
 );
 const  toDropStyle=TextStyle(
     fontSize: 15,
-    color:Colors.white,
+    color:Colors.blue,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
 const  toTextStyle=TextStyle(
     fontSize: 15,
-    color:Colors.white,
+    color:Colors.black,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
@@ -134,10 +134,16 @@ const searchLangHint=TextStyle(
     letterSpacing: 1.0
 );
 const languageTitle=TextStyle(
-    fontSize: 18,
+    fontSize: 14,
     color:Colors.black87,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
+    letterSpacing: 1.0
+);
+const languageTitleHeading=TextStyle(
+    fontSize: 14,
+    color:Colors.black54,
+    fontFamily: "robob",
     letterSpacing: 1.0
 );
 const appBarDrawer=TextStyle(

@@ -40,9 +40,9 @@ class BottomNavButtons extends StatelessWidget {
           if(index==4){
             cameraControllers.disposeCamera();
             clearUniTranslator();
-            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.translatedText.value="Translation";
             voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="...";
+            voiceTranslatorController.inputText.value="Speak";
             dictionaryController.inputController.value.clear();
             dictionaryController.errorText.value="";
             dictionaryController.inputText.value="";
@@ -56,9 +56,9 @@ class BottomNavButtons extends StatelessWidget {
             cameraControllers.disposeCamera();
             multiTranslatorController.clearList();
             clearUniTranslator();
-            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.translatedText.value="Translation";
             voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="...";
+            voiceTranslatorController.inputText.value="Speak";
           }
           if(index==2){
             speakerController.isAvailableTo.value=false;
@@ -66,9 +66,9 @@ class BottomNavButtons extends StatelessWidget {
             cameraControllers.onInit();
             multiTranslatorController.clearList();
             clearUniTranslator();
-            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.translatedText.value="Translation";
             voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="...";
+            voiceTranslatorController.inputText.value="Speak";
             dictionaryController.inputController.value.clear();
             dictionaryController.errorText.value="";
             dictionaryController.inputText.value="";
@@ -88,9 +88,9 @@ class BottomNavButtons extends StatelessWidget {
             speakerController.isAvailableFrom.value=false;
             cameraControllers.disposeCamera();
             multiTranslatorController.clearList();
-            voiceTranslatorController.translatedText.value="...";
+            voiceTranslatorController.translatedText.value="Translation";
             voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="...";
+            voiceTranslatorController.inputText.value="Speak";
             dictionaryController.inputController.value.clear();
             dictionaryController.errorText.value="";
             dictionaryController.inputText.value="";
@@ -121,7 +121,7 @@ class BottomNavButtons extends StatelessWidget {
     );
   }
 void clearUniTranslator(){
-  uniTranslatorController.translatedText.value="...";
+  uniTranslatorController.translatedText.value="Translation";
   uniTranslatorController.textContent="";
   languagesController.selectedFromIndex.value=0;
   languagesController.selectedToIndex.value=0;

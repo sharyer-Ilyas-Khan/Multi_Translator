@@ -24,7 +24,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
 
       floatingActionButton: Obx(
           ()=> Padding(
-          padding:  EdgeInsets.only(bottom: controller.listOfWidget.length==1?Get.height*0.48:Get.height*0.48,right: 12),
+          padding:  EdgeInsets.only(bottom: controller.listOfWidget.length==1?Get.height*0.53:Get.height*0.53,right: 12),
           child: FloatingActionButton(
 
             onPressed: (){
@@ -46,43 +46,6 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
 
       body:Column(
         children: [
-          Expanded(
-            flex: 1,
-            child: Container(
-              height:65,
-
-              width: Get.width,
-              color: Colors.transparent,
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  InkWell(
-                    onTap: (){
-                      Get.to(()=>LanguagesView(type: "from"));
-                    },
-                    child: Obx(
-                          ()=> Text(
-                        "${languagesController.languages
-                        [languagesController.selectedFromIndex.value]
-                        }",style: fromDropStyle,),
-                    ),
-                  ),
-                  Icon(Icons.swap_horiz),
-                  InkWell(
-                    onTap: (){
-                      Get.to(()=>LanguagesView(type: "to"));
-                    },
-                    child: Obx(
-                          ()=> Text(
-                        "${languagesController.languages
-                        [languagesController.selectedToIndex.value]
-                        }",style: fromDropStyle,),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
           Expanded(flex:3,child: FromTextArea()),
           Obx(
                 ()=>Expanded(

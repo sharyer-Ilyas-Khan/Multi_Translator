@@ -18,6 +18,8 @@
 		4C049092296547350076C151 /* appWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4C04908E296547330076C151 /* appWidgets.intentdefinition */; };
 		4C049093296547350076C151 /* appWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4C04908E296547330076C151 /* appWidgets.intentdefinition */; };
 		4C049096296547350076C151 /* appWidgetsExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 4C049082296547330076C151 /* appWidgetsExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		4C064864296D3C6D00309658 /* largeNativeAdFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C064863296D3C6D00309658 /* largeNativeAdFactory.swift */; };
+		4C064868296D3D5800309658 /* largeNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C064867296D3D5800309658 /* largeNativeAdView.xib */; };
 		4C8ACE6529658725008C1D4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		4CA767B32966A832005836BA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA767B22966A832005836BA /* StoreKit.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
@@ -77,6 +79,8 @@
 		4C049091296547350076C151 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4C04909C2965475D0076C151 /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		4C04909D296547920076C151 /* appWidgetsExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = appWidgetsExtension.entitlements; sourceTree = "<group>"; };
+		4C064863296D3C6D00309658 /* largeNativeAdFactory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = largeNativeAdFactory.swift; sourceTree = "<group>"; };
+		4C064867296D3D5800309658 /* largeNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = largeNativeAdView.xib; sourceTree = "<group>"; };
 		4CA767B22966A832005836BA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4CA767B42966B3DD005836BA /* testInAppPurchase.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = testInAppPurchase.storekit; sourceTree = "<group>"; };
 		6880FCF69A64D5F134722A98 /* Pods-Runner.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.release.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.release.xcconfig"; sourceTree = "<group>"; };
@@ -195,6 +199,8 @@
 				1498D2331E8E89220040F4C2 /* GeneratedPluginRegistrant.m */,
 				74858FAE1ED2DC5600515810 /* AppDelegate.swift */,
 				74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */,
+				4C064863296D3C6D00309658 /* largeNativeAdFactory.swift */,
+				4C064867296D3D5800309658 /* largeNativeAdView.xib */,
 			);
 			path = Runner;
 			sourceTree = "<group>";
@@ -295,6 +301,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C064868296D3D5800309658 /* largeNativeAdView.xib in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
@@ -407,6 +414,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C064864296D3C6D00309658 /* largeNativeAdFactory.swift in Sources */,
 				4C8ACE6529658725008C1D4B /* AppDelegate.swift in Sources */,
 				4C049093296547350076C151 /* appWidgets.intentdefinition in Sources */,
 				1498D2341E8E89220040F4C2 /* GeneratedPluginRegistrant.m in Sources */,
