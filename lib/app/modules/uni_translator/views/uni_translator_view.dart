@@ -71,31 +71,29 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
                 },
                 child: ToTextArea()),
           ),
-          Container(
-            height: Get.height*0.05,
-            width: Get.width*0.9,
-            color: Colors.transparent,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: [
-
-
-                InkWell(
-                  onTap: (){
-                    Get.to(()=>DarwerView(),transition:Transition.fade,duration: Duration(seconds: 1));
-                  },
-                  child: const Text(
+          InkWell(
+            onTap: (){
+              Get.to(()=>DarwerView(),transition:Transition.zoom,duration: const Duration(milliseconds: 400));
+            },
+            child: Container(
+              height: Get.height*0.05,
+              width: Get.width*0.9,
+              color: Colors.transparent,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: const [
+                   Text(
                     "Preferences",style: TextStyle(
                       fontStyle: FontStyle.italic,
                       color: Colors.black54,
                       fontSize: 12
                   ),
                   ),
-                ),
-                SizedBox(width: 10,),
-                Icon(Icons.settings,color: Colors.grey,size: 20,),
+                  SizedBox(width: 10,),
+                  Icon(Icons.settings,color: Colors.grey,size: 20,),
 
-              ],
+                ],
+              ),
             ),
           ),
           Expanded(

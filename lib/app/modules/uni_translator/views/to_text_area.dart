@@ -45,8 +45,8 @@ class ToTextArea extends StatelessWidget {
                   child: SingleChildScrollView(
                     child: Text(
                       uniController.translatedText.value,
-                      style: fontController
-                          .outputTextStyle(fontController.inputFont.value),
+                      style: uniController.translatedText.value!="Translation"?fontController
+                          .outputTextStyle(fontController.inputFont.value):fontController.inputTextHintStyle(fontController.inputFont.value),
                     ),
                   )),
             ),
@@ -56,54 +56,55 @@ class ToTextArea extends StatelessWidget {
                 left: 0,
                 child: Row(
                   children: [
-                    IconButton(
-                      padding:EdgeInsets.only(right: 25),
-                      onPressed: () {
-                        isDialOpen.value = false;
-                        menuItemsController.viewFullScreen(
-                            uniController.translatedText.value.toString());
-                      },
-                      icon:SvgPicture.asset("Assets/svg/verified.svg",color: Colors.grey,),
-                    ),
+                   SvgPicture.asset("Assets/svg/verified.svg",height: 12,),
                     Spacer(),
                     IconButton(
+                      splashColor: Colors.transparent,
                       onPressed: () {
                         menuItemsController.shareText(
                             uniController.translatedText.value.toString());
 
                       },
-                      icon: SvgPicture.asset("Assets/svg/share.svg"),
+                      icon: SvgPicture.asset("Assets/svg/share.svg",height: 18,),
                       // color: Colors.black,
                       // iconSize: 20,
                     ),
                     IconButton(
+                      splashColor: Colors.transparent,
                       onPressed: () {
                         menuItemsController.copyText(
                             uniController.translatedText.value.toString());
                       },
-                      icon: SvgPicture.asset("Assets/svg/copy.svg"),
+                      icon: SvgPicture.asset("Assets/svg/copy.svg",height: 18,),
                     ),
-                IconButton(
-                          onPressed: () {
-                            if (speakerController.isAvailableTo.value) {
-                              speakerController
-                                  .speakTo(uniController.translatedText.value);
-                            } else {
-                              Get.snackbar("Sorry!", "Speaker is unAvailable.",
-                                  snackPosition: SnackPosition.TOP,
-                                  backgroundColor: Colors.black54,
-                                  colorText: Colors.white);
-                            }
-                          },
-                          icon: SvgPicture.asset("Assets/svg/pronouncer.svg" ),
-                        ),
+                Obx(
+                  ()=> IconButton(
+                    splashColor: Colors.transparent,
+                            onPressed: () {
+                              if (speakerController.isAvailableTo.value && uniController.translatedText.value!="Translation") {
+                                speakerController
+                                    .speakTo(uniController.translatedText.value);
+                              } else {
+                                Get.snackbar("Sorry!", "Speaker is unAvailable.",
+                                    snackPosition: SnackPosition.TOP,
+                                    backgroundColor: Colors.black54,
+                                    duration: Duration(milliseconds: 1500),
+                                    colorText: Colors.white);
+                              }
+                            },
+                            icon: SvgPicture.asset("Assets/svg/pronouncer.svg",height: 18,
+                                color:speakerController.isAvailableFrom.value && uniController.translatedText.value!="Translation"?
+                                Colors.black:Colors.grey  ),
+                          ),
+                ),
                     IconButton(
+                      splashColor: Colors.transparent,
                       onPressed: () {
                         isDialOpen.value = false;
                         menuItemsController.viewFullScreen(
                             uniController.translatedText.value.toString());
                       },
-                      icon:SvgPicture.asset("Assets/svg/full_screen.svg"),
+                      icon:SvgPicture.asset("Assets/svg/full_screen.svg",height: 18,),
                     ),
 
                   ],

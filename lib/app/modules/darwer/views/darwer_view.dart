@@ -20,6 +20,7 @@ class DarwerView extends GetView<DarwerController> {
                 automaticallyImplyLeading: false,
                 backgroundColor: CupertinoColors.extraLightBackgroundGray,
                 // trailing: Icon(CupertinoIcons.add_circled),
+
               ),
       SliverList(
           delegate: SliverChildListDelegate(

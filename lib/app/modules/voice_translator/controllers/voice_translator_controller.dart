@@ -64,7 +64,7 @@ class VoiceTranslatorController extends GetxController {
   void loadNativeAd() {
     nativeAd = NativeAd(
         request: const AdRequest(),
-        adUnitId: "ca-app-pub-3940256099942544/1044960115",
+        adUnitId: "ca-app-pub-3940256099942544/2247696110",
         factoryId:  (Platform.isIOS)?'largeNative':'flightNative',
         listener: NativeAdListener(
             onAdLoaded: (ad) {

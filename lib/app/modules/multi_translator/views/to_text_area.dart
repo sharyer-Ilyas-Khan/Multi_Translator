@@ -93,7 +93,7 @@ class ToTextArea extends StatelessWidget {
                             width: Get.width*0.35,
                             height: 40,
                             decoration: BoxDecoration(
-                                border: Border.all(color: Colors.black,width: 1),
+                               color: Colors.grey.shade200,
                                 borderRadius: BorderRadius.circular(25)
                             ),
                             child: Padding(
@@ -124,17 +124,14 @@ class ToTextArea extends StatelessWidget {
                   Positioned(
                     bottom: 0,
                     right: 0,
+                    width: Get.width,
                     child: Row(
                       children: [
-                        IconButton(
-                          padding:EdgeInsets.only(right: 25),
-                          onPressed: () {
-                            isDialOpen.value = false;
-                            // menuItemsController.viewFullScreen(
-                            //     uniController.translatedText.value.toString());
-                          },
-                          icon:SvgPicture.asset("Assets/svg/verified.svg",color: Colors.grey,),
+                        Padding(
+                          padding: const EdgeInsets.only(left: 18.0),
+                          child: SvgPicture.asset("Assets/svg/verified.svg",height: 12,),
                         ),
+                        Spacer(),
                         IconButton(
                           onPressed: () {
                             // menuItemsController.shareText(

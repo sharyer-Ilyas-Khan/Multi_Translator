@@ -27,7 +27,7 @@ class TextFontController extends GetxController {
   TextStyle inputTextStyle(font){
     return TextStyle(
         fontSize: font,
-        color:Colors.black54,
+        color:Colors.black87,
         fontFamily: "robor",
         fontWeight: FontWeight.w900,
         letterSpacing: 0.0
@@ -48,7 +48,7 @@ outputFont.value=font;
   TextStyle outputTextStyle(font){
     return TextStyle(
         fontSize: font,
-        color:Colors.black54,
+        color:Colors.black87,
         fontFamily: "robor",
         fontWeight: FontWeight.w900,
         letterSpacing: 1.0

@@ -38,15 +38,20 @@ TextEditingController fromController=TextEditingController();
         padding:  EdgeInsets.only(left: 15,top: 5),
         child: Stack(
           children: [
-            Positioned(
-                right: 0,
-                top: 0,
-                child: IconButton(
-              onPressed: (){
-
-              },
-              icon: Icon(Icons.close,color: Colors.black45,size: 18,),
-            )),
+            Obx(
+              ()=> uniController.translatedText.value!="Translation"?Positioned(
+                  right: 0,
+                  top: 0,
+                  child: IconButton(
+                    splashColor: Colors.transparent,
+                onPressed: (){
+                  fromController.clear();
+                  uniController.translatedText.value="Translation";
+                  speakerController.isAvailableFrom.value=false;
+                },
+                icon: Icon(Icons.close,color: Colors.black45,size: 18,),
+              )):Container(),
+            ),
             SizedBox(
               height: Get.height*0.13,
               width: Get.width*0.8,
@@ -93,6 +98,7 @@ TextEditingController fromController=TextEditingController();
                   child: Row(
                     children: [
                       IconButton(
+                        splashColor: Colors.transparent,
                         padding:EdgeInsets.only(right: 25),
                         onPressed: () {
                           menuItemsController.addToFav(
@@ -110,23 +116,31 @@ TextEditingController fromController=TextEditingController();
                         iconSize: 20,
                       ),
                       Spacer(),
-                       IconButton(onPressed: (){
-                              print(speakerController.isAvailableFrom.value);
-                              if(speakerController.isAvailableFrom.value){
-                                inputText!=""?speakerController.speakFrom(inputText):speakerController.speakFrom(text);
+                       Obx(
+                         ()=> IconButton(
 
-                              }else{
-                                Get.snackbar("Sorry!", "Speaker is unAvailable.",snackPosition:SnackPosition.TOP,
-                                    backgroundColor: Colors.black54,colorText: Colors.white );
-                              }
+                           splashColor: Colors.transparent,
+                           onPressed: (){
 
-                            }, icon: SvgPicture.asset("Assets/svg/pronouncer.svg",),
+                                if(speakerController.isAvailableFrom.value){
+                                  inputText!=""?speakerController.speakFrom(inputText):speakerController.speakFrom(text);
+
+                                }else{
+                                  Get.snackbar("Sorry!", "Speaker is unAvailable.",snackPosition:SnackPosition.TOP,
+                                      backgroundColor: Colors.black54,colorText: Colors.white,
+                                    duration: Duration(milliseconds: 1500),);
+                                }
+
+                              }, icon: SvgPicture.asset("Assets/svg/pronouncer.svg",height:18,color:speakerController.isAvailableFrom.value?Colors.black:Colors.grey ,),
 
                       ),
-                      IconButton(onPressed: (){
+                       ),
+                      IconButton(
+                          splashColor: Colors.transparent,
+                          onPressed: (){
 
 
-                      }, icon: SvgPicture.asset("Assets/svg/full_screen.svg")),
+                      }, icon: SvgPicture.asset("Assets/svg/full_screen.svg",height:18,)),
                     ],
                   )),
           ],

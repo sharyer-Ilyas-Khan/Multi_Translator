@@ -55,7 +55,7 @@ void setText(text){
     var result=response.body[0][0];
     return result[0];
     } catch (e) {
-      return "....";
+      return "Translation";
     }
   }
   String lang="";
@@ -89,7 +89,7 @@ void setText(text){
   void loadNativeAd() {
     nativeAd = NativeAd(
         request: const AdRequest(),
-        adUnitId: "ca-app-pub-3940256099942544/1044960115",
+        adUnitId: "ca-app-pub-3940256099942544/2247696110",
         factoryId:  (Platform.isIOS)?'largeNative':'flightNative',
         listener: NativeAdListener(
             onAdLoaded: (ad) {

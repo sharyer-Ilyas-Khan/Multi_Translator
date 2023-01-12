@@ -23,24 +23,29 @@ class MenuItemsController extends GetxController {
   }
       void copyText(text){
         print("fromData$text");
-          if(text!="..."){
+          if(text!="Translation"){
             Clipboard.setData(ClipboardData(text: text));
-            Get.snackbar("Success", "Your text is successfully copied",snackPosition:SnackPosition.TOP,
+            Get.snackbar("Success", "Your text is successfully copied",
+                snackPosition:SnackPosition.TOP,
+                duration: Duration(milliseconds: 1500),
+
                 backgroundColor: Colors.black54,colorText: Colors.white );
           }
           else{
             Get.snackbar("Note", "Cannot copy empty text.",snackPosition:SnackPosition.TOP,
+                duration: Duration(milliseconds: 1500),
+
                 backgroundColor: Colors.black54,colorText: Colors.white );
           }
 
       }
             void shareText(text){
 
-          if(text!="..."){
+          if(text!="Translation"){
             Share.share(text);
           }
           else{
-            Get.snackbar("Note", "Cannot share empty text.",snackPosition:SnackPosition.TOP,
+            Get.snackbar("Note", "Cannot share empty text.",duration: Duration(milliseconds: 1500),snackPosition:SnackPosition.TOP,
                 backgroundColor: Colors.black54,colorText: Colors.white );
           }
       }
@@ -59,12 +64,15 @@ class MenuItemsController extends GetxController {
               favouriteDatabaseController.addToMultiFavourite(from, fromData, to, toData);
             }
 
-            Get.snackbar("Success", "Your text is successfully added to favourite",snackPosition:SnackPosition.TOP,
+            Get.snackbar("Success", "Your text is successfully added to favourite",
+                duration: Duration(milliseconds: 1500),
+                snackPosition:SnackPosition.TOP,
                 backgroundColor: Colors.black54,colorText: Colors.white );
 
           }
           else{
             Get.snackbar("Note", "Cannot ad empty text to favourite.",snackPosition:SnackPosition.TOP,
+                duration: Duration(milliseconds: 1500),
                 backgroundColor: Colors.black54,colorText: Colors.white );
           }
 
@@ -72,7 +80,7 @@ class MenuItemsController extends GetxController {
 
       void viewFullScreen(text){
 
-         if(text!="..."){
+         if(text!="Translation"){
            Get.defaultDialog(
                title: "Translated Text",
                radius: 10,
@@ -92,6 +100,7 @@ class MenuItemsController extends GetxController {
          }
          else{
            Get.snackbar("Note", "Can not view empty text.",snackPosition:SnackPosition.TOP,
+               duration: Duration(milliseconds: 1500),
                backgroundColor: Colors.black54,colorText: Colors.white );
          }
 

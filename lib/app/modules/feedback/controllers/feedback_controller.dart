@@ -30,7 +30,8 @@ class FeedbackController extends GetxController {
   }
 void submit(){
   Get.close(1);
-  Get.snackbar("Thanks", "Your review is successfully submitted",snackPosition:SnackPosition.TOP,
+  Get.snackbar("Thanks", "Your review is successfully submitted",duration: Duration(milliseconds: 1500),
+      snackPosition:SnackPosition.TOP,
       backgroundColor: Colors.black54,colorText: Colors.white );
 }
 }

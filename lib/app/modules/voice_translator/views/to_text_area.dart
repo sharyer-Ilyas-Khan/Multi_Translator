@@ -50,6 +50,8 @@ class ToTextArea extends StatelessWidget {
                 left: 0,
                 child: Row(
                   children: [
+                    SvgPicture.asset("Assets/svg/verified.svg",height: 12,),
+                    Spacer(),
                     IconButton(
                       onPressed: () {
                         // menuItemsController.shareText(

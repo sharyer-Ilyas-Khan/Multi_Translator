@@ -59,7 +59,9 @@ Future<void> getTextFromImage(File? images,context) async {
       controller.selectedOption(0);
       cameraControllers.disposeCamera();
       if(recognizedText.text.isEmpty){
-        Get.snackbar("Recognition failed!", "Please take a clear image of the text.",snackPosition:SnackPosition.TOP,
+        Get.snackbar("Recognition failed!", "Please take a clear image of the text.",
+            duration: Duration(milliseconds: 1500),
+            snackPosition:SnackPosition.TOP,
             backgroundColor: Colors.black54,colorText: Colors.white );
       }else{
         controller.setText(recognizedText.text.replaceAll("\n"," "));
@@ -74,6 +76,7 @@ Future<void> getTextFromImage(File? images,context) async {
     }
     else{
       Get.snackbar("Failed!", "Please select an image.",snackPosition:SnackPosition.TOP,
+          duration: Duration(milliseconds: 1500),
           backgroundColor: Colors.black54,colorText: Colors.white );
     }
 

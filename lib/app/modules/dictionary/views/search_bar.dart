@@ -64,7 +64,7 @@ class SearchBarDictionary extends StatelessWidget {
                   }
                   else{
                     Get.snackbar("Please enter a word", "can not find meaning of empty space or a character",snackPosition:SnackPosition.TOP,
-                        backgroundColor: Colors.black54,colorText: Colors.white );
+                        backgroundColor: Colors.black54,colorText: Colors.white,duration: Duration(milliseconds: 1500), );
                   }
 
                 },
