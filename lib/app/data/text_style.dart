@@ -222,12 +222,19 @@ const dictionaryStyle=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
-const  textFullScreenStyle=TextStyle(
-    fontSize: 18,
-    color:Colors.black87,
+const translateButton=TextStyle(
+    fontSize: 12,
+    color:Colors.white,
     fontFamily: "robor",
-    fontWeight: FontWeight.w500,
-    letterSpacing: 0.0
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.5
+);
+const  textFullScreenStyle=TextStyle(
+    fontSize: 30,
+    color:Colors.white,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.7
 );
 // <!--<?xml version="1.0" encoding="utf-8"?>-->
 // <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->

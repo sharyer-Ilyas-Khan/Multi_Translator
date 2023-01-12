@@ -18,7 +18,7 @@ class MultiTranslatorController extends GetxController {
 
    void clearList(){
      listOfPrefix=["en"].obs;
-     listOfTranslation=["..."].obs;
+     listOfTranslation=["Translation"].obs;
      listOfLang=["English"].obs;
      listOfWidget=[ToTextArea(id:0,)].obs;
      textContent="";
@@ -46,7 +46,7 @@ void addPrefix(){
     listOfPrefix.add("en");
 }
 void addIntoTranslation(){
-    listOfTranslation.add("...");
+    listOfTranslation.add("Translation");
 }
    void addLang(){
      listOfLang.add("English");

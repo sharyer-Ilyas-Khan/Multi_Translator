@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:share_plus/share_plus.dart';
 import 'package:translator/app/controllers/favourite_database_controller.dart';
 import 'package:translator/app/data/text_style.dart';
+import 'package:translator/app/modules/dashboard/views/textViewer.dart';
 
 class MenuItemsController extends GetxController {
 
@@ -95,22 +96,23 @@ class MenuItemsController extends GetxController {
       void viewFullScreen(text){
 
          if(text!="Translation"){
-           Get.defaultDialog(
-               title: "Translated Text",
-               radius: 10,
-               content: Container(
-                 height: Get.height*0.4,
-                 decoration: BoxDecoration(
-                   borderRadius: BorderRadius.circular(10),
-                   // border: Border.all(color: AppColors.primaryColor,width: 1),
-                 ),
-                 child:   Padding(
-                   padding: const EdgeInsets.all(10.0),
-                   child:   SingleChildScrollView(
-                       child: Text(text,softWrap: true,style: textFullScreenStyle,)),
-                 ),
-               )
-           );
+           Get.to(()=>TextViewer(text:text),transition:Transition.zoom,duration: const Duration(milliseconds: 200));
+           // Get.defaultDialog(
+           //     title: "Translated Text",
+           //     radius: 10,
+           //     content: Container(
+           //       height: Get.height*0.4,
+           //       decoration: BoxDecoration(
+           //         borderRadius: BorderRadius.circular(10),
+           //         // border: Border.all(color: AppColors.primaryColor,width: 1),
+           //       ),
+           //       child:   Padding(
+           //         padding: const EdgeInsets.all(10.0),
+           //         child:   SingleChildScrollView(
+           //             child: Text(text,softWrap: true,style: textFullScreenStyle,)),
+           //       ),
+           //     )
+           // );
          }
          else{
            Get.snackbar("Note", "Can not view empty text.",snackPosition:SnackPosition.TOP,

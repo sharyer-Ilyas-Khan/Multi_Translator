@@ -21,35 +21,98 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
     LanguagesController languagesController = Get.put(LanguagesController());
    return Scaffold(
         resizeToAvoidBottomInset: false,
-
-      floatingActionButton: Obx(
-          ()=> Padding(
-          padding:  EdgeInsets.only(bottom: controller.listOfWidget.length==1?Get.height*0.53:Get.height*0.53,right: 12),
-          child: FloatingActionButton(
-
-            onPressed: (){
-              controller.addPrefix();
-              controller.addLang();
-              controller.addIntoTranslation();
-              controller.addIntoList();
-              scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
-
-            },
-            elevation: 10,
-            backgroundColor: Colors.white,
-            child: const Center(
-              child: Icon(Icons.add,color: AppColors.primaryColor,),
-            ),
-          ),
-        ),
-      ),
-
       body:Column(
         children: [
-          Expanded(flex:3,child: FromTextArea()),
+          FromTextArea(),
+          Padding(
+            padding: const EdgeInsets.only(top: 6.0,bottom: 6),
+            child: Container(
+              height: Get.height*0.09,
+              width: Get.width,
+
+              decoration: BoxDecoration(
+                  border: Border.all(color: Colors.black12,width: 0.5)
+              ),
+              child: ListTile(
+                minVerticalPadding: 7,
+                dense: false,
+                title: Text("Translation lnaguage's"),
+                trailing: IconButton(
+                  onPressed: (){
+                    controller.addPrefix();
+                            controller.addLang();
+                            controller.addIntoTranslation();
+                            controller.addIntoList();
+                            scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
+                    //
+                  },
+                  icon: Icon(Icons.add,color: AppColors.primaryColor,size: 35,),
+                ),
+                subtitle: Obx(
+                  ()=> ListView.builder(
+                        scrollDirection: Axis.horizontal,
+                      itemCount: controller.listOfLang.length,
+                      itemBuilder: (_,index){
+                        return Padding(
+                          padding:  EdgeInsets.only(bottom:Get.height*0.045,right: 2.5,left: 2.5,top:Get.height*0.015 ),
+                          child: Container(
+                            width: Get.width*0.2,
+                           decoration: BoxDecoration(
+                             borderRadius: BorderRadius.circular(10.0),
+                             color: Colors.grey.shade200
+                           ),
+                            child: Center(
+                              child: Text(controller.listOfLang[index],overflow: TextOverflow.ellipsis,),
+                            ),
+                          ),
+                        );
+
+                  }),
+                ),
+              )
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              //   children: [
+              //     InkWell(
+              //       onTap: (){
+              //         Get.to(()=>LanguagesView(type: "from"));
+              //       },
+              //       child: Obx(
+              //             ()=> Row(
+              //           children: [
+              //             Text(
+              //               "${languagesController.languages
+              //               [languagesController.selectedFromIndex.value]
+              //               }",style: fromDropStyle,),
+              //             Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //     Icon(Icons.swap_horiz),
+              //     InkWell(
+              //       onTap: (){
+              //         Get.to(()=>LanguagesView(type: "to"));
+              //       },
+              //       child: Obx(
+              //             ()=> Row(
+              //           children: [
+              //             Text(
+              //               "${languagesController.languages
+              //               [languagesController.selectedToIndex.value]
+              //               }",style: fromDropStyle,),
+              //             Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
+              //           ],
+              //         ),
+              //       ),
+              //     ),
+              //   ],
+              // ),
+            ),
+          ),
           Obx(
                 ()=>Expanded(
-                  flex: controller.listOfWidget.length==1?3:7,
+                  flex: 3,
                   child: SizedBox(
                     height: controller.listOfWidget.length==1?Get.height*0.3:Get.height*0.5,
                     child: ListView.builder(
@@ -63,9 +126,8 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                   ),
                 ),
     ),
-          Obx(
-                ()=>controller.listOfWidget.length<2? Expanded(
-              flex: 4,
+          Expanded(
+              flex:4,
               child: Container(
                 height: Get.height*0.2,
                 width: Get.width,
@@ -76,7 +138,6 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                     )
                 ),
               ),
-            ):Container(),
           ),
         ],
       )

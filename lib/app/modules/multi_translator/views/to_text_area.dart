@@ -23,6 +23,7 @@ class ToTextArea extends StatelessWidget {
     MultiTranslatorController multiController=Get.put(MultiTranslatorController());
     MenuItemsController menuItemsController=Get.put(MenuItemsController());
     TextFontController fontController=Get.put(TextFontController());
+    SpeakerController speakerController=Get.put(SpeakerController());
    return  id=="zero"?Container():GestureDetector(
       onTap: (){
         multiController.removeFocus();
@@ -70,7 +71,7 @@ class ToTextArea extends StatelessWidget {
                 color: Colors.red.shade700),
           ],
           child: Container(
-            height: Get.height*0.26,
+            height: Get.height*0.18,
             width: Get.width,
 
             decoration: BoxDecoration(
@@ -90,8 +91,8 @@ class ToTextArea extends StatelessWidget {
                           Get.to(()=>LanguagesView(type: "to",id:id));
                         },
                         child: Container(
-                            width: Get.width*0.35,
-                            height: 40,
+                            width: Get.width*0.45,
+                            height: 35,
                             decoration: BoxDecoration(
                                color: Colors.grey.shade200,
                                 borderRadius: BorderRadius.circular(25)
@@ -99,11 +100,16 @@ class ToTextArea extends StatelessWidget {
                             child: Padding(
                                 padding: const EdgeInsets.only(left: 15.0,right: 10.0),
                                 child: Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                  mainAxisAlignment: MainAxisAlignment.center,
                                   children:  [
-                                    Text("To: ${multiController.listOfLang[id]}"
+                                    Spacer(),
+                                    Text("To:"
+                                      ,style: fromHintStyle,),
+                                    Spacer(),
+                                    Text("${multiController.listOfLang[id]}"
                                       ,style: toDropStyle,),
-                                    Icon(Icons.arrow_drop_down,color: Colors.blue,size: 25,)
+                                    Icon(Icons.arrow_drop_down,color: Colors.blue,size: 25,),
+                                    Spacer(),
                                   ],
                                 )
                             )
@@ -117,7 +123,10 @@ class ToTextArea extends StatelessWidget {
                         height: Get.height*0.13,
                         width: Get.width*0.8,
                         child: SingleChildScrollView(
-                          child: Text(multiController.listOfTranslation[id],style:fontController.outputTextStyle(fontController.inputFont.value) ,),
+                          child: Text(multiController.listOfTranslation[id],
+                            style:multiController.listOfTranslation[id]!="Translation"?
+                            fontController.outputTextStyle(fontController.inputFont.value):
+                            fontController.inputTextHintStyle(fontController.inputFont.value) ,),
                         )
                     ),),
                   ),
@@ -127,49 +136,50 @@ class ToTextArea extends StatelessWidget {
                     width: Get.width,
                     child: Row(
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(left: 18.0),
-                          child: SvgPicture.asset("Assets/svg/verified.svg",height: 12,),
-                        ),
                         Spacer(),
                         IconButton(
+                          splashColor: Colors.transparent,
                           onPressed: () {
-                            // menuItemsController.shareText(
-                            //     uniController.translatedText.value.toString());
+                            menuItemsController.shareText(multiController.listOfTranslation[id].toString());
 
                           },
-                          icon: SvgPicture.asset("Assets/svg/share.svg"),
+                          icon: SvgPicture.asset("Assets/svg/share.svg",height: 15),
                           // color: Colors.black,
                           // iconSize: 20,
                         ),
                         IconButton(
+                          splashColor: Colors.transparent,
                           onPressed: () {
-                            // menuItemsController.copyText(
-                            //     uniController.translatedText.value.toString());
+                            menuItemsController.copyText(multiController.listOfTranslation[id].toString());
+                            //
                           },
-                          icon: SvgPicture.asset("Assets/svg/copy.svg"),
+                          icon: SvgPicture.asset("Assets/svg/copy.svg",height: 15),
                         ),
                         IconButton(
+                          splashColor: Colors.transparent,
                           onPressed: () {
-                            // if (speakerController.isAvailableTo.value) {
-                            //   speakerController
-                            //       .speakTo(uniController.translatedText.value);
-                            // } else {
-                            //   Get.snackbar("Sorry!", "Speaker is unAvailable.",
-                            //       snackPosition: SnackPosition.TOP,
-                            //       backgroundColor: Colors.black54,
-                            //       colorText: Colors.white);
-                            // }
+                              if(multiController.listOfTranslation[id]!="Translation"){
+                                speakerController
+                                    .speakTo(multiController.listOfTranslation[id]
+                                    );
+                              }
+
+                            else {
+                              Get.snackbar("Sorry!", "Speaker is unAvailable.",
+                                  snackPosition: SnackPosition.TOP,
+                                  backgroundColor: Colors.black54,
+                                  colorText: Colors.white);
+                            }
                           },
-                          icon: SvgPicture.asset("Assets/svg/pronouncer.svg" ),
+                          icon: SvgPicture.asset("Assets/svg/pronouncer.svg",height: 15 ),
                         ),
                         IconButton(
+                          splashColor: Colors.transparent,
                           onPressed: () {
-                            // isDialOpen.value = false;
-                            // menuItemsController.viewFullScreen(
-                            //     uniController.translatedText.value.toString());
+                            menuItemsController.viewFullScreen(multiController.listOfTranslation[id].toString());
+
                           },
-                          icon:SvgPicture.asset("Assets/svg/full_screen.svg"),
+                          icon:SvgPicture.asset("Assets/svg/full_screen.svg",height: 15),
                         ),
                         // SizedBox(width: 14,),
                         // SpeedDial(

@@ -1,3 +1,4 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
@@ -49,84 +50,105 @@ class FromTextArea extends StatelessWidget {
             ),
             Positioned(
                 right: 0,
-                bottom: 0,
+                bottom: 10,
                 left: 1.5,
                 child: Row(
                   children: [
                     Obx(
-                      ()=> controller.audioEnabled.value==false
-                          ? InkWell(
-                              onTap: () async {
-                                bool available = await speechToText.initialize();
-                                bool permissionAvailable =
-                                    await speechToText.hasPermission;
-                                print(permissionAvailable);
-                                if (permissionAvailable || available) {
-                                  if (available) {
-                                    controller.audioEnable(true);
-                                    speechToText.listen(
-                                      onResult: (value) async {
-                                        String recognizedText =
-                                            value.recognizedWords;
-                                        controller.setInputText(recognizedText);
-                                        String translation =
-                                            await controller.getTranslateUrl(
-                                                languagesController
-                                                        .languagesPrefix[
-                                                    languagesController
-                                                        .selectedFromIndex.value],
-                                                languagesController
-                                                        .languagesPrefix[
-                                                    languagesController
-                                                        .selectedToIndex.value],
-                                                recognizedText);
-                                        controller.setText(translation);
-                                      },
-                                    );
+                      ()=>
+                           AvatarGlow(
+
+                                  repeat: true,
+                                  endRadius: 25.0,
+                                  showTwoGlows: true,
+                                  glowColor: Colors.blue,
+                            animate: controller.audioEnabled.value,
+                            child: controller.audioEnabled.value==false?
+                          InkWell(
+                                onTap: () async {
+                                  bool available = await speechToText.initialize();
+                                  bool permissionAvailable =
+                                      await speechToText.hasPermission;
+                                  print(permissionAvailable);
+                                  if (permissionAvailable || available) {
+                                    if (available) {
+                                      controller.audioEnable(true);
+                                      speechToText.listen(
+                                        onResult: (value) async {
+                                          String recognizedText =
+                                              value.recognizedWords;
+                                          controller.setInputText(recognizedText);
+                                          String translation =
+                                              await controller.getTranslateUrl(
+                                                  languagesController
+                                                          .languagesPrefix[
+                                                      languagesController
+                                                          .selectedFromIndex.value],
+                                                  languagesController
+                                                          .languagesPrefix[
+                                                      languagesController
+                                                          .selectedToIndex.value],
+                                                  recognizedText);
+                                          controller.setText(translation);
+                                        },
+                                      );
+                                    }
+                                  } else {
+                                    PermissionStatus speech =
+                                        await Permission.speech.request();
+                                    if (speech.isPermanentlyDenied) {
+                                      await openAppSettings();
+                                    }
                                   }
-                                } else {
-                                  PermissionStatus speech =
-                                      await Permission.speech.request();
-                                  if (speech.isPermanentlyDenied) {
-                                    await openAppSettings();
-                                  }
-                                }
-                                // menuItemsController.addToFav(
-                                //     languagesController.languages[
-                                //     languagesController.selectedFromIndex.value]
-                                //         .toString(),
-                                //     uniController.textContent.toString(),
-                                //     languagesController.languages[
-                                //     languagesController.selectedToIndex.value]
-                                //         .toString(),
-                                //     uniController.translatedText.value.toString(),
-                                //     "uni");
-                              },
-                              child: SvgPicture.asset(
-                                "Assets/svg/voice.svg",
-                                color: Colors.black,
-                              ),
-                            )
-                          : InkWell(
+                                  // menuItemsController.addToFav(
+                                  //     languagesController.languages[
+                                  //     languagesController.selectedFromIndex.value]
+                                  //         .toString(),
+                                  //     uniController.textContent.toString(),
+                                  //     languagesController.languages[
+                                  //     languagesController.selectedToIndex.value]
+                                  //         .toString(),
+                                  //     uniController.translatedText.value.toString(),
+                                  //     "uni");
+                                },
+                                child: Container(
+                                  height: 40,
+                                  width: 40,
+                                  decoration: BoxDecoration(
+                                    color: Colors.transparent,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: SvgPicture.asset(
+                                      "Assets/svg/voice.svg",
+                                      color: Colors.black,
+                                    ),
+                                  ),
+                                ),
+                              ): InkWell(
                               onTap: () async {
                                 controller.audioEnable(false);
                                 speechToText.stop();
                               },
                               child: Container(
-                                height: 35,
-                                width: 35,
-                                decoration: const BoxDecoration(
-                                    color: AppColors.primaryColor,
-                                    shape: BoxShape.circle,
-                                   ),
-                                child: const Center(
-                                    child: Icon(
-                                  Icons.stop,
-                                  color: Colors.white,
-                                  size: 25,
-                                )),
+                                height: 40,
+                                width: 40,
+                                decoration: BoxDecoration(
+                                  color: Colors.transparent,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: SvgPicture.asset(
+                                    "Assets/svg/voice.svg",
+                                    color: Colors.black,
+                                  ),
+                                ),
                               ),
                             ),
+                          )
+
                     ),
                     // IconButton(
                     //   onPressed: () {

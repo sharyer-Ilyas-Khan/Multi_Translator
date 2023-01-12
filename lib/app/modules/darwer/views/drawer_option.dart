@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/text_style.dart';
+import 'package:translator/app/modules/in_app_purchase_ui/views/in_app_purchase_ui_view.dart';
 
 import '../controllers/darwer_controller.dart';
 
@@ -20,7 +21,8 @@ class DrawerOption extends StatelessWidget {
     return InkWell(
       onTap: (){
         if(index==1){
-          controller.removeAd();
+          Get.to(()=>InAppPurchaseUiView());
+          // controller.removeAd();
         }
         if(index==2){
           controller.favourite();

@@ -103,7 +103,7 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                   ),
                 ),
                 Expanded(
-                  flex: 4,
+                  flex: 5,
                   child: controller.isNativeLoaded.value?Container(
                     height: Get.height*0.24,
                     width: Get.width,
