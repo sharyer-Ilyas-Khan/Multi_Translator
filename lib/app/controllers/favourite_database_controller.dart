@@ -108,4 +108,12 @@ void createTableFavourite() async{
     await db!.rawDelete("DELETE FROM multi_fav WHERE id = $id");
     getRecordFromMultiFavourite();
   }
+
+  Future<String> getId(type,fromData) async {
+    String id="";
+    await db!.rawQuery("SELECT id FROM ${type}_fav Where from_data== '${fromData}'").then((value){
+      id=value[0]['id'].toString();
+    });
+    return id;
+  }
 }

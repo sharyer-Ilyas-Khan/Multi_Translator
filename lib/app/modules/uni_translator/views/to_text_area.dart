@@ -35,7 +35,7 @@ class ToTextArea extends StatelessWidget {
         border: Border.all(color: Colors.black12,width: 0.5)
       ),
       child: Padding(
-        padding: EdgeInsets.only(left:15, top: 10, right: 10),
+        padding: EdgeInsets.only(left:15, top: 10, right: 0),
         child: Stack(
           children: [
             Obx(
@@ -50,65 +50,68 @@ class ToTextArea extends StatelessWidget {
                     ),
                   )),
             ),
-            Positioned(
-                right: 0,
-                bottom: 0,
-                left: 0,
-                child: Row(
-                  children: [
-                   SvgPicture.asset("Assets/svg/verified.svg",height: 12,),
-                    Spacer(),
-                    IconButton(
-                      splashColor: Colors.transparent,
-                      onPressed: () {
-                        menuItemsController.shareText(
-                            uniController.translatedText.value.toString());
+            Obx(
+              ()=> uniController.translatedText.value!="Translation"?
+              Positioned(
+                  right: 0,
+                  bottom: 0,
+                  left: 0,
+                  child: Row(
+                    children: [
+                     SvgPicture.asset("Assets/svg/verified.svg",height: 12,),
+                      Spacer(),
+                      IconButton(
+                        splashColor: Colors.transparent,
+                        onPressed: () {
+                          menuItemsController.shareText(
+                              uniController.translatedText.value.toString());
 
-                      },
-                      icon: SvgPicture.asset("Assets/svg/share.svg",height: 18,),
-                      // color: Colors.black,
-                      // iconSize: 20,
-                    ),
-                    IconButton(
+                        },
+                        icon: SvgPicture.asset("Assets/svg/share.svg",height: 18,),
+                        // color: Colors.black,
+                        // iconSize: 20,
+                      ),
+                      IconButton(
+                        splashColor: Colors.transparent,
+                        onPressed: () {
+                          menuItemsController.copyText(
+                              uniController.translatedText.value.toString());
+                        },
+                        icon: SvgPicture.asset("Assets/svg/copy.svg",height: 18,),
+                      ),
+                  Obx(
+                    ()=> IconButton(
                       splashColor: Colors.transparent,
-                      onPressed: () {
-                        menuItemsController.copyText(
-                            uniController.translatedText.value.toString());
-                      },
-                      icon: SvgPicture.asset("Assets/svg/copy.svg",height: 18,),
-                    ),
-                Obx(
-                  ()=> IconButton(
-                    splashColor: Colors.transparent,
-                            onPressed: () {
-                              if (speakerController.isAvailableTo.value && uniController.translatedText.value!="Translation") {
-                                speakerController
-                                    .speakTo(uniController.translatedText.value);
-                              } else {
-                                Get.snackbar("Sorry!", "Speaker is unAvailable.",
-                                    snackPosition: SnackPosition.TOP,
-                                    backgroundColor: Colors.black54,
-                                    duration: Duration(milliseconds: 1500),
-                                    colorText: Colors.white);
-                              }
-                            },
-                            icon: SvgPicture.asset("Assets/svg/pronouncer.svg",height: 18,
-                                color:speakerController.isAvailableFrom.value && uniController.translatedText.value!="Translation"?
-                                Colors.black:Colors.grey  ),
-                          ),
-                ),
-                    IconButton(
-                      splashColor: Colors.transparent,
-                      onPressed: () {
-                        isDialOpen.value = false;
-                        menuItemsController.viewFullScreen(
-                            uniController.translatedText.value.toString());
-                      },
-                      icon:SvgPicture.asset("Assets/svg/full_screen.svg",height: 18,),
-                    ),
+                              onPressed: () {
+                                if (speakerController.isAvailableTo.value && uniController.translatedText.value!="Translation") {
+                                  speakerController
+                                      .speakTo(uniController.translatedText.value);
+                                } else {
+                                  Get.snackbar("Sorry!", "Speaker is unAvailable.",
+                                      snackPosition: SnackPosition.TOP,
+                                      backgroundColor: Colors.black54,
+                                      duration: Duration(milliseconds: 1500),
+                                      colorText: Colors.white);
+                                }
+                              },
+                              icon: SvgPicture.asset("Assets/svg/pronouncer.svg",height: 18,
+                                  color:speakerController.isAvailableFrom.value && uniController.translatedText.value!="Translation"?
+                                  Colors.black:Colors.grey  ),
+                            ),
+                  ),
+                      IconButton(
+                        splashColor: Colors.transparent,
+                        onPressed: () {
+                          isDialOpen.value = false;
+                          menuItemsController.viewFullScreen(
+                              uniController.translatedText.value.toString());
+                        },
+                        icon:SvgPicture.asset("Assets/svg/full_screen.svg",height: 18,),
+                      ),
 
-                  ],
-                )),
+                    ],
+                  )):Container(),
+            ),
           ],
         ),
       ),

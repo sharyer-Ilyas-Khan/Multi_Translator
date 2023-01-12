@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
+import 'package:lottie/lottie.dart';
 import 'package:translator/app/controllers/text_font_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
@@ -97,23 +98,26 @@ TextEditingController fromController=TextEditingController();
             Positioned(right:0,bottom: 0,left: 0,
                   child: Row(
                     children: [
-                      IconButton(
-                        splashColor: Colors.transparent,
-                        padding:EdgeInsets.only(right: 25),
-                        onPressed: () {
-                          menuItemsController.addToFav(
-                              languagesController.languages[
-                              languagesController.selectedFromIndex.value]
-                                  .toString(),
-                              uniController.textContent.toString(),
-                              languagesController.languages[
-                              languagesController.selectedToIndex.value]
-                                  .toString(),
-                              uniController.translatedText.value.toString(),
-                              "uni"); },
-                        icon: Icon(Icons.favorite_border),
-                        color: Colors.grey.shade400,
-                        iconSize: 20,
+                      Obx(
+                        ()=> IconButton(
+                          splashColor: Colors.transparent,
+                          padding:EdgeInsets.only(right: 25),
+                          onPressed: () {
+                            menuItemsController.colorHeart.value!=true?
+                            menuItemsController.addToFav(
+                                languagesController.languages[
+                                languagesController.selectedFromIndex.value]
+                                    .toString(),
+                                uniController.textContent.toString(),
+                                languagesController.languages[
+                                languagesController.selectedToIndex.value]
+                                    .toString(),
+                                uniController.translatedText.value.toString(),
+                                "uni"):menuItemsController.removeFav("uni",  uniController.textContent.toString());},
+                          icon: menuItemsController.colorHeart.value?Icon(Icons.favorite_outlined,color: Colors.red.shade600,):
+                         Icon(Icons.favorite_border,color: Colors.grey.shade600,),
+                          iconSize: 20,
+                        ),
                       ),
                       Spacer(),
                        Obx(

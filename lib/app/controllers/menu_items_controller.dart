@@ -6,6 +6,8 @@ import 'package:translator/app/controllers/favourite_database_controller.dart';
 import 'package:translator/app/data/text_style.dart';
 
 class MenuItemsController extends GetxController {
+
+  RxBool   colorHeart=false.obs;
   FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
   @override
   void onInit() {
@@ -51,7 +53,6 @@ class MenuItemsController extends GetxController {
       }
       void addToFav(from,fromData,to,toData,type){
 
-
           if(fromData!=""){
 
             if(type=="uni"){
@@ -63,7 +64,7 @@ class MenuItemsController extends GetxController {
             if(type=="multi"){
               favouriteDatabaseController.addToMultiFavourite(from, fromData, to, toData);
             }
-
+            colorHeart.value=true;
             Get.snackbar("Success", "Your text is successfully added to favourite",
                 duration: Duration(milliseconds: 1500),
                 snackPosition:SnackPosition.TOP,
@@ -71,13 +72,26 @@ class MenuItemsController extends GetxController {
 
           }
           else{
+            colorHeart.value=false;
             Get.snackbar("Note", "Cannot ad empty text to favourite.",snackPosition:SnackPosition.TOP,
                 duration: Duration(milliseconds: 1500),
                 backgroundColor: Colors.black54,colorText: Colors.white );
           }
 
       }
-
+      Future<void> removeFav(type,fromData) async {
+        String id=await favouriteDatabaseController.getId(type, fromData);
+          if(type=="uni"){
+            favouriteDatabaseController.removeFromUniFavourite(id);
+          }
+          if(type=="voice"){
+            favouriteDatabaseController.removeFromVoiceFavourite(id);
+          }
+          if(type=="multi"){
+            favouriteDatabaseController.removeFromMultiFavourite(id);
+          }
+          colorHeart.value=false;
+      }
       void viewFullScreen(text){
 
          if(text!="Translation"){

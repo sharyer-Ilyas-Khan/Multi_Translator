@@ -13,6 +13,8 @@ class LanguagesView extends GetView<LanguagesController> {
   @override
   Widget build(BuildContext context) {
     LanguagesController controller=Get.put(LanguagesController());
+    // languages.sort((a, b) => a.compareTo(b));
+    print(languages);
     return Scaffold(
       appBar: AppBar(
         title: const Text('All Languages',style: appBar,),
@@ -77,8 +79,11 @@ class LanguagesView extends GetView<LanguagesController> {
           ),
           Expanded(
               child: ListView.builder(
+
             itemCount: languages.length,
+
             itemBuilder: (_,index){
+
               return Obx(
                   ()=>InkWell(
                     highlightColor: Colors.transparent,

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 
+import '../../../controllers/speaker_controller.dart';
 import '../../../controllers/text_font_controller.dart';
 
 class VoiceTranslatorController extends GetxController {
@@ -14,6 +15,7 @@ class VoiceTranslatorController extends GetxController {
   RxBool isNativeLoaded=false.obs;
   NativeAd? nativeAd;
   TextFontController fontController=Get.put(TextFontController());
+  SpeakerController speakerController=Get.put(SpeakerController());
   @override
   void onInit() {
     loadNativeAd();
@@ -54,7 +56,7 @@ class VoiceTranslatorController extends GetxController {
     try {
       String url="${TRANSLATE_BASE_URL}translate_a/single?client=gtx&sl=${sourceLan}&tl=${targetLan}&dt=t&q=${Uri.encodeFull(content)}";
       Response response=await GetConnect().get(url);
-      print(response.body);
+      speakerController.checkAvailableTo(targetLan);
       var result=response.body[0][0];
       return result[0];
     } catch (e) {

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/uni_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/uni_translator/views/to_text_area.dart';
 
@@ -38,10 +39,15 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
                       Get.to(()=>LanguagesView(type: "from"));
                     },
                     child: Obx(
-                      ()=> Text(
-                        "${languagesController.languages
+                      ()=> Row(
+                        children: [
+                          Text(
+                            "${languagesController.languages
         [languagesController.selectedFromIndex.value]
     }",style: fromDropStyle,),
+                          Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
+                        ],
+                      ),
                     ),
                   ),
                   Icon(Icons.swap_horiz),
@@ -50,10 +56,15 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
                       Get.to(()=>LanguagesView(type: "to"));
                     },
                     child: Obx(
-                          ()=> Text(
+                          ()=> Row(
+                            children: [
+                              Text(
                         "${languagesController.languages
                         [languagesController.selectedToIndex.value]
                         }",style: fromDropStyle,),
+                              Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
+                            ],
+                          ),
                     ),
                   ),
                 ],

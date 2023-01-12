@@ -60,7 +60,9 @@ flutter:
     - Assets/svg/
     - Assets/icon/
     - Assets/images/
-    -
+    - Assets/lottie/
+
+
   fonts:
     - family: robor
       fonts:

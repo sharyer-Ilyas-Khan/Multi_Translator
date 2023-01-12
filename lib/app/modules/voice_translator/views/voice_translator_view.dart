@@ -41,10 +41,15 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                             Get.to(()=>LanguagesView(type: "from"));
                           },
                           child: Obx(
-                                ()=> Text(
+                                ()=> Row(
+                                  children: [
+                                    Text(
                               "${languagesController.languages
                               [languagesController.selectedFromIndex.value]
                               }",style: fromDropStyle,),
+                                    Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
+                                  ],
+                                ),
                           ),
                         ),
                         Icon(Icons.swap_horiz),
@@ -53,10 +58,15 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                             Get.to(()=>LanguagesView(type: "to"));
                           },
                           child: Obx(
-                                ()=> Text(
+                                ()=> Row(
+                                  children: [
+                                    Text(
                               "${languagesController.languages
                               [languagesController.selectedToIndex.value]
                               }",style: fromDropStyle,),
+                                    Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
+                                  ],
+                                ),
                           ),
                         ),
                       ],
