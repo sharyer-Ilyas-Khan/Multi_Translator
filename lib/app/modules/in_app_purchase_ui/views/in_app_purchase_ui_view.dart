@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
@@ -92,15 +93,17 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
                                             begin: Alignment.topCenter,
                                             end: Alignment.bottomCenter,
                                             colors: [
-                                              Colors.red.shade300,
-                                              Colors.red.shade300,
-                                              Colors.amber.shade700
+                                              Color(0xffE35671),
+                                              Color(0xffE88A5A),
+                                              // Colors.red.shade300,
+                                              // Colors.red.shade300,
+                                              // Colors.amber.shade700
 
 
                                             ]
                                         )
                                     ),
-                                    child: Icon(Icons.notifications_rounded,color: Colors.white,size: 30,),
+                                    child: Transform.rotate(angle:0.2,child: Icon(Icons.notifications_rounded,color: Colors.white,size: 30,)),
                                   ),
                                 ),
                               ),
@@ -150,9 +153,11 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
                                         begin: Alignment.topCenter,
                                         end: Alignment.bottomCenter,
                                       colors: [
-                                        Colors.purple.withOpacity(0.7),
-                                        Colors.purple.withOpacity(0.2),
-                                        Colors.purple.withOpacity(0.01),
+                                        Color(0xff8156EC).withOpacity(0.4),
+                                        Color(0xffB77AF8).withOpacity(0.01),
+                                        // Colors.purple.withOpacity(0.7),
+                                        // Colors.purple.withOpacity(0.2),
+                                        // Colors.purple.withOpacity(0.01),
 
                                       ]
                                     )
@@ -180,7 +185,10 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
                                             ]
                                         )
                                     ),
-                                    child: Icon(Icons.image,color: Colors.white,size: 30,),
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10.0),
+                                        child: Transform.rotate(angle:-0.2,child: SvgPicture.asset("Assets/svg/photo_translator.svg",)),
+                                      ),
                                   ),
                                 ),
                               ),
@@ -230,9 +238,11 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
                                         begin: Alignment.topCenter,
                                         end: Alignment.bottomCenter,
                                       colors: [
-                                        Colors.green.withOpacity(0.3),
-                                        Colors.lightGreen.withOpacity(0.2),
-                                        Colors.green.withOpacity(0.01),
+                                        // Colors.green.withOpacity(0.3),
+                                        // Colors.lightGreen.withOpacity(0.2),
+                                        // Colors.green.withOpacity(0.01),
+                                        Color(0xff52B6AB).withOpacity(0.4),
+                                        Color(0xff6BE3A0).withOpacity(0.01),
 
                                       ]
                                     )
@@ -260,7 +270,11 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
                                             ]
                                         )
                                     ),
-                                    child: Icon(Icons.notifications_rounded,color: Colors.white,size: 30,),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10.0),
+                                      child: Transform.rotate(angle:0.1 ,
+                                          child: SvgPicture.asset("Assets/svg/Multi_translator.svg",)),
+                                    ),
                                   ),
                                 ),
                               ),

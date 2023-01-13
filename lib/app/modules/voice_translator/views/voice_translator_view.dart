@@ -52,7 +52,15 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                                 ),
                           ),
                         ),
-                        Icon(Icons.swap_horiz),
+                        InkWell(
+                          onTap: (){
+                            controller.swipe();
+                            int newIndex=languagesController.selectedFromIndex.value;
+                            languagesController.selectedFromIndex.value=languagesController.selectedToIndex.value;
+                            languagesController.selectedToIndex.value=newIndex;
+
+                          },
+                            child: Icon(Icons.swap_horiz)),
                         InkWell(
                           onTap: (){
                             Get.to(()=>LanguagesView(type: "to"));
@@ -75,31 +83,33 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                 ),
                 Expanded( flex: 3,child: FromTextArea()),
                 Expanded( flex: 3,child: ToTextArea()),
-                Container(
-                  height: Get.height*0.05,
-                  width: Get.width*0.9,
-                  color: Colors.transparent,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
+                Padding(
+                  padding:  EdgeInsets.only(left: Get.width*0.7,right: 15),
+                  child: InkWell(
+                    splashColor: Colors.white,
+                    onTap: (){
+                      Get.to(()=>DarwerView(),transition:Transition.fade,duration: const Duration(milliseconds: 400));
+                    },
+                    child: Container(
+                      height: Get.height*0.05,
+                      width: Get.width*0.9,
+                      color: Colors.transparent,
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: const [
+                          Text(
+                            "Preferences",style: TextStyle(
+                              fontStyle: FontStyle.italic,
+                              color: Colors.black54,
+                              fontSize: 12
+                          ),
+                          ),
+                          SizedBox(width: 10,),
+                          Icon(Icons.settings,color: Colors.grey,size: 20,),
 
-
-                      InkWell(
-                        onTap: (){
-                          Get.to(()=>DarwerView(),transition:Transition.fade,duration: Duration(seconds: 1));
-                        },
-                        child: const Text(
-                          "Preferences",style: TextStyle(
-                            fontStyle: FontStyle.italic,
-                            color: Colors.black54,
-                            fontSize: 12
-                        ),
-                        ),
+                        ],
                       ),
-                      SizedBox(width: 10,),
-                      Icon(Icons.settings,color: Colors.grey,size: 20,),
-
-                    ],
+                    ),
                   ),
                 ),
                 Expanded(

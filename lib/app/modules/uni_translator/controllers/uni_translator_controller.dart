@@ -2,6 +2,7 @@
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:translator/app/controllers/speaker_controller.dart';
@@ -12,6 +13,7 @@ class UniTranslatorController extends GetxController {
   String textContent='';
   RxBool isNativeLoaded=false.obs;
   NativeAd? nativeAd;
+  TextEditingController fromController=TextEditingController();
 SpeakerController speakerController=Get.put(SpeakerController());
   @override
   void onInit() {
@@ -41,6 +43,19 @@ void removeFocus(){
   }
 
 }
+void swipe(){
+  if(translatedText.value!="Translation"){
+    String newInputText=translatedText.value;
+    translatedText.value=fromController.text;
+    fromController.text=newInputText;
+  }else{
+    Get.snackbar("Sorry!", "Cannot swipe empty fields.",snackPosition:SnackPosition.TOP,
+      backgroundColor: Colors.black54,colorText: Colors.white,
+      duration: Duration(milliseconds: 1500),);
+  }
+
+}
+
 void setText(text){
     translatedText.value=text;
 }
@@ -53,6 +68,7 @@ void setText(text){
     // print(response.body);
      speakerController.checkAvailableTo(targetLan);
     var result=response.body[0][0];
+
     return result[0];
     } catch (e) {
       return "Translation";

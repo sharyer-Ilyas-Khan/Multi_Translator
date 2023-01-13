@@ -25,7 +25,7 @@ class DarwerView extends GetView<DarwerController> {
       SliverList(
           delegate: SliverChildListDelegate(
         [
-          const DrawerOption(icon: "removeads", text: "Remove Ads", index: 1,color: Colors.blue),
+          const DrawerOption(icon: "ad_ic", text: "Remove Ads", index: 1,color: Colors.blue),
 
          DrawerOption(icon: "fav", text: "Favourite", index: 2,color: Colors.red.shade600),
          const Padding(

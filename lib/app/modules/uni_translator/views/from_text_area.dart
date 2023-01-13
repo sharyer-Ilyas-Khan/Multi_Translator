@@ -15,7 +15,7 @@ class FromTextArea extends StatelessWidget {
   final text;
    FromTextArea({Key? key,this.text}) : super(key: key);
    String inputText="";
-TextEditingController fromController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     LanguagesController languagesController=Get.put(LanguagesController());
@@ -24,7 +24,7 @@ TextEditingController fromController=TextEditingController();
     MenuItemsController menuItemsController = Get.put(MenuItemsController());
 
     SpeakerController speakerController=Get.put(SpeakerController());
-    fromController.text=text??"...";
+    uniController.fromController.text=text??"...";
     print(text);
     text!=""?translate(uniController, languagesController, text):{};
     text!=""?speakerController.checkAvailableFrom(languagesController.languagesPrefix
@@ -46,7 +46,7 @@ TextEditingController fromController=TextEditingController();
                   child: IconButton(
                     splashColor: Colors.transparent,
                 onPressed: (){
-                  fromController.clear();
+                  uniController.fromController.clear();
                   uniController.translatedText.value="Translation";
                   speakerController.isAvailableFrom.value=false;
                 },
@@ -57,7 +57,7 @@ TextEditingController fromController=TextEditingController();
               height: Get.height*0.13,
               width: Get.width*0.8,
               child:  Obx(()=> TextField(
-                controller: fromController,
+                controller: uniController.fromController,
                   focusNode: uniController.myFocusNode,
                   maxLines: 5,
                   minLines: 5,
@@ -127,7 +127,7 @@ TextEditingController fromController=TextEditingController();
                            onPressed: (){
 
                                 if(speakerController.isAvailableFrom.value){
-                                  inputText!=""?speakerController.speakFrom(inputText):speakerController.speakFrom(text);
+                                  uniController.fromController.text!=""?speakerController.speakFrom(uniController.fromController.text):speakerController.speakFrom(text);
 
                                 }else{
                                   Get.snackbar("Sorry!", "Speaker is unAvailable.",snackPosition:SnackPosition.TOP,

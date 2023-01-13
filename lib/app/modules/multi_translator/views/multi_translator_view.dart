@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
+import 'package:translator/app/modules/languages/views/checkLanguageView.dart';
 import 'package:translator/app/modules/multi_translator/views/from_text_area.dart';
 
 import '../../../data/text_style.dart';
@@ -39,11 +40,12 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                 title: Text("Translation lnaguage's"),
                 trailing: IconButton(
                   onPressed: (){
-                    controller.addPrefix();
-                            controller.addLang();
-                            controller.addIntoTranslation();
-                            controller.addIntoList();
-                            scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
+                    Get.to(LanguagesCheckView());
+                    // controller.addPrefix();
+                    //         controller.addLang();
+                    //         controller.addIntoTranslation();
+                    //         controller.addIntoList();
+                    //         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
                     //
                   },
                   icon: Icon(Icons.add,color: AppColors.primaryColor,size: 35,),
@@ -126,19 +128,6 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                   ),
                 ),
     ),
-          Expanded(
-              flex:4,
-              child: Container(
-                height: Get.height*0.2,
-                width: Get.width,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage("Assets/images/large ad.png"),
-                        fit: BoxFit.fill
-                    )
-                ),
-              ),
-          ),
         ],
       )
     );

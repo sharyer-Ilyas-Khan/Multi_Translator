@@ -38,6 +38,18 @@ class VoiceTranslatorController extends GetxController {
   void setText(text){
     translatedText.value=text;
   }
+  void swipe(){
+    if(translatedText.value!="Translation"){
+      String newInputText=translatedText.value;
+      translatedText.value=inputText.value;
+      inputText.value=newInputText;
+    }else{
+      Get.snackbar("Sorry!", "Cannot swipe empty fields.",snackPosition:SnackPosition.TOP,
+        backgroundColor: Colors.black54,colorText: Colors.white,
+        duration: Duration(milliseconds: 1500),);
+    }
+
+  }
   void setInputText(text){
     inputText.value=text;
     if(inputText.value.length>40){
