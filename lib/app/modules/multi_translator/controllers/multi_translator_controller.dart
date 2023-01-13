@@ -6,8 +6,8 @@ import 'package:translator/app/modules/multi_translator/views/to_text_area.dart'
 
 class MultiTranslatorController extends GetxController {
   //TODO: Implement MultiTranslatorController
-    RxList<Widget> listOfWidget=<Widget>[].obs;
-
+    RxList<Widget> listOfWidget=<Widget>[ToTextArea(id:0,)].obs;
+RxBool showList=false.obs;
     RxList listOfPrefix=["en"].obs;
     RxList listOfLang=["English"].obs;
     RxList listOfTranslation=["Translation"].obs;
@@ -18,6 +18,7 @@ class MultiTranslatorController extends GetxController {
 
    void clearList(){
      listOfPrefix=["en"].obs;
+     showList.value=false;
      listOfTranslation=["Translation"].obs;
      listOfLang=["English"].obs;
      listOfWidget=[ToTextArea(id:0,)].obs;

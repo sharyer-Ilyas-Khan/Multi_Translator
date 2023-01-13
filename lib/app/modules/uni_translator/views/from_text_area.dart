@@ -36,7 +36,7 @@ class FromTextArea extends StatelessWidget {
           border: Border.all(color: Colors.black12,width: 0.5)
       ),
       child: Padding(
-        padding:  EdgeInsets.only(left: 15,top: 5),
+        padding:  EdgeInsets.only(left: 15,top: 0),
         child: Stack(
           children: [
             Obx(

@@ -21,7 +21,7 @@ String inputText="";
     MenuItemsController menuItemsController=Get.put(MenuItemsController());
     SpeakerController speakerController=Get.put(SpeakerController());
     return Container(
-      height: Get.height*0.2,
+      height: Get.height*0.22,
       width: Get.width,
       decoration: BoxDecoration(
           color: Colors.white,
@@ -157,6 +157,18 @@ String inputText="";
                     }, icon: SvgPicture.asset("Assets/svg/full_screen.svg",height: 15)),
                     Spacer(),
                     InkWell(onTap: (){
+                      if(controller.fromTextController.value.text!=""){
+                        controller.showList.value=true;
+                        controller.setTranslations(
+                            languagesController.languagesPrefix[languagesController.selectedFromIndex.value],
+                            controller.fromTextController.value.text);
+                      }
+                      else{
+                        Get.snackbar("Sorry!", "Cannot translate empty text.",
+                            snackPosition: SnackPosition.TOP,
+                            backgroundColor: Colors.black54,
+                            colorText: Colors.white);
+                      }
 
 
                     }, child: Container(

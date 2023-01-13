@@ -90,7 +90,7 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
                 child: ToTextArea()),
           ),
           Padding(
-            padding:  EdgeInsets.only(left: Get.width*0.7),
+            padding:  EdgeInsets.only(left: Get.width*0.7,right: 15),
             child: InkWell(
               onTap: (){
                 Get.to(()=>DarwerView(),transition:Transition.zoom,duration: const Duration(milliseconds: 400));

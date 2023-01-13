@@ -30,7 +30,7 @@ class FromTextArea extends StatelessWidget {
           color: Colors.white,
           border: Border.all(color: Colors.black12, width: 0.5)),
       child: Padding(
-        padding: const EdgeInsets.only(left: 15, top: 5),
+        padding: const EdgeInsets.only(left: 15, top: 12),
         child: Stack(
           children: [
             Obx(
@@ -50,7 +50,7 @@ class FromTextArea extends StatelessWidget {
             ),
             Positioned(
                 right: 0,
-                bottom: 10,
+                bottom: 0,
                 left: 1.5,
                 child: Row(
                   children: [

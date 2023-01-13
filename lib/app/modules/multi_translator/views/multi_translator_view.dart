@@ -28,7 +28,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
           Padding(
             padding: const EdgeInsets.only(top: 6.0,bottom: 6),
             child: Container(
-              height: Get.height*0.09,
+              height: Get.height*0.085,
               width: Get.width,
 
               decoration: BoxDecoration(
@@ -48,14 +48,14 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                     //         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
                     //
                   },
-                  icon: Icon(Icons.add,color: AppColors.primaryColor,size: 35,),
+                  icon: Icon(Icons.add,color: AppColors.primaryColor,size: 30,),
                 ),
                 subtitle: Obx(
                   ()=> ListView.builder(
                         scrollDirection: Axis.horizontal,
                       itemCount: controller.listOfLang.length,
                       itemBuilder: (_,index){
-                        return Padding(
+                        return controller.listOfLang[index]!=""?Padding(
                           padding:  EdgeInsets.only(bottom:Get.height*0.045,right: 2.5,left: 2.5,top:Get.height*0.015 ),
                           child: Container(
                             width: Get.width*0.2,
@@ -67,7 +67,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                               child: Text(controller.listOfLang[index],overflow: TextOverflow.ellipsis,),
                             ),
                           ),
-                        );
+                        ):Container();
 
                   }),
                 ),
@@ -113,7 +113,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
             ),
           ),
           Obx(
-                ()=>Expanded(
+                ()=>controller.showList.value?Expanded(
                   flex: 3,
                   child: SizedBox(
                     height: controller.listOfWidget.length==1?Get.height*0.3:Get.height*0.5,
@@ -126,7 +126,7 @@ class MultiTranslatorView extends GetView<MultiTranslatorController> {
                       return controller.listOfWidget[index];
             }),
                   ),
-                ),
+                ):Container(),
     ),
         ],
       )

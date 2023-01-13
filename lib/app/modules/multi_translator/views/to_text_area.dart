@@ -71,7 +71,7 @@ class ToTextArea extends StatelessWidget {
                 color: Colors.red.shade700),
           ],
           child: Container(
-            height: Get.height*0.18,
+            height: Get.height*0.2,
             width: Get.width,
 
             decoration: BoxDecoration(

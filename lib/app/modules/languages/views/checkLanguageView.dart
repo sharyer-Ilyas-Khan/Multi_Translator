@@ -4,6 +4,7 @@ import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/languages/views/search_bar.dart';
 
+import '../../multi_translator/controllers/multi_translator_controller.dart';
 import '../controllers/languages_controller.dart';
 
 class LanguagesCheckView extends GetView<LanguagesController> {
@@ -13,6 +14,7 @@ class LanguagesCheckView extends GetView<LanguagesController> {
   @override
   Widget build(BuildContext context) {
     LanguagesController controller=Get.put(LanguagesController());
+    MultiTranslatorController multiController=Get.put(MultiTranslatorController());
     // languages.sort((a, b) => a.compareTo(b));
     print(languages);
     return Scaffold(
@@ -43,14 +45,11 @@ class LanguagesCheckView extends GetView<LanguagesController> {
             ),
 
             Expanded(
-                child: Obx(()=> ListView.builder(
-
+                child: Obx(()=>
+                    ListView.builder(
                     itemCount: controller.languagesValue.length,
-
                     itemBuilder: (_,index){
-
-                      return
-                                Padding(
+                      return Padding(
                               padding: const EdgeInsets.only(left: 10.0,right: 10,top: 2),
                               child: Theme(
                                 data: Theme.of(context).copyWith(
@@ -67,41 +66,26 @@ class LanguagesCheckView extends GetView<LanguagesController> {
                                     activeColor: Colors.transparent,
                                     checkColor: Colors.grey,
                                     onChanged: (value){
-                                    print("object");
                                       controller.languagesValue[index]=value!;
+                                      if(value==true){
+                                        multiController.listOfLang.add(languages[index]);
+                                        multiController.listOfPrefix.add(multiController.languagesPrefix[index]);
+                                        multiController.addIntoList();
+                                        multiController.addIntoTranslation();
+
+                                      }else{
+                                          multiController.listOfLang.remove(languages[index]);
+                                          multiController.listOfPrefix.remove(multiController.languagesPrefix[index]);
+                                      }
+                                      // multiController.addPrefix();
+                                      // multiController.addLang();
+                                      // multiController.addIntoTranslation();
+                                      // multiController.addIntoList();
+                                      //         scrollController.animateTo(scrollController.position.maxScrollExtent, duration: const Duration(milliseconds: 200), curve: Curves.easeOut);
+                                      //
                                       }
                                 ),
                               ),
-                            // )
-                        // InkWell(
-                        //   highlightColor: Colors.transparent,
-                        //   onTap: (){
-                        //     controller.setIndex(index,type,id);
-                        //     Navigator.pop(context);
-                        //   },
-                        //   child: Padding(
-                        //     padding: const EdgeInsets.only(left: 18.0,right: 18.0,top:0.0,bottom: 0.0),
-                        //     child: SizedBox(
-                        //       height: Get.height*0.06,
-                        //       child: Center(
-                        //         child: Padding(
-                        //           padding: const EdgeInsets.only(left: 18.0,right: 18.0),
-                        //           child: Row(
-                        //             mainAxisAlignment: MainAxisAlignment.start,
-                        //             children: [
-                        //               Icon(Icons.check_rounded,
-                        //                 size: 20,
-                        //                 color: controller.selectedIndex.value==index?Colors.grey.shade700:Colors.transparent,),
-                        //               const SizedBox(width: 25,),
-                        //               Text(languages[index],style: languageTitle,),
-                        //
-                        //             ],
-                        //           ),
-                        //         ),
-                        //       ),
-                        //     ),
-                        //   ),
-                        // ),
                       );
                     },
 
