@@ -236,6 +236,37 @@ const  textFullScreenStyle=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.7
 );
+const inAppHeading=TextStyle(
+    fontSize: 18,
+    color:Colors.black,
+    fontFamily: "robob",
+    letterSpacing: 0.0
+);
+const inTitleHeading=TextStyle(
+    fontSize: 25,
+    color:Colors.black,
+    fontFamily: "robob",
+    letterSpacing: 0.0
+);
+const inAppSubHeading=TextStyle(
+    fontSize: 14,
+    color:Colors.black,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 1.0
+);
+const  oneTime =TextStyle(
+    fontSize: 12,
+    color:Colors.black38,
+    fontFamily: "robor",
+    letterSpacing: 0.0
+);
+const  policy =TextStyle(
+    fontSize: 10,
+    color:Colors.black38,
+    fontFamily: "robob",
+    letterSpacing: 0.0
+);
 // <!--<?xml version="1.0" encoding="utf-8"?>-->
 // <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
 // <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->

@@ -108,11 +108,17 @@ class BottomNavButtons extends StatelessWidget {
                 children: [
                   SvgPicture.asset(icon,color: controller.selectedIndex.value==index?
                   AppColors.primaryColor:Colors.grey,height: 20,),
+                  SizedBox(
+                    height: 5.0,
+                  ),
                   Text(text,style: TextStyle(
                     fontSize: 10,
                     color: controller.selectedIndex.value==index?
                     AppColors.primaryColor:Colors.grey,
-                  ),)
+                  ),),
+                  SizedBox(
+                    height: 9.0,
+                  ),
                 ],
               ),
             ),

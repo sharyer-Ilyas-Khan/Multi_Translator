@@ -28,6 +28,7 @@ class InAppPurchaseUiController extends GetxController {
   late StreamSubscription _conectionSubscription;
   @override
   void onInit() {
+    loadPurchase(Get.context);
     super.onInit();
   }
 
@@ -85,14 +86,28 @@ class InAppPurchaseUiController extends GetxController {
 
 
   }
-  void requestPurchase(id) {
+  Future<void> requestPurchase() async {
+    try {
+      SharedPreferences prefs = await SharedPreferences.getInstance();
+      if(prefs.getBool("purchased")==false){
+
+        try{
+          FlutterInappPurchase.instance.requestPurchase(iapId);
+        }
+        catch(e){
+          print(e.toString());
+        }
+      }
+      else{
+        print("Already Purchased");
+        FlutterInappPurchase.instance.requestPurchase(iapId);
+      }
+
+    } catch (error) {
+      print('$error');
+    }
     // callEvent("requesting_purchase_white_flight");
-    try{
-      FlutterInappPurchase.instance.requestPurchase(iapId);
-    }
-    catch(e){
-      print(e.toString());
-    }
+
 
   }
   Future<void> initPlatformState(context) async {
