@@ -44,9 +44,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>All Language Translator" Would like to access the Camera</string>
+	<string>All Language Translator&quot; Would like to access the Camera</string>
 	<key>NSMicrophoneUsageDescription</key>
-	<string>Please give "All Language Translator" access to your microphone so I can hear you so and translate what you say into text.</string>
+	<string>Please give &quot;All Language Translator&quot; access to your microphone so I can hear you so and translate what you say into text.</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>This App requires access to the photo library. would you like to access Your Photos</string>
 	<key>NSSpeechRecognitionUsageDescription</key>

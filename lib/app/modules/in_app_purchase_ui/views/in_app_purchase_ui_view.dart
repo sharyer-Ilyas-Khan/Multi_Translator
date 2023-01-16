@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 
+import '../../dashboard/bindings/dashboard_binding.dart';
+import '../../dashboard/views/dashboard_view.dart';
 import '../controllers/in_app_purchase_ui_controller.dart';
 
 class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
@@ -24,7 +26,8 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(onPressed: (){
-                  Get.close(1);
+                  // Get.close(1);
+                  Get.off(()=> DashboardView(), binding: DashboardBinding());
                 }, icon: Icon(Icons.close,color: Colors.grey.shade300,)),
                 Container(
                   height: Get.height*0.04,
@@ -312,12 +315,12 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
               },
               child: Center(
         child: Container(
-          height: Get.height*0.07,
+          height: Get.height*0.06,
           width: Get.width*0.8,
 
           decoration: BoxDecoration(
               color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(14.0),
           ),
           child: Center(
               child: Row(

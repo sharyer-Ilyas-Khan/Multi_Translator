@@ -102,7 +102,6 @@ class ToTextArea extends StatelessWidget {
                       IconButton(
                         splashColor: Colors.transparent,
                         onPressed: () {
-                          isDialOpen.value = false;
                           menuItemsController.viewFullScreen(
                               uniController.translatedText.value.toString());
                         },

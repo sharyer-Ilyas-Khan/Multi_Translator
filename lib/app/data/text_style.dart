@@ -4,8 +4,8 @@ import 'package:translator/app/data/color_code.dart';
 
 
 const splashHeading=TextStyle(
-fontSize: 35,
-color:Colors.white,
+fontSize: 40,
+color:Colors.blueGrey,
 fontFamily: "robob",
 letterSpacing: 0.0
 );
@@ -16,8 +16,8 @@ const delete=TextStyle(
     letterSpacing: 0.0
 );
 const splashSubHeading=TextStyle(
-    fontSize: 30,
-    color:Colors.white,
+    fontSize: 35,
+    color:Colors.blueGrey,
     fontFamily: "robor",
     letterSpacing: 0.0
 );
@@ -86,6 +86,13 @@ const  fromTextStyle=TextStyle(
 );
 const toHintStyle=TextStyle(
     fontSize: 20,
+    color:Colors.white,
+    fontFamily: "robor",
+    fontWeight: FontWeight.w900,
+    letterSpacing: 0.0
+);
+const splashButtonStyle=TextStyle(
+    fontSize: 18,
     color:Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
@@ -264,6 +271,12 @@ const  oneTime =TextStyle(
 const  policy =TextStyle(
     fontSize: 10,
     color:Colors.black38,
+    fontFamily: "robob",
+    letterSpacing: 0.0
+);
+const  splashPolicy =TextStyle(
+    fontSize: 14,
+    color:Colors.black,
     fontFamily: "robob",
     letterSpacing: 0.0
 );

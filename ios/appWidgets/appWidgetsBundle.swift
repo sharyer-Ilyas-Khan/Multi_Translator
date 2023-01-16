@@ -12,6 +12,8 @@ import SwiftUI
 struct appWidgetsBundle: WidgetBundle {
     var body: some Widget {
         appWidgets()
-        appWidgetsLiveActivity()
+    
+    
+        
     }
 }

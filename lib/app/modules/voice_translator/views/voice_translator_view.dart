@@ -63,7 +63,7 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                             child: Icon(Icons.swap_horiz)),
                         InkWell(
                           onTap: (){
-                            Get.to(()=>LanguagesView(type: "to"));
+                            Get.to(()=>LanguagesView(type: "to",id: "voice",));
                           },
                           child: Obx(
                                 ()=> Row(

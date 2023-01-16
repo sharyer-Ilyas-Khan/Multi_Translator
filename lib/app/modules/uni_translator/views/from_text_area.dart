@@ -143,6 +143,8 @@ class FromTextArea extends StatelessWidget {
                           splashColor: Colors.transparent,
                           onPressed: (){
 
+                            menuItemsController.viewFullScreen(
+                                uniController.fromController.text.toString());
 
                       }, icon: SvgPicture.asset("Assets/svg/full_screen.svg",height:18,)),
                     ],

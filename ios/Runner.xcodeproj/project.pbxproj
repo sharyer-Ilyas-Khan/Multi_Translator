@@ -12,7 +12,6 @@
 		4C049084296547330076C151 /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C049083296547330076C151 /* WidgetKit.framework */; };
 		4C049086296547330076C151 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C049085296547330076C151 /* SwiftUI.framework */; };
 		4C049089296547330076C151 /* appWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C049088296547330076C151 /* appWidgetsBundle.swift */; };
-		4C04908B296547330076C151 /* appWidgetsLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C04908A296547330076C151 /* appWidgetsLiveActivity.swift */; };
 		4C04908D296547330076C151 /* appWidgets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C04908C296547330076C151 /* appWidgets.swift */; };
 		4C049090296547350076C151 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4C04908F296547350076C151 /* Assets.xcassets */; };
 		4C049092296547350076C151 /* appWidgets.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4C04908E296547330076C151 /* appWidgets.intentdefinition */; };
@@ -21,6 +20,7 @@
 		4C064864296D3C6D00309658 /* largeNativeAdFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C064863296D3C6D00309658 /* largeNativeAdFactory.swift */; };
 		4C064868296D3D5800309658 /* largeNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C064867296D3D5800309658 /* largeNativeAdView.xib */; };
 		4C8ACE6529658725008C1D4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
+		4C8E1B8A297180080062470E /* testInAppPurchase.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CA767B42966B3DD005836BA /* testInAppPurchase.storekit */; };
 		4CA767B32966A832005836BA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA767B22966A832005836BA /* StoreKit.framework */; };
 		97C146FC1CF9000F007C117D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FA1CF9000F007C117D /* Main.storyboard */; };
 		97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 97C146FD1CF9000F007C117D /* Assets.xcassets */; };
@@ -71,7 +71,6 @@
 		4C049083296547330076C151 /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
 		4C049085296547330076C151 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4C049088296547330076C151 /* appWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appWidgetsBundle.swift; sourceTree = "<group>"; };
-		4C04908A296547330076C151 /* appWidgetsLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appWidgetsLiveActivity.swift; sourceTree = "<group>"; };
 		4C04908C296547330076C151 /* appWidgets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = appWidgets.swift; sourceTree = "<group>"; };
 		4C04908E296547330076C151 /* appWidgets.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = appWidgets.intentdefinition; sourceTree = "<group>"; };
 		4C04908F296547350076C151 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				4C049088296547330076C151 /* appWidgetsBundle.swift */,
-				4C04908A296547330076C151 /* appWidgetsLiveActivity.swift */,
 				4C04908C296547330076C151 /* appWidgets.swift */,
 				4C04908E296547330076C151 /* appWidgets.intentdefinition */,
 				4C04908F296547350076C151 /* Assets.xcassets */,
@@ -305,6 +303,7 @@
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
 				97C146FE1CF9000F007C117D /* Assets.xcassets in Resources */,
+				4C8E1B8A297180080062470E /* testInAppPurchase.storekit in Resources */,
 				97C146FC1CF9000F007C117D /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -404,7 +403,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C049092296547350076C151 /* appWidgets.intentdefinition in Sources */,
-				4C04908B296547330076C151 /* appWidgetsLiveActivity.swift in Sources */,
 				4C04908D296547330076C151 /* appWidgets.swift in Sources */,
 				4C049089296547330076C151 /* appWidgetsBundle.swift in Sources */,
 			);
@@ -536,8 +534,8 @@
 		4C049098296547350076C151 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -576,8 +574,8 @@
 		4C049099296547350076C151 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;
@@ -613,8 +611,8 @@
 		4C04909A296547350076C151 /* Profile */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
-				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = WidgetBackground;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_WIDGET_BACKGROUND_COLOR_NAME = AppIcon;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
 				CLANG_ENABLE_OBJC_WEAK = YES;

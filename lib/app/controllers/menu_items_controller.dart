@@ -95,7 +95,7 @@ class MenuItemsController extends GetxController {
       }
       void viewFullScreen(text){
 
-         if(text!="Translation"){
+         if(text!="Translation" && text!=""){
            Get.to(()=>TextViewer(text:text),transition:Transition.zoom,duration: const Duration(milliseconds: 200));
            // Get.defaultDialog(
            //     title: "Translated Text",

@@ -53,10 +53,10 @@ class VoiceTranslatorController extends GetxController {
   void setInputText(text){
     inputText.value=text;
     if(inputText.value.length>40){
-      fontController.inputFont.value=20.0;
+      fontController.inputFont.value=18.0;
     }
     if(inputText.value.length<40){
-      fontController.inputFont.value=40.0;
+      fontController.inputFont.value=25.0;
     }
   }
   void getFont(){
