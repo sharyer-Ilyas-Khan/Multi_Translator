@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/remote_config_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/dictionary/controllers/dictationary_controller.dart';
@@ -9,6 +10,7 @@ class SearchBarDictionary extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     DictionaryController controller=Get.put(DictionaryController());
+    RemoteConfigController remoteConfigController=Get.find<RemoteConfigController>();
     return Padding(
       padding: const EdgeInsets.only(left: 12.0,top: 15.0,bottom: 10.0,right: 12.0),
       child: Container(

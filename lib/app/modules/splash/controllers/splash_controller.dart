@@ -1,8 +1,12 @@
 import 'dart:async';
+import 'dart:convert';
 import 'dart:io';
 
+import 'package:firebase_analytics/firebase_analytics.dart';
+import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:translator/app/controllers/remote_config_controller.dart';
 import 'package:translator/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:translator/app/modules/dashboard/views/dashboard_view.dart';
 import 'package:translator/app/modules/in_app_purchase_ui/bindings/in_app_purchase_ui_binding.dart';
@@ -12,10 +16,14 @@ class SplashController extends GetxController {
 RxBool agree=false.obs;
 RxBool isNativeLoaded=false.obs;
 NativeAd? nativeAd;
-
+ FirebaseAnalytics? firebaseAnalytics;
+ FirebaseRemoteConfig? remoteConfig;
+RemoteConfigController remoteConfigController=Get.put(RemoteConfigController());
   @override
   void onInit() {
     // gotoDashboard();
+    // getRemoteData();
+    initiate();
     loadNativeAd();
     super.onInit();
   }
@@ -43,6 +51,53 @@ NativeAd? nativeAd;
   void agreeTerms(value){
     agree.value=value;
   }
+void initiate()async{
+  try{
+    remoteConfig = FirebaseRemoteConfig.instance;
+    await remoteConfig!.setConfigSettings(RemoteConfigSettings(
+      fetchTimeout: const Duration(minutes: 0),
+      minimumFetchInterval: const Duration(hours: 0),
+    ));
+    remoteConfig!.fetchAndActivate().then((value) => getRemoteData());
+  }
+  on FormatException catch(e){
+    // initiate();
+  }
+}
+void getRemoteData(){
+  try{
+    dynamic rawData = remoteConfig!.getValue("all_language_translator");
+    if(rawData!=null){
+      print(rawData);
+      var jsonValues=jsonDecode(rawData.asString());
+      print(jsonValues);
+      remoteConfigController.assignRemoteValue(jsonValues);
+      //Android
+      // if(remoteConfigController.purchased==false && source=="Play Store"){
+      //test Ios
+      // if(remoteConfigController.purchased==false&& source=="App Store"){
+      //IOS
+      // if(remoteConfigController.purchased==false){
+      //   remoteConfigController.assignRemoteValue(jsonValues);
+        // (_interstitialAd==null && remoteConfigController.splashInterID!=""&&remoteConfigController.splashInter=="on")?
+        // _createInterstitialAd():{};
+        // if(nativeAd==null && remoteConfigController.splashNativeID!="" && remoteConfigController.splashNative=="on"){
+        //   loadNativeAd();
+        // }
+        // if(nativeAdTwo==null && remoteConfigController.dashboardNativeID!="" && remoteConfigController.dashboardNative=="on"){
+        //   loadNativeAdTwo();
+        // }
+      // }
+      // if(remoteConfigController.purchased==true){
+      //   remoteConfigController.assignRemoteValuePaid(jsonValues);
+      // }
+    }
+  }
+  on FormatException catch(e){
+    // initiate();
+  }
+}
+
 void loadNativeAd() {
   nativeAd = NativeAd(
       request: const AdRequest(),
