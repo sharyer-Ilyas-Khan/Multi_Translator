@@ -7,9 +7,14 @@ class LanguagesController extends GetxController {
   //TODO: Implement LanguagesController
 
   final selectedIndex = 0.obs;
-  final selectedFromIndex = 0.obs;
-  final selectedToIndex = 0.obs;
-  final indexId = 0.obs;
+  dynamic indexId = 0.obs;
+  dynamic selectedFromIndex = 0.obs;
+  dynamic selectedToIndex = 0.obs;
+  // dynamic selectedIndex;
+  // dynamic selectedFromIndex;
+  // dynamic selectedToIndex;
+  // dynamic indexId ;
+
   UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
   VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorController());
   MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());

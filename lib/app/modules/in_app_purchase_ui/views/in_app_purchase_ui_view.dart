@@ -7,6 +7,8 @@ import 'package:translator/app/data/text_style.dart';
 
 import '../../dashboard/bindings/dashboard_binding.dart';
 import '../../dashboard/views/dashboard_view.dart';
+import '../../languages/bindings/languages_binding.dart';
+import '../../languages/views/initial_language_view.dart';
 import '../controllers/in_app_purchase_ui_controller.dart';
 
 class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
@@ -27,17 +29,17 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
               children: [
                 IconButton(onPressed: (){
                   // Get.close(1);
-                  Get.off(()=> DashboardView(), binding: DashboardBinding());
+                  Get.off(()=> InitialLanguagesCheckView(), binding:LanguagesBinding());
                 }, icon: Icon(Icons.close,color: Colors.grey.shade300,)),
                 Container(
                   height: Get.height*0.04,
-                  width: Get.width*0.3,
+                  width: Get.width*0.25,
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade300,
+                    color: Colors.grey.shade200,
                     borderRadius: BorderRadius.circular(20.0)
                   ),
-                  child: const Center(
-                    child: Text("PREMIUM",style: fromHintStyle,),
+                  child:  Center(
+                    child: Text("PREMIUM",style: premium,),
                   ),
                 ),
               ],
@@ -320,18 +322,19 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
 
           decoration: BoxDecoration(
               color: AppColors.primaryColor,
-              borderRadius: BorderRadius.circular(14.0),
+              borderRadius: BorderRadius.circular(12.0),
           ),
           child: Center(
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Spacer(),
-                  Text("Continue",style: toHintStyle,),
+                  SizedBox(width: 40,),
+                  Text("Continue",style: splashButtonStyle,),
                   Spacer(),
                   Padding(
-                    padding: const EdgeInsets.only(right: 1.0),
-                    child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,),
+                    padding: const EdgeInsets.only(right: 10.0),
+                    child: Icon(Icons.arrow_forward_ios_rounded,color: Colors.white,size: 15,),
                   ),
                   SizedBox(width: 10,)
                 ],

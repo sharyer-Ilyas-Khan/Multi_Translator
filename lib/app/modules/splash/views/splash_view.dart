@@ -137,7 +137,7 @@ class SplashView extends GetView<SplashController> {
                   ),
                 )
               ),
-              SizedBox(height: Get.height*0.1,),
+              SizedBox(height: Get.height*0.07,),
             ],
           ),
         ),

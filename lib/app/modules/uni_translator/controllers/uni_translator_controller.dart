@@ -13,7 +13,7 @@ class UniTranslatorController extends GetxController {
   String textContent='';
   RxBool isNativeLoaded=false.obs;
   NativeAd? nativeAd;
-  TextEditingController fromController=TextEditingController();
+  TextEditingController fromController=Get.put(TextEditingController());
 SpeakerController speakerController=Get.put(SpeakerController());
   @override
   void onInit() {
@@ -33,6 +33,9 @@ SpeakerController speakerController=Get.put(SpeakerController());
 
   @override
   void onClose() {
+    if(nativeAd!=null){
+      nativeAd!.dispose();
+    }
     super.onClose();
 
 }

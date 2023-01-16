@@ -16,7 +16,7 @@ class ToTextArea extends StatelessWidget {
   ValueNotifier<bool> isDialOpen=ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
-    LanguagesController languagesController=Get.put(LanguagesController());
+
     VoiceTranslatorController controller=Get.put(VoiceTranslatorController());
     MenuItemsController menuItemsController=Get.put(MenuItemsController());
     TextFontController fontController=Get.put(TextFontController());

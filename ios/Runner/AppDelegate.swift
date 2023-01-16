@@ -17,8 +17,10 @@ import google_mobile_ads
           let largeFactory = LargeNativeAdFactory()
           FLTGoogleMobileAdsPlugin.registerNativeAdFactory(
               self, factoryId: "largeNative", nativeAdFactory: largeFactory)
-     
-    
+      // TODO: Register NativeAdFactoryWitoutMedia
+      let noMediaFactory = NativeAdWitoutMediaFactory()
+      FLTGoogleMobileAdsPlugin.registerNativeAdFactory(
+          self, factoryId: "noMediaNative", nativeAdFactory: noMediaFactory)
       
       UIApplication.shared.setMinimumBackgroundFetchInterval(TimeInterval(60*15))
           

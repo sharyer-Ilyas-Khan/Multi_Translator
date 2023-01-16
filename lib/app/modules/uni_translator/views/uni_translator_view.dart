@@ -119,22 +119,24 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
           ),
           Expanded(
             flex: 5,
-            child: controller.isNativeLoaded.value?Container(
-              height: Get.height*0.24,
-              width: Get.width,
-              decoration: BoxDecoration(
-                color: Colors.white,
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black
+            child: Obx(
+              ()=> controller.isNativeLoaded.value?Container(
+                height: Get.height*0.24,
+                width: Get.width,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black
 
-                  )
-                ]
-              ),
-              child: AdWidget(
-                ad: controller.nativeAd!,
-              ),
-            ):Container(),
+                    )
+                  ]
+                ),
+                child: AdWidget(
+                  ad: controller.nativeAd!,
+                ),
+              ):Container(),
+            ),
           ),
         ],
       )

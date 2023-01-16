@@ -16,8 +16,8 @@ import '../../../data/text_style.dart';
 
 class DashboardController extends GetxController with GetTickerProviderStateMixin {
 
-  FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
-  HistoryDatabaseController historyDatabaseController=Get.put(HistoryDatabaseController());
+  // FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
+  // HistoryDatabaseController historyDatabaseController=Get.put(HistoryDatabaseController());
   final  selectedIndex = 0.obs;
   final  extractedText = "".obs;
 

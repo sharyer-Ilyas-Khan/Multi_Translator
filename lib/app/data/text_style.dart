@@ -42,6 +42,13 @@ const fromHintStyle=TextStyle(
     fontWeight: FontWeight.w900,
     letterSpacing: 0.0
 );
+dynamic premium=TextStyle(
+    fontSize: 14,
+    color:Colors.grey.shade400,
+    fontFamily: "robob",
+    // fontWeight: FontWeight.w900,
+    letterSpacing: 1.0
+);
 const rateUsHeading=TextStyle(
     fontSize: 16,
     color:Colors.black,

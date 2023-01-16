@@ -1,12 +1,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
-import 'package:translator/app/controllers/favourite_database_controller.dart';
-import 'package:translator/app/data/color_code.dart';
-import 'package:translator/app/data/text_style.dart';
-import 'package:translator/app/modules/darwer/views/darwer_view.dart';
 import 'package:translator/app/modules/dashboard/views/bottom_nav_bar.dart';
 import 'package:translator/app/modules/image_text_translator/views/image_text_translator_view.dart';
 import 'package:translator/app/modules/multi_translator/views/multi_translator_view.dart';
@@ -22,7 +17,6 @@ class DashboardView extends GetView<DashboardController> {
   List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
   @override
   Widget build(BuildContext context) {
-    FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
     return WillPopScope(
       onWillPop: (){
         controller.showExitDialog();
@@ -31,23 +25,6 @@ class DashboardView extends GetView<DashboardController> {
       child: Scaffold(
 
         resizeToAvoidBottomInset: false,
-        // appBar: AppBar(
-        //   title:  Obx(()=> Text(title[controller.selectedIndex.value],style:appBar,)),
-        //   centerTitle: true,
-        //   elevation: 0.0,
-        //   backgroundColor: Colors.white,
-        //   leading: InkWell(
-        //     onTap: (){
-        //         Get.to(()=>const DarwerView(),
-        //             transition: Transition.fadeIn
-        //         );
-        //     },
-        //    child:  Padding(
-        //      padding: const EdgeInsets.all(15.0),
-        //      child: SvgPicture.asset("Assets/svg/nevigationbar.svg"),
-        //    )
-        //   ),
-        // ),
         bottomNavigationBar: BottomNavBar(),
         body: SafeArea(
           child: Obx(
