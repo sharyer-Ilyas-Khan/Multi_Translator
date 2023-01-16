@@ -16,6 +16,8 @@ class SplashController extends GetxController {
   RxBool agree = false.obs;
   RxBool isNativeLoaded = false.obs;
   NativeAd? nativeAd;
+  RxBool isLoading=true.obs;
+  RxDouble loadingValue=0.0.obs;
   SharedPreferences? prefs;
   FirebaseAnalytics? firebaseAnalytics;
   FirebaseRemoteConfig? remoteConfig;
@@ -27,6 +29,7 @@ class SplashController extends GetxController {
     // getRemoteData();
     addToSharePreferences();
     initiate();
+    startLoad();
     loadNativeAd();
     super.onInit();
   }
@@ -48,6 +51,7 @@ class SplashController extends GetxController {
     // Timer(
     // const Duration(seconds: 4),(){
     // Get.off(()=> DashboardView(), binding: DashboardBinding());
+    prefs!.setBool("agree", true);
     Get.off(() => InAppPurchaseUiView(), binding: InAppPurchaseUiBinding());
     // }
     // );
@@ -56,7 +60,20 @@ class SplashController extends GetxController {
   void agreeTerms(value) {
     agree.value = value;
   }
-
+void startLoad(){
+    Timer.periodic(Duration(milliseconds: 50), (timer) {
+      if(loadingValue.value>=1){
+        timer.cancel();
+        isLoading.value=false;
+      }
+      else{
+        loadingValue.value=loadingValue.value+0.01;
+      }
+    });
+    // Timer(Duration(seconds: 4),(){
+    //   isLoading.value=false;
+    // });
+}
   void initiate() async {
     try {
       remoteConfig = FirebaseRemoteConfig.instance;
@@ -88,6 +105,13 @@ class SplashController extends GetxController {
       if (prefs!.getInt("LanguageIndex") != null) {
         remoteConfigController
             .assignLanguageIndex(prefs!.getInt("LanguageIndex"));
+      }
+      if(prefs!.getBool("agree")==null){
+        prefs!.setBool("agree", false);
+        agree.value=false;
+      }
+      if(prefs!.getBool("agree")==true){
+        agree.value=true;
       }
       // if(prefs!.getBool("country")==null){
       //   prefs!.setBool("country", true);
@@ -152,4 +176,8 @@ class SplashController extends GetxController {
         }));
     nativeAd!.load();
   }
+  void showLoading(value){
+    isLoading.value=value;
+  }
+
 }

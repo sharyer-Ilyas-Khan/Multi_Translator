@@ -227,7 +227,7 @@ const policy = TextStyle(
     fontFamily: "robob",
     letterSpacing: 0.0);
 const splashPolicy = TextStyle(
-    fontSize: 14, color: Colors.black, fontFamily: "robob", letterSpacing: 0.0);
+    fontSize: 12, color: Colors.black, fontFamily: "robob", letterSpacing: 0.0);
 // <!--<?xml version="1.0" encoding="utf-8"?>-->
 // <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
 // <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
