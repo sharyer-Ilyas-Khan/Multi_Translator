@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -14,30 +13,37 @@ import '../controllers/dashboard_controller.dart';
 
 class DashboardView extends GetView<DashboardController> {
   final text;
-   DashboardView({Key? key,this.text}) : super(key: key);
-  List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
+  DashboardView({Key? key, this.text}) : super(key: key);
+  List title = [
+    "Translator",
+    "Voice Translator",
+    "Image Translator",
+    "Dictionary",
+    "Multi Translator"
+  ];
   @override
   Widget build(BuildContext context) {
-    LanguagesController languagesController=Get.put(LanguagesController());
+    LanguagesController languagesController = Get.put(LanguagesController());
     return WillPopScope(
-      onWillPop: (){
+      onWillPop: () {
         controller.showExitDialog();
         return Future(() => false);
       },
       child: Scaffold(
-
         resizeToAvoidBottomInset: false,
         bottomNavigationBar: BottomNavBar(),
         body: SafeArea(
           child: Obx(
-            ()=> IndexedStack(
+            () => IndexedStack(
               index: controller.selectedIndex.value,
-              children:  [
-                 UniTranslatorView(text:controller.extractedText.value??""),
-                 VoiceTranslatorView(),
-                  const ImageTextTranslatorView(),
+              children: [
+                UniTranslatorView(text: controller.extractedText.value ?? ""),
+                VoiceTranslatorView(),
+                const ImageTextTranslatorView(),
                 const DictionaryView(),
-                MultiTranslatorView(ad:true,)
+                MultiTranslatorView(
+                  ad: true,
+                )
               ],
             ),
           ),

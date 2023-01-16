@@ -1,7 +1,4 @@
-
-import 'package:avatar_glow/avatar_glow.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -9,11 +6,12 @@ import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/voice_translator/views/from_text_area.dart';
 import 'package:translator/app/modules/voice_translator/views/to_text_area.dart';
+
 import '../../../data/text_style.dart';
 import '../../darwer/views/darwer_view.dart';
 import '../../languages/views/languages_view.dart';
 import '../controllers/voice_translator_controller.dart';
-import 'package:permission_handler/permission_handler.dart';
+
 class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
   VoiceTranslatorView({Key? key}) : super(key: key);
   stt.SpeechToText speechToText = stt.SpeechToText();
@@ -30,83 +28,101 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                 Expanded(
                   flex: 1,
                   child: Container(
-                    height: Get.height*0.1,
+                    height: Get.height * 0.1,
                     width: Get.width,
                     color: Colors.transparent,
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         InkWell(
-                          onTap: (){
-                            Get.to(()=>LanguagesView(type: "from"));
+                          onTap: () {
+                            Get.to(() => LanguagesView(type: "from"));
                           },
                           child: Obx(
-                                ()=> Row(
-                                  children: [
-                                    Text(
-                              "${languagesController.languages
-                              [languagesController.selectedFromIndex.value]
-                              }",style: fromDropStyle,),
-                                    Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
-                                  ],
+                            () => Row(
+                              children: [
+                                Text(
+                                  "${languagesController.languages[languagesController.selectedFromIndex.value]}",
+                                  style: fromDropStyle,
                                 ),
+                                Icon(
+                                  Icons.arrow_drop_down,
+                                  color: AppColors.primaryColor,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                         InkWell(
-                          onTap: (){
-                            controller.swipe();
-                            int newIndex=languagesController.selectedFromIndex.value;
-                            languagesController.selectedFromIndex.value=languagesController.selectedToIndex.value;
-                            languagesController.selectedToIndex.value=newIndex;
-
-                          },
+                            onTap: () {
+                              controller.swipe();
+                              int newIndex =
+                                  languagesController.selectedFromIndex.value;
+                              languagesController.selectedFromIndex.value =
+                                  languagesController.selectedToIndex.value;
+                              languagesController.selectedToIndex.value =
+                                  newIndex;
+                            },
                             child: Icon(Icons.swap_horiz)),
                         InkWell(
-                          onTap: (){
-                            Get.to(()=>LanguagesView(type: "to",id: "voice",));
+                          onTap: () {
+                            Get.to(() => LanguagesView(
+                                  type: "to",
+                                  id: "voice",
+                                ));
                           },
                           child: Obx(
-                                ()=> Row(
-                                  children: [
-                                    Text(
-                              "${languagesController.languages
-                              [languagesController.selectedToIndex.value]
-                              }",style: fromDropStyle,),
-                                    Icon(Icons.arrow_drop_down,color: AppColors.primaryColor,)
-                                  ],
+                            () => Row(
+                              children: [
+                                Text(
+                                  "${languagesController.languages[languagesController.selectedToIndex.value]}",
+                                  style: fromDropStyle,
                                 ),
+                                Icon(
+                                  Icons.arrow_drop_down,
+                                  color: AppColors.primaryColor,
+                                )
+                              ],
+                            ),
                           ),
                         ),
                       ],
                     ),
                   ),
                 ),
-                Expanded( flex: 3,child: FromTextArea()),
-                Expanded( flex: 3,child: ToTextArea()),
+                Expanded(flex: 3, child: FromTextArea()),
+                Expanded(flex: 3, child: ToTextArea()),
                 Padding(
-                  padding:  EdgeInsets.only(left: Get.width*0.7,right: 15),
+                  padding: EdgeInsets.only(left: Get.width * 0.7, right: 15),
                   child: InkWell(
                     splashColor: Colors.white,
-                    onTap: (){
-                      Get.to(()=>DarwerView(),transition:Transition.fade,duration: const Duration(milliseconds: 400));
+                    onTap: () {
+                      Get.to(() => DarwerView(),
+                          transition: Transition.fade,
+                          duration: const Duration(milliseconds: 400));
                     },
                     child: Container(
-                      height: Get.height*0.05,
-                      width: Get.width*0.9,
+                      height: Get.height * 0.05,
+                      width: Get.width * 0.9,
                       color: Colors.transparent,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.end,
                         children: const [
                           Text(
-                            "Preferences",style: TextStyle(
-                              fontStyle: FontStyle.italic,
-                              color: Colors.black54,
-                              fontSize: 12
+                            "Preferences",
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: Colors.black54,
+                                fontSize: 12),
                           ),
+                          SizedBox(
+                            width: 10,
                           ),
-                          SizedBox(width: 10,),
-                          Icon(Icons.settings,color: Colors.grey,size: 20,),
-
+                          Icon(
+                            Icons.settings,
+                            color: Colors.grey,
+                            size: 20,
+                          ),
                         ],
                       ),
                     ),
@@ -114,13 +130,15 @@ class VoiceTranslatorView extends GetView<VoiceTranslatorController> {
                 ),
                 Expanded(
                   flex: 5,
-                  child: controller.isNativeLoaded.value?Container(
-                    height: Get.height*0.24,
-                    width: Get.width,
-                   child: AdWidget(
-                     ad: controller.nativeAd!,
-                   ),
-                  ):Container(),
+                  child: controller.isNativeLoaded.value
+                      ? Container(
+                          height: Get.height * 0.24,
+                          width: Get.width,
+                          child: AdWidget(
+                            ad: controller.nativeAd!,
+                          ),
+                        )
+                      : Container(),
                 ),
               ],
             ),

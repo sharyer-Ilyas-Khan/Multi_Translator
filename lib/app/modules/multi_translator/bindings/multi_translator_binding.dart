@@ -5,7 +5,6 @@ import '../controllers/multi_translator_controller.dart';
 class MultiTranslatorBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put( MultiTranslatorController()
-    );
+    Get.put(MultiTranslatorController());
   }
 }

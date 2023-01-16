@@ -17,7 +17,8 @@ class BottomNavButtons extends StatelessWidget {
   final icon;
   final index;
   final text;
-   BottomNavButtons({Key? key,this.icon,this.index,this.text}) : super(key: key);
+  BottomNavButtons({Key? key, this.icon, this.index, this.text})
+      : super(key: key);
   late DashboardController controller;
   late LanguagesController languagesController;
   late UniTranslatorController uniTranslatorController;
@@ -25,116 +26,125 @@ class BottomNavButtons extends StatelessWidget {
   late CameraControllers cameraControllers;
   late VoiceTranslatorController voiceTranslatorController;
   late RemoteConfigController remoteConfigController;
-  late  DictionaryController dictionaryController;
-  late  SpeakerController speakerController;
+  late DictionaryController dictionaryController;
+  late SpeakerController speakerController;
   @override
   Widget build(BuildContext context) {
-     controller=Get.put(DashboardController());
-     languagesController=Get.put(LanguagesController());
-     uniTranslatorController=Get.put(UniTranslatorController());
-     multiTranslatorController=Get.put(MultiTranslatorController());
-     cameraControllers=Get.put(CameraControllers());
-     dictionaryController=Get.put(DictionaryController());
-     voiceTranslatorController=Get.put(VoiceTranslatorController());
-     remoteConfigController=Get.find<RemoteConfigController>();
-     speakerController=Get.put(SpeakerController());
-    return  InkWell(
-        onTap: (){
-          if(index==4){
-            cameraControllers.disposeCamera();
-            clearUniTranslator();
-            voiceTranslatorController.translatedText.value="Translation";
-            voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="Speak";
-            dictionaryController.inputController.value.clear();
-            dictionaryController.errorText.value="";
-            dictionaryController.inputText.value="";
-            speakerController.isAvailableTo.value=false;
-            speakerController.isAvailableFrom.value=false;
+    controller = Get.put(DashboardController());
+    languagesController = Get.put(LanguagesController());
+    uniTranslatorController = Get.put(UniTranslatorController());
+    multiTranslatorController = Get.put(MultiTranslatorController());
+    cameraControllers = Get.put(CameraControllers());
+    dictionaryController = Get.put(DictionaryController());
+    voiceTranslatorController = Get.put(VoiceTranslatorController());
+    remoteConfigController = Get.find<RemoteConfigController>();
+    speakerController = Get.put(SpeakerController());
+    return InkWell(
+      onTap: () {
+        if (index == 4) {
+          cameraControllers.disposeCamera();
+          clearUniTranslator();
+          voiceTranslatorController.translatedText.value = "Translation";
+          voiceTranslatorController.audioEnabled.value = false;
+          voiceTranslatorController.inputText.value = "Speak";
+          dictionaryController.inputController.value.clear();
+          dictionaryController.errorText.value = "";
+          dictionaryController.inputText.value = "";
+          speakerController.isAvailableTo.value = false;
+          speakerController.isAvailableFrom.value = false;
+        }
+        if (index == 3) {
+          speakerController.isAvailableTo.value = false;
+          speakerController.isAvailableFrom.value = false;
+          cameraControllers.disposeCamera();
+          multiTranslatorController.clearList();
+          clearUniTranslator();
+          voiceTranslatorController.translatedText.value = "Translation";
+          voiceTranslatorController.audioEnabled.value = false;
+          voiceTranslatorController.inputText.value = "Speak";
+        }
+        if (index == 2) {
+          speakerController.isAvailableTo.value = false;
+          speakerController.isAvailableFrom.value = false;
+          cameraControllers.onInit();
+          multiTranslatorController.clearList();
+          clearUniTranslator();
+          voiceTranslatorController.translatedText.value = "Translation";
+          voiceTranslatorController.audioEnabled.value = false;
+          voiceTranslatorController.inputText.value = "Speak";
+          dictionaryController.inputController.value.clear();
+          dictionaryController.errorText.value = "";
+          dictionaryController.inputText.value = "";
+        }
+        if (index == 1) {
+          speakerController.isAvailableTo.value = false;
+          speakerController.isAvailableFrom.value = false;
+          cameraControllers.disposeCamera();
+          multiTranslatorController.clearList();
+          dictionaryController.inputController.value.clear();
+          dictionaryController.errorText.value = "";
+          dictionaryController.inputText.value = "";
+          clearUniTranslator();
+        }
+        if (index == 0) {
+          speakerController.isAvailableTo.value = false;
+          speakerController.isAvailableFrom.value = false;
+          cameraControllers.disposeCamera();
+          multiTranslatorController.clearList();
+          voiceTranslatorController.translatedText.value = "Translation";
+          voiceTranslatorController.audioEnabled.value = false;
+          voiceTranslatorController.inputText.value = "Speak";
+          dictionaryController.inputController.value.clear();
+          dictionaryController.errorText.value = "";
+          dictionaryController.inputText.value = "";
+        }
 
-          }
-          if(index==3){
-            speakerController.isAvailableTo.value=false;
-            speakerController.isAvailableFrom.value=false;
-            cameraControllers.disposeCamera();
-            multiTranslatorController.clearList();
-            clearUniTranslator();
-            voiceTranslatorController.translatedText.value="Translation";
-            voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="Speak";
-          }
-          if(index==2){
-            speakerController.isAvailableTo.value=false;
-            speakerController.isAvailableFrom.value=false;
-            cameraControllers.onInit();
-            multiTranslatorController.clearList();
-            clearUniTranslator();
-            voiceTranslatorController.translatedText.value="Translation";
-            voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="Speak";
-            dictionaryController.inputController.value.clear();
-            dictionaryController.errorText.value="";
-            dictionaryController.inputText.value="";
-          }
-          if(index==1){
-            speakerController.isAvailableTo.value=false;
-            speakerController.isAvailableFrom.value=false;
-            cameraControllers.disposeCamera();
-            multiTranslatorController.clearList();
-            dictionaryController.inputController.value.clear();
-            dictionaryController.errorText.value="";
-            dictionaryController.inputText.value="";
-            clearUniTranslator();
-          }
-          if(index==0){
-            speakerController.isAvailableTo.value=false;
-            speakerController.isAvailableFrom.value=false;
-            cameraControllers.disposeCamera();
-            multiTranslatorController.clearList();
-            voiceTranslatorController.translatedText.value="Translation";
-            voiceTranslatorController.audioEnabled.value=false;
-            voiceTranslatorController.inputText.value="Speak";
-            dictionaryController.inputController.value.clear();
-            dictionaryController.errorText.value="";
-            dictionaryController.inputText.value="";
-          }
-
-            controller.selectedOption(index);
-
-        },
-        child: Obx(()=> Container(
-            height:Get.height*0.1,
-            width: Get.width*0.13,
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SvgPicture.asset(icon,color: controller.selectedIndex.value==index?
-                  AppColors.primaryColor:Colors.grey,height: 20,),
-                  SizedBox(
-                    height: 5.0,
-                  ),
-                  Text(text,style: TextStyle(
+        controller.selectedOption(index);
+      },
+      child: Obx(
+        () => Container(
+          height: Get.height * 0.1,
+          width: Get.width * 0.13,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                SvgPicture.asset(
+                  icon,
+                  color: controller.selectedIndex.value == index
+                      ? AppColors.primaryColor
+                      : Colors.grey,
+                  height: 20,
+                ),
+                SizedBox(
+                  height: 5.0,
+                ),
+                Text(
+                  text,
+                  style: TextStyle(
                     fontSize: 10,
-                    color: controller.selectedIndex.value==index?
-                    AppColors.primaryColor:Colors.grey,
-                  ),),
-                  SizedBox(
-                    height: 9.0,
+                    color: controller.selectedIndex.value == index
+                        ? AppColors.primaryColor
+                        : Colors.grey,
                   ),
-                ],
-              ),
+                ),
+                SizedBox(
+                  height: 9.0,
+                ),
+              ],
             ),
           ),
         ),
+      ),
     );
   }
-void clearUniTranslator(){
-  uniTranslatorController.translatedText.value="Translation";
-  uniTranslatorController.textContent="";
-  languagesController.selectedFromIndex.value=0;
-  languagesController.selectedToIndex.value=remoteConfigController.languageIndex;
-  controller.extractedText.value="";
-}
 
+  void clearUniTranslator() {
+    uniTranslatorController.translatedText.value = "Translation";
+    uniTranslatorController.textContent = "";
+    languagesController.selectedFromIndex.value = 0;
+    languagesController.selectedToIndex.value =
+        remoteConfigController.languageIndex;
+    controller.extractedText.value = "";
+  }
 }

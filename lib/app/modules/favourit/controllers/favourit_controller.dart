@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
-class FavouritController extends GetxController with GetTickerProviderStateMixin{
+class FavouritController extends GetxController
+    with GetTickerProviderStateMixin {
   //TODO: Implement FavouritController
 
   final count = 0.obs;

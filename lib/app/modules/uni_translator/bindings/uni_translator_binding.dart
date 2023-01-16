@@ -5,7 +5,8 @@ import '../controllers/uni_translator_controller.dart';
 class UniTranslatorBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put( UniTranslatorController(),
+    Get.put(
+      UniTranslatorController(),
     );
   }
 }

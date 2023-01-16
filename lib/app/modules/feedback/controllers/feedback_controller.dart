@@ -5,10 +5,9 @@ class FeedbackController extends GetxController {
   //TODO: Implement FeedbackController
 
   RxDouble rating = 0.0.obs;
-  FocusNode myFocusNode=FocusNode();
+  FocusNode myFocusNode = FocusNode();
   @override
   void onInit() {
-
     super.onInit();
   }
 
@@ -19,19 +18,23 @@ class FeedbackController extends GetxController {
 
   @override
   void onClose() {
-
     super.onClose();
   }
-  void requestFocus(){
+
+  void requestFocus() {
     myFocusNode.requestFocus();
   }
-  void closeFocus(){
+
+  void closeFocus() {
     myFocusNode.dispose();
   }
-void submit(){
-  Get.close(1);
-  Get.snackbar("Thanks", "Your review is successfully submitted",duration: Duration(milliseconds: 1500),
-      snackPosition:SnackPosition.TOP,
-      backgroundColor: Colors.black54,colorText: Colors.white );
-}
+
+  void submit() {
+    Get.close(1);
+    Get.snackbar("Thanks", "Your review is successfully submitted",
+        duration: Duration(milliseconds: 1500),
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.black54,
+        colorText: Colors.white);
+  }
 }

@@ -1,49 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_speed_dial/flutter_speed_dial.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
-import 'package:translator/app/data/color_code.dart';
-import 'package:translator/app/data/text_style.dart';
-import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 
 import '../../../controllers/menu_items_controller.dart';
 import '../../../controllers/speaker_controller.dart';
 import '../../../controllers/text_font_controller.dart';
-import '../../languages/views/languages_view.dart';
 import '../controllers/voice_translator_controller.dart';
+
 class ToTextArea extends StatelessWidget {
-   ToTextArea({Key? key}) : super(key: key);
-  ValueNotifier<bool> isDialOpen=ValueNotifier(false);
+  ToTextArea({Key? key}) : super(key: key);
+  ValueNotifier<bool> isDialOpen = ValueNotifier(false);
   @override
   Widget build(BuildContext context) {
-
-    VoiceTranslatorController controller=Get.put(VoiceTranslatorController());
-    MenuItemsController menuItemsController=Get.put(MenuItemsController());
-    TextFontController fontController=Get.put(TextFontController());
+    VoiceTranslatorController controller = Get.put(VoiceTranslatorController());
+    MenuItemsController menuItemsController = Get.put(MenuItemsController());
+    TextFontController fontController = Get.put(TextFontController());
     SpeakerController speakerController = Get.put(SpeakerController());
-    return  Container(
-      height: Get.height*0.26,
+    return Container(
+      height: Get.height * 0.26,
       width: Get.width,
       decoration: BoxDecoration(
           color: Colors.white,
-          border: Border.all(color: Colors.black12,width: 0.5)
-      ),
+          border: Border.all(color: Colors.black12, width: 0.5)),
       child: Padding(
-        padding:  EdgeInsets.only(left: 15,top: 12),
+        padding: EdgeInsets.only(left: 15, top: 12),
         child: Stack(
-          children:  [
+          children: [
             Obx(
-              ()=> SizedBox(
-                height: Get.height*0.13,
-                width: Get.width*0.9,
-                child: SingleChildScrollView(
-                  child: Text(
-                    controller.translatedText.value,style:
-                    controller.translatedText.value!="Translation"?fontController
-                      .outputTextStyle(fontController.inputFont.value):fontController.inputTextHintStyle(fontController.inputFont.value),
+              () => SizedBox(
+                  height: Get.height * 0.13,
+                  width: Get.width * 0.9,
+                  child: SingleChildScrollView(
+                    child: Text(
+                      controller.translatedText.value,
+                      style: controller.translatedText.value != "Translation"
+                          ? fontController
+                              .outputTextStyle(fontController.inputFont.value)
+                          : fontController.inputTextHintStyle(
+                              fontController.inputFont.value),
                     ),
-                )
-              ),
+                  )),
             ),
 
             // const Padding(
@@ -51,62 +47,74 @@ class ToTextArea extends StatelessWidget {
             //   child: Text("To:",style: toTextStyle,),
             // ),
             Obx(
-              ()=>  controller.translatedText.value!="Translation"?
-              Positioned(
-                  right: 0,
-                  bottom: 0,
-                  left: 0,
-                  child: Row(
-                    children: [
-                      Spacer(),
-                      IconButton(
-                        splashColor: Colors.transparent,
-                        onPressed: () {
-                          if (speakerController.isAvailableTo.value && controller.translatedText.value!="Translation") {
-                            speakerController
-                                .speakTo(controller.translatedText.value);
-                          } else {
-                            Get.snackbar("Sorry!", "Speaker is unAvailable.",
-                                snackPosition: SnackPosition.TOP,
-                                backgroundColor: Colors.black54,
-                                duration: Duration(milliseconds: 1500),
-                                colorText: Colors.white);
-                          }
-                        },
-                        icon: SvgPicture.asset("Assets/svg/pronouncer.svg",height: 18, ),
-                      ),
-                      IconButton(
-                        splashColor: Colors.transparent,
-                        onPressed: () {
-                          menuItemsController.shareText(
-                              controller.translatedText.value.toString());
-
-                        },
-                        icon: SvgPicture.asset("Assets/svg/share.svg",height: 18,),
-                        // color: Colors.black,
-                        // iconSize: 20,
-                      ),
-                      IconButton(
-                        splashColor: Colors.transparent,
-                        onPressed: () {
-                          menuItemsController.copyText(
-                              controller.translatedText.value.toString());
-                        },
-                        icon: SvgPicture.asset("Assets/svg/copy.svg",height: 18,),
-                      ),
-
-                      IconButton(
-                        splashColor: Colors.transparent,
-                        onPressed: () {
-
-                          menuItemsController.viewFullScreen(
-                              controller.translatedText.value.toString());
-                        },
-                        icon:SvgPicture.asset("Assets/svg/full_screen.svg",height: 18,),
-                      ),
-
-                    ],
-                  )):Container(),
+              () => controller.translatedText.value != "Translation"
+                  ? Positioned(
+                      right: 0,
+                      bottom: 0,
+                      left: 0,
+                      child: Row(
+                        children: [
+                          Spacer(),
+                          IconButton(
+                            splashColor: Colors.transparent,
+                            onPressed: () {
+                              if (speakerController.isAvailableTo.value &&
+                                  controller.translatedText.value !=
+                                      "Translation") {
+                                speakerController
+                                    .speakTo(controller.translatedText.value);
+                              } else {
+                                Get.snackbar(
+                                    "Sorry!", "Speaker is unAvailable.",
+                                    snackPosition: SnackPosition.TOP,
+                                    backgroundColor: Colors.black54,
+                                    duration: Duration(milliseconds: 1500),
+                                    colorText: Colors.white);
+                              }
+                            },
+                            icon: SvgPicture.asset(
+                              "Assets/svg/pronouncer.svg",
+                              height: 18,
+                            ),
+                          ),
+                          IconButton(
+                            splashColor: Colors.transparent,
+                            onPressed: () {
+                              menuItemsController.shareText(
+                                  controller.translatedText.value.toString());
+                            },
+                            icon: SvgPicture.asset(
+                              "Assets/svg/share.svg",
+                              height: 18,
+                            ),
+                            // color: Colors.black,
+                            // iconSize: 20,
+                          ),
+                          IconButton(
+                            splashColor: Colors.transparent,
+                            onPressed: () {
+                              menuItemsController.copyText(
+                                  controller.translatedText.value.toString());
+                            },
+                            icon: SvgPicture.asset(
+                              "Assets/svg/copy.svg",
+                              height: 18,
+                            ),
+                          ),
+                          IconButton(
+                            splashColor: Colors.transparent,
+                            onPressed: () {
+                              menuItemsController.viewFullScreen(
+                                  controller.translatedText.value.toString());
+                            },
+                            icon: SvgPicture.asset(
+                              "Assets/svg/full_screen.svg",
+                              height: 18,
+                            ),
+                          ),
+                        ],
+                      ))
+                  : Container(),
             ),
             // Row
             //   (

@@ -5,21 +5,17 @@ import 'package:awesome_notifications/awesome_notifications.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
-import 'package:translator/app/controllers/favourite_database_controller.dart';
-import 'package:translator/app/controllers/history_database_controller.dart';
 import 'package:home_widget/home_widget.dart';
 import 'package:workmanager/workmanager.dart';
 
 import '../../../data/text_style.dart';
 
-
-
-class DashboardController extends GetxController with GetTickerProviderStateMixin {
-
+class DashboardController extends GetxController
+    with GetTickerProviderStateMixin {
   // FavouriteDatabaseController favouriteDatabaseController=Get.put(FavouriteDatabaseController());
   // HistoryDatabaseController historyDatabaseController=Get.put(HistoryDatabaseController());
-  final  selectedIndex = 0.obs;
-  final  extractedText = "".obs;
+  final selectedIndex = 0.obs;
+  final extractedText = "".obs;
 
   late TabController tabController;
 
@@ -27,34 +23,29 @@ class DashboardController extends GetxController with GetTickerProviderStateMixi
   TextEditingController _messageController = TextEditingController();
 
   @override
-  void onInit()
-  {
+  void onInit() {
     tabController = TabController(length: 5, vsync: this);
     HomeWidget.setAppGroupId('group.appwudgets');
     HomeWidget.registerBackgroundCallback(backgroundCallback);
-    AwesomeNotifications().initialize(
-        'resource://drawable/notification_icon',
-        [
-          // notification icon
-          NotificationChannel(
-            channelGroupKey: 'basic_test',
-            channelKey: 'basic',
-            channelName: 'Basic notifications',
-            channelDescription: 'Notification channel for basic tests',
-            channelShowBadge: false,
-            importance: NotificationImportance.High,
-          ),
-          //add more notification type with different configuration
-
-        ]
-    );
+    AwesomeNotifications().initialize('resource://drawable/notification_icon', [
+      // notification icon
+      NotificationChannel(
+        channelGroupKey: 'basic_test',
+        channelKey: 'basic',
+        channelName: 'Basic notifications',
+        channelDescription: 'Notification channel for basic tests',
+        channelShowBadge: false,
+        importance: NotificationImportance.High,
+      ),
+      //add more notification type with different configuration
+    ]);
 
     super.onInit();
   }
 
   @override
   void onReady() {
-print("On ready on Ready");
+    print("On ready on Ready");
     //on changed
     checkForWidgetLaunch();
     HomeWidget.widgetClicked.listen(launchedFromWidget);
@@ -68,41 +59,53 @@ print("On ready on Ready");
     super.onClose();
   }
 
- void selectedOption(index){
-    selectedIndex.value=index;
- }
- void setText(text){
-    extractedText.value=text;
- }
- void showExitDialog(){
+  void selectedOption(index) {
+    selectedIndex.value = index;
+  }
+
+  void setText(text) {
+    extractedText.value = text;
+  }
+
+  void showExitDialog() {
     Get.defaultDialog(
       title: "Quit",
-      titlePadding: EdgeInsets.only(right: Get.width*0.64,top: 20,left: 20),
+      titlePadding: EdgeInsets.only(right: Get.width * 0.64, top: 20, left: 20),
       content: Padding(
-        padding:  EdgeInsets.only(right: 15,left: 15),
+        padding: EdgeInsets.only(right: 15, left: 15),
         child: SizedBox(
-          height: Get.height*0.12,
+          height: Get.height * 0.12,
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text("Are you sure you want to quit? After quit you'll go outside of app.",style: fromHintStyle,),
-
+              Text(
+                "Are you sure you want to quit? After quit you'll go outside of app.",
+                style: fromHintStyle,
+              ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  TextButton(onPressed: (){
-                    Get.close(1);
-                  }, child:Text("Cancel",style: fromTextStyle,)),
-                  SizedBox(width: 10,),
-                  TextButton(onPressed: (){
-                    if(GetPlatform.isIOS){
-                      exit(1);
-                    }
-                    else{
-                      SystemNavigator.pop();
-                    }
-                  }, child:Text("Okay",style: fromTextStyle)),
+                  TextButton(
+                      onPressed: () {
+                        Get.close(1);
+                      },
+                      child: Text(
+                        "Cancel",
+                        style: fromTextStyle,
+                      )),
+                  SizedBox(
+                    width: 10,
+                  ),
+                  TextButton(
+                      onPressed: () {
+                        if (GetPlatform.isIOS) {
+                          exit(1);
+                        } else {
+                          SystemNavigator.pop();
+                        }
+                      },
+                      child: Text("Okay", style: fromTextStyle)),
                 ],
               )
             ],
@@ -110,8 +113,7 @@ print("On ready on Ready");
         ),
       ),
     );
- }
-
+  }
 
   /// Called when Doing Background Work initiated from Widget
   @pragma("vm:entry-point")
@@ -163,7 +165,7 @@ print("On ready on Ready");
         HomeWidget.getWidgetData<String>('title', defaultValue: 'Default Title')
             .then((value) => _titleController.text = value!),
         HomeWidget.getWidgetData<String>('message',
-            defaultValue: 'Default Message')
+                defaultValue: 'Default Message')
             .then((value) => _messageController.text = value!),
       ]);
     } on PlatformException catch (exception) {
@@ -175,15 +177,17 @@ print("On ready on Ready");
     await sendData();
     await updateWidget();
   }
+
   void checkForWidgetLaunch() {
     print("checking");
     HomeWidget.initiallyLaunchedFromHomeWidget().then(launchedFromWidget);
   }
+
   void launchedFromWidget(Uri? uri) {
     if (uri != null) {
       Get.defaultDialog(
         title: 'App started from HomeScreenWidget',
-              content: Text('Here is the URI: $uri'),
+        content: Text('Here is the URI: $uri'),
       );
     }
   }

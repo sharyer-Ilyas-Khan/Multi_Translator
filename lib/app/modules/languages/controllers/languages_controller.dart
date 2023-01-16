@@ -16,16 +16,20 @@ class LanguagesController extends GetxController {
   // dynamic selectedToIndex;
   // dynamic indexId ;
 
-  UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
-  VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorController());
-  MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
-  RemoteConfigController remoteConfigController=Get.find<RemoteConfigController>();
+  UniTranslatorController uniTranslatorController =
+      Get.put(UniTranslatorController());
+  VoiceTranslatorController voiceTranslatorController =
+      Get.put(VoiceTranslatorController());
+  MultiTranslatorController multiTranslatorController =
+      Get.put(MultiTranslatorController());
+  RemoteConfigController remoteConfigController =
+      Get.find<RemoteConfigController>();
   @override
   void onInit() {
-if(remoteConfigController.languageIndex!=null){
-  selectedToIndex.value=remoteConfigController.languageIndex;
-  print(remoteConfigController.languageIndex);
-}
+    if (remoteConfigController.languageIndex != null) {
+      selectedToIndex.value = remoteConfigController.languageIndex;
+      print(remoteConfigController.languageIndex);
+    }
     super.onInit();
   }
 
@@ -39,56 +43,47 @@ if(remoteConfigController.languageIndex!=null){
     super.onClose();
   }
 
-Future<void> setIndex(index,from,id) async {
-  selectedIndex.value=index;
-    if(from=="from"){
-      selectedFromIndex.value=index;
+  Future<void> setIndex(index, from, id) async {
+    selectedIndex.value = index;
+    if (from == "from") {
+      selectedFromIndex.value = index;
     }
-  if(from=="to" && id==null){
-    selectedToIndex.value=index;
-    String translatedText=await uniTranslatorController.getTranslateUrl(
-      languagesPrefix[selectedFromIndex.value],
+    if (from == "to" && id == null) {
+      selectedToIndex.value = index;
+      String translatedText = await uniTranslatorController.getTranslateUrl(
+          languagesPrefix[selectedFromIndex.value],
+          languagesPrefix[selectedToIndex.value],
+          uniTranslatorController.textContent);
+      uniTranslatorController.setText(translatedText);
+    }
+    if (from == "to" && id == "voice") {
+      selectedToIndex.value = index;
+      String translatedText = await voiceTranslatorController.getTranslateUrl(
+          languagesPrefix[selectedFromIndex.value],
+          languagesPrefix[selectedToIndex.value],
+          voiceTranslatorController.inputText.value);
+      voiceTranslatorController.setText(translatedText);
+    }
+    if (from == "to" && id != null && id != "voice") {
+      indexId.value = id;
+      selectedToIndex.value = index;
+      multiTranslatorController.listOfPrefix[indexId.value] =
+          languagesPrefix[selectedToIndex.value];
+      multiTranslatorController.listOfLang[indexId.value] =
+          languages[selectedToIndex.value];
 
-      languagesPrefix[selectedToIndex.value],
-      uniTranslatorController.textContent
+      String translatedText = await multiTranslatorController.getTranslateUrl(
+          languagesPrefix[selectedFromIndex.value],
+          multiTranslatorController.listOfPrefix[indexId.value],
+          multiTranslatorController.textContent);
+      multiTranslatorController.listOfTranslation[indexId.value] =
+          translatedText;
+      // multiTranslatorController.setText(translatedText);
 
-    );
-    uniTranslatorController.setText(translatedText);
-
-  }
-  if(from=="to" && id=="voice"){
-    selectedToIndex.value=index;
-    String translatedText=await voiceTranslatorController.getTranslateUrl(
-        languagesPrefix[selectedFromIndex.value],
-
-        languagesPrefix[selectedToIndex.value],
-        voiceTranslatorController.inputText.value
-
-    );
-    voiceTranslatorController.setText(translatedText);
-
-  }
-  if(from=="to" && id!=null && id!="voice" ){
-    indexId.value=id;
-    selectedToIndex.value=index;
-    multiTranslatorController.listOfPrefix[indexId.value]=languagesPrefix[selectedToIndex.value];
-    multiTranslatorController.listOfLang[indexId.value]=languages[selectedToIndex.value];
-
-
-    String translatedText=await multiTranslatorController.getTranslateUrl(
-        languagesPrefix[selectedFromIndex.value],
-
-        multiTranslatorController.listOfPrefix[indexId.value],
-        multiTranslatorController.textContent
-
-    );
-    multiTranslatorController.listOfTranslation[indexId.value]=translatedText;
-    // multiTranslatorController.setText(translatedText);
-
+    }
   }
 
-}
-  RxList languagesValue=[
+  RxList languagesValue = [
     true,
     false,
     false,
@@ -142,7 +137,7 @@ Future<void> setIndex(index,from,id) async {
     false,
     false,
   ].obs;
-  List languages=[
+  List languages = [
     "English",
     "Spanish",
     "German",
@@ -197,7 +192,7 @@ Future<void> setIndex(index,from,id) async {
     "Vietnamese",
   ];
 
-  List languagesPrefix=[
+  List languagesPrefix = [
     "en",
     "es",
     "de",
@@ -252,6 +247,4 @@ Future<void> setIndex(index,from,id) async {
     "sw",
     "vi",
   ];
-
-
 }

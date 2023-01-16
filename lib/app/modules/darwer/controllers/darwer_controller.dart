@@ -13,8 +13,9 @@ import 'package:translator/app/modules/in_app_purchase_ui/controllers/in_app_pur
 import 'package:url_launcher/url_launcher.dart';
 
 class DarwerController extends GetxController {
-DashboardController dashboardController=Get.put(DashboardController());
-InAppPurchaseUiController inAppPurchaseUiController=Get.put(InAppPurchaseUiController());
+  DashboardController dashboardController = Get.put(DashboardController());
+  InAppPurchaseUiController inAppPurchaseUiController =
+      Get.put(InAppPurchaseUiController());
   @override
   void onInit() {
     super.onInit();
@@ -29,56 +30,63 @@ InAppPurchaseUiController inAppPurchaseUiController=Get.put(InAppPurchaseUiContr
   void onClose() {
     super.onClose();
   }
-  void removeAd(){
+
+  void removeAd() {
     inAppPurchaseUiController.loadPurchase(Get.context);
     // inAppPurchaseUiController.requestPurchase("id");
   }
-void favourite(){
-  Get.to(()=>FavouriteView(),binding: FavouritBinding(),transition: Transition.leftToRight);
-}
-void history(){
-Get.to(()=>HistoryView(),binding: HistoryBinding(),transition: Transition.leftToRight);
-}
-      void feedback(){
-        Get.defaultDialog(
-          titlePadding: EdgeInsets.zero,
 
-            content: const FeedbackDialog(),
-            contentPadding: EdgeInsets.zero,
-            radius: 20,
-            barrierDismissible: true,
-            title: "");
-      }
-      void rateUs(){
-        Get.defaultDialog(
-            titlePadding: EdgeInsets.zero,
-
-            content:const RateUs(),
-            contentPadding: EdgeInsets.zero,
-            radius: 20,
-            barrierDismissible: true,
-            title: "");
-      }
-      void share(){
-        Share.share("applink");
-      }
-      void privacy(){
-        launchUniversalLinkIos("https://www.google.com");
-      }
-
-void exit(){
-    dashboardController.showExitDialog();
-}
-Future<void> launchUniversalLinkIos(String url) async {
-  if (await canLaunchUrl(Uri.parse(url))) {
-    final bool nativeAppLaunchSucceeded = await launchUrl(
-        Uri.parse(url),
-        mode: LaunchMode.platformDefault
-    );
-    if (!nativeAppLaunchSucceeded) {
-      await launchUrl(Uri.parse(url),);
-    }
-
+  void favourite() {
+    Get.to(() => FavouriteView(),
+        binding: FavouritBinding(), transition: Transition.leftToRight);
   }
-}
+
+  void history() {
+    Get.to(() => HistoryView(),
+        binding: HistoryBinding(), transition: Transition.leftToRight);
+  }
+
+  void feedback() {
+    Get.defaultDialog(
+        titlePadding: EdgeInsets.zero,
+        content: const FeedbackDialog(),
+        contentPadding: EdgeInsets.zero,
+        radius: 20,
+        barrierDismissible: true,
+        title: "");
+  }
+
+  void rateUs() {
+    Get.defaultDialog(
+        titlePadding: EdgeInsets.zero,
+        content: const RateUs(),
+        contentPadding: EdgeInsets.zero,
+        radius: 20,
+        barrierDismissible: true,
+        title: "");
+  }
+
+  void share() {
+    Share.share("applink");
+  }
+
+  void privacy() {
+    launchUniversalLinkIos("https://www.google.com");
+  }
+
+  void exit() {
+    dashboardController.showExitDialog();
+  }
+
+  Future<void> launchUniversalLinkIos(String url) async {
+    if (await canLaunchUrl(Uri.parse(url))) {
+      final bool nativeAppLaunchSucceeded =
+          await launchUrl(Uri.parse(url), mode: LaunchMode.platformDefault);
+      if (!nativeAppLaunchSucceeded) {
+        await launchUrl(
+          Uri.parse(url),
+        );
+      }
+    }
+  }
 }

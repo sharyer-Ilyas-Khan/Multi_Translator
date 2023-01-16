@@ -1,4 +1,3 @@
-
 import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
@@ -9,12 +8,12 @@ import 'package:translator/app/controllers/speaker_controller.dart';
 
 class UniTranslatorController extends GetxController {
   //TODO: Implement UniTranslatorController
-  Rx<String> translatedText="Translation".obs;
-  String textContent='';
-  RxBool isNativeLoaded=false.obs;
+  Rx<String> translatedText = "Translation".obs;
+  String textContent = '';
+  RxBool isNativeLoaded = false.obs;
   NativeAd? nativeAd;
-  TextEditingController fromController=Get.put(TextEditingController());
-SpeakerController speakerController=Get.put(SpeakerController());
+  TextEditingController fromController = Get.put(TextEditingController());
+  SpeakerController speakerController = Get.put(SpeakerController());
   @override
   void onInit() {
     print("object");
@@ -33,108 +32,104 @@ SpeakerController speakerController=Get.put(SpeakerController());
 
   @override
   void onClose() {
-    if(nativeAd!=null){
+    if (nativeAd != null) {
       nativeAd!.dispose();
     }
     super.onClose();
-
-}
-FocusNode myFocusNode=FocusNode();
-void removeFocus(){
-  if(myFocusNode.hasFocus){
-    myFocusNode.unfocus();
   }
 
-}
-void swipe(){
-  if(translatedText.value!="Translation"){
-    String newInputText=translatedText.value;
-    translatedText.value=fromController.text;
-    fromController.text=newInputText;
-  }else{
-    Get.snackbar("Sorry!", "Cannot swipe empty fields.",snackPosition:SnackPosition.TOP,
-      backgroundColor: Colors.black54,colorText: Colors.white,
-      duration: Duration(milliseconds: 1500),);
+  FocusNode myFocusNode = FocusNode();
+  void removeFocus() {
+    if (myFocusNode.hasFocus) {
+      myFocusNode.unfocus();
+    }
   }
 
-}
+  void swipe() {
+    if (translatedText.value != "Translation") {
+      String newInputText = translatedText.value;
+      translatedText.value = fromController.text;
+      fromController.text = newInputText;
+    } else {
+      Get.snackbar(
+        "Sorry!",
+        "Cannot swipe empty fields.",
+        snackPosition: SnackPosition.TOP,
+        backgroundColor: Colors.black54,
+        colorText: Colors.white,
+        duration: Duration(milliseconds: 1500),
+      );
+    }
+  }
 
-void setText(text){
-    translatedText.value=text;
-}
-  Future<String> getTranslateUrl(String sourceLan, String targetLan, String content)async {
-    textContent=content;
+  void setText(text) {
+    translatedText.value = text;
+  }
+
+  Future<String> getTranslateUrl(
+      String sourceLan, String targetLan, String content) async {
+    textContent = content;
     String TRANSLATE_BASE_URL = "https://translate.google.com.hk/";
     try {
-     String url="${TRANSLATE_BASE_URL}translate_a/single?client=gtx&sl=${sourceLan}&tl=${targetLan}&dt=t&q=${Uri.encodeFull(content)}";
-    Response response=await GetConnect().get(url);
-    // print(response.body);
-     speakerController.checkAvailableTo(targetLan);
-    var result=response.body[0][0];
+      String url =
+          "${TRANSLATE_BASE_URL}translate_a/single?client=gtx&sl=${sourceLan}&tl=${targetLan}&dt=t&q=${Uri.encodeFull(content)}";
+      Response response = await GetConnect().get(url);
+      // print(response.body);
+      speakerController.checkAvailableTo(targetLan);
+      var result = response.body[0][0];
 
-    return result[0];
+      return result[0];
     } catch (e) {
       return "Translation";
     }
   }
-  String lang="";
 
-
-
-
-
+  String lang = "";
 
   Future<int> detectLanguage(content) async {
-    lang="";
-    String url="https://translate.google.com.hk/translate_a/single?client=gtx&sl=auto&tl=eng&dt=t&q=${Uri.encodeFull(content)}";
-    Response response= await GetConnect().get(url);
-    List detectedLang=response.body[8][0];
-    if(detectedLang[0].toString().length>3){
-      lang=detectedLang[0].toString().split("-").first;
+    lang = "";
+    String url =
+        "https://translate.google.com.hk/translate_a/single?client=gtx&sl=auto&tl=eng&dt=t&q=${Uri.encodeFull(content)}";
+    Response response = await GetConnect().get(url);
+    List detectedLang = response.body[8][0];
+    if (detectedLang[0].toString().length > 3) {
+      lang = detectedLang[0].toString().split("-").first;
+    } else {
+      lang = detectedLang[0].toString();
     }
-    else{
-      lang=detectedLang[0].toString();
-    }
-    for(int i=0;i<languagesPrefix.length;i++){
-
-      if( languagesPrefix[i]==lang){
+    for (int i = 0; i < languagesPrefix.length; i++) {
+      if (languagesPrefix[i] == lang) {
         return i;
       }
     }
     return 0;
-
-
   }
+
   void loadNativeAd() {
     nativeAd = NativeAd(
         request: const AdRequest(),
         adUnitId: "ca-app-pub-3940256099942544/2247696110",
-        factoryId:  (Platform.isIOS)?'largeNative':'flightNative',
-        listener: NativeAdListener(
-            onAdLoaded: (ad) {
-              // callEvent("flight_no_native_ad_loaded_flight");
-              //   WidgetsBinding.instance.removeObserver(this);
-              isNativeLoaded.value = true;
-              // widget.remoteController.dashboardNativeClicked(false);
-
-            },
-            onAdFailedToLoad: (ad, error) {
-              ad.dispose();
-              isNativeLoaded.value = false;
-              // widget.remoteController.dashboardNativeClicked(false);
-              // callEvent("flight_no_native_ad_failed_flight");
-              print('failed to load the ad native');
-            },
-            onAdClicked: (ad) {
-              // WidgetsBinding.instance.addObserver(this);
-              // widget.remoteController.dashboardNativeClicked(true);
-              // callEvent("flight_no_native_ad_clicked_flight");
-            }
-        )
-    );
+        factoryId: (Platform.isIOS) ? 'largeNative' : 'flightNative',
+        listener: NativeAdListener(onAdLoaded: (ad) {
+          // callEvent("flight_no_native_ad_loaded_flight");
+          //   WidgetsBinding.instance.removeObserver(this);
+          isNativeLoaded.value = true;
+          // widget.remoteController.dashboardNativeClicked(false);
+        }, onAdFailedToLoad: (ad, error) {
+          ad.dispose();
+          isNativeLoaded.value = false;
+          // widget.remoteController.dashboardNativeClicked(false);
+          // callEvent("flight_no_native_ad_failed_flight");
+          print('failed to load the ad native');
+        }, onAdClicked: (ad) {
+          // WidgetsBinding.instance.addObserver(this);
+          // widget.remoteController.dashboardNativeClicked(true);
+          // callEvent("flight_no_native_ad_clicked_flight");
+        }));
     nativeAd!.load();
   }
-  List languages=[
+
+  List languages = [
     "English",
     "Spanish",
     "German",
@@ -189,7 +184,7 @@ void setText(text){
     "Vietnamese",
   ];
 
-  List languagesPrefix=[
+  List languagesPrefix = [
     "en",
     "es",
     "de",
@@ -244,8 +239,4 @@ void setText(text){
     "sw",
     "vi",
   ];
-
-
 }
-
-

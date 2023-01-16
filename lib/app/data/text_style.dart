@@ -1,292 +1,233 @@
 import 'package:flutter/material.dart';
 import 'package:translator/app/data/color_code.dart';
 
-
-
-const splashHeading=TextStyle(
-fontSize: 40,
-color:Colors.blueGrey,
-fontFamily: "robob",
-letterSpacing: 0.0
-);
-const delete=TextStyle(
-    fontSize: 20,
-    color:Colors.white,
+const splashHeading = TextStyle(
+    fontSize: 40,
+    color: Colors.blueGrey,
     fontFamily: "robob",
-    letterSpacing: 0.0
-);
-const splashSubHeading=TextStyle(
+    letterSpacing: 0.0);
+const delete = TextStyle(
+    fontSize: 20, color: Colors.white, fontFamily: "robob", letterSpacing: 0.0);
+const splashSubHeading = TextStyle(
     fontSize: 35,
-    color:Colors.blueGrey,
+    color: Colors.blueGrey,
     fontFamily: "robor",
-    letterSpacing: 0.0
-);
-const appBar=TextStyle(
+    letterSpacing: 0.0);
+const appBar = TextStyle(
     fontSize: 18,
-    color:AppColors.appBarIconColor,
+    color: AppColors.appBarIconColor,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const tabBar=TextStyle(
+    letterSpacing: 0.0);
+const tabBar = TextStyle(
     fontSize: 14,
-    color:AppColors.appBarIconColor,
+    color: AppColors.appBarIconColor,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const fromHintStyle=TextStyle(
+    letterSpacing: 0.0);
+const fromHintStyle = TextStyle(
     fontSize: 14,
-    color:Colors.grey,
+    color: Colors.grey,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-dynamic premium=TextStyle(
+    letterSpacing: 0.0);
+dynamic premium = TextStyle(
     fontSize: 14,
-    color:Colors.grey.shade400,
+    color: Colors.grey.shade400,
     fontFamily: "robob",
     // fontWeight: FontWeight.w900,
-    letterSpacing: 1.0
-);
-const rateUsHeading=TextStyle(
+    letterSpacing: 1.0);
+const rateUsHeading = TextStyle(
     fontSize: 16,
-    color:Colors.black,
+    color: Colors.black,
     fontFamily: "robob",
     fontWeight: FontWeight.w600,
-    letterSpacing: 0.0
-);
-const rateUsDetailsStyle=TextStyle(
+    letterSpacing: 0.0);
+const rateUsDetailsStyle = TextStyle(
     fontSize: 15,
-    color:Colors.black26,
+    color: Colors.black26,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
- const  fromDropStyle=TextStyle(
+    letterSpacing: 0.0);
+const fromDropStyle = TextStyle(
     fontSize: 15,
-    color:Colors.blue,
+    color: Colors.blue,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const  textInputStyle=TextStyle(
+    letterSpacing: 0.0);
+const textInputStyle = TextStyle(
     fontSize: 25,
-    color:Colors.black87,
+    color: Colors.black87,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const  textInputStyleTo=TextStyle(
+    letterSpacing: 0.0);
+const textInputStyleTo = TextStyle(
     fontSize: 25,
-    color:Colors.white,
+    color: Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const  fromTextStyle=TextStyle(
+    letterSpacing: 0.0);
+const fromTextStyle = TextStyle(
     fontSize: 15,
-    color:Colors.black,
+    color: Colors.black,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const toHintStyle=TextStyle(
+    letterSpacing: 0.0);
+const toHintStyle = TextStyle(
     fontSize: 20,
-    color:Colors.white,
+    color: Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const splashButtonStyle=TextStyle(
+    letterSpacing: 0.0);
+const splashButtonStyle = TextStyle(
     fontSize: 18,
-    color:Colors.white,
+    color: Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const  toDropStyle=TextStyle(
+    letterSpacing: 0.0);
+const toDropStyle = TextStyle(
     fontSize: 15,
-    color:Colors.blue,
+    color: Colors.blue,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const  toTextStyle=TextStyle(
+    letterSpacing: 0.0);
+const toTextStyle = TextStyle(
     fontSize: 15,
-    color:Colors.black,
+    color: Colors.black,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const  picker=TextStyle(
+    letterSpacing: 0.0);
+const picker = TextStyle(
     fontSize: 15,
-    color:Colors.black87,
+    color: Colors.black87,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const  dictionaryInput=TextStyle(
+    letterSpacing: 0.0);
+const dictionaryInput = TextStyle(
     fontSize: 15,
-    color:Colors.black87,
+    color: Colors.black87,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const searchLangStyle=TextStyle(
+    letterSpacing: 0.0);
+const searchLangStyle = TextStyle(
     fontSize: 15,
-    color:Colors.grey,
+    color: Colors.grey,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const searchLangHint=TextStyle(
+    letterSpacing: 0.0);
+const searchLangHint = TextStyle(
     fontSize: 18,
-    color:Colors.black12,
+    color: Colors.black12,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 1.0
-);
-const languageTitle=TextStyle(
+    letterSpacing: 1.0);
+const languageTitle = TextStyle(
     fontSize: 14,
-    color:Colors.black87,
+    color: Colors.black87,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 1.0
-);
-const languageTitleHeading=TextStyle(
+    letterSpacing: 1.0);
+const languageTitleHeading = TextStyle(
     fontSize: 14,
-    color:Colors.black54,
+    color: Colors.black54,
     fontFamily: "robob",
-    letterSpacing: 1.0
-);
-const appBarDrawer=TextStyle(
+    letterSpacing: 1.0);
+const appBarDrawer = TextStyle(
     fontSize: 16,
-    color:AppColors.appBarIconColor,
+    color: AppColors.appBarIconColor,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const drawerOptions=TextStyle(
+    letterSpacing: 0.0);
+const drawerOptions = TextStyle(
     fontSize: 14,
-    color:AppColors.appBarIconColor,
+    color: AppColors.appBarIconColor,
     fontFamily: "robob",
     fontWeight: FontWeight.w100,
-    letterSpacing: 0.0
-);
-const drawerLangOptions=TextStyle(
+    letterSpacing: 0.0);
+const drawerLangOptions = TextStyle(
     fontSize: 15,
-    color:AppColors.appBarIconColor,
+    color: AppColors.appBarIconColor,
     fontFamily: "robob",
     fontWeight: FontWeight.w100,
-    letterSpacing: 0.0
-);
-const dictionaryTitle=TextStyle(
+    letterSpacing: 0.0);
+const dictionaryTitle = TextStyle(
     fontSize: 30,
-    color:AppColors.appBarIconColor,
+    color: AppColors.appBarIconColor,
     fontFamily: "robob",
     fontWeight: FontWeight.w100,
-    letterSpacing: 1.0
-);
-const dictionaryExample=TextStyle(
+    letterSpacing: 1.0);
+const dictionaryExample = TextStyle(
     fontSize: 27,
-    color:Colors.black54,
+    color: Colors.black54,
     fontFamily: "robob",
     fontWeight: FontWeight.w100,
-    letterSpacing: 1.0
-);
-const dictionaryExampleText=TextStyle(
+    letterSpacing: 1.0);
+const dictionaryExampleText = TextStyle(
     fontSize: 15,
-    color:Colors.black26,
+    color: Colors.black26,
     fontFamily: "robon",
     fontWeight: FontWeight.w600,
-    letterSpacing: 0.0
-);
-const dictionaryMean=TextStyle(
+    letterSpacing: 0.0);
+const dictionaryMean = TextStyle(
     fontSize: 16,
-    color:Colors.black87,
+    color: Colors.black87,
     fontFamily: "robon",
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.0
-);
-const dictionaryDef=TextStyle(
+    letterSpacing: 0.0);
+const dictionaryDef = TextStyle(
     fontSize: 16,
-    color:Colors.black45,
+    color: Colors.black45,
     fontFamily: "robon",
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.0
-);
-const dictionaryMoreResult=TextStyle(
+    letterSpacing: 0.0);
+const dictionaryMoreResult = TextStyle(
     fontSize: 16,
-    color:AppColors.primaryColor,
+    color: AppColors.primaryColor,
     fontFamily: "robon",
     fontWeight: FontWeight.w500,
-    letterSpacing: 0.0
-);
-const  toolTipStyle=TextStyle(
-    fontSize: 12,
-    color:Colors.black,
-    fontFamily: "robor",
-    letterSpacing: 0.0
-);
-const dictionaryStyle=TextStyle(
+    letterSpacing: 0.0);
+const toolTipStyle = TextStyle(
+    fontSize: 12, color: Colors.black, fontFamily: "robor", letterSpacing: 0.0);
+const dictionaryStyle = TextStyle(
     fontSize: 15,
-    color:Colors.white,
+    color: Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.0
-);
-const translateButton=TextStyle(
+    letterSpacing: 0.0);
+const translateButton = TextStyle(
     fontSize: 12,
-    color:Colors.white,
+    color: Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.5
-);
-const  textFullScreenStyle=TextStyle(
+    letterSpacing: 0.5);
+const textFullScreenStyle = TextStyle(
     fontSize: 30,
-    color:Colors.white,
+    color: Colors.white,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 0.7
-);
-const inAppHeading=TextStyle(
-    fontSize: 18,
-    color:Colors.black,
-    fontFamily: "robob",
-    letterSpacing: 0.0
-);
-const inTitleHeading=TextStyle(
-    fontSize: 25,
-    color:Colors.black,
-    fontFamily: "robob",
-    letterSpacing: 0.0
-);
-const inAppSubHeading=TextStyle(
+    letterSpacing: 0.7);
+const inAppHeading = TextStyle(
+    fontSize: 18, color: Colors.black, fontFamily: "robob", letterSpacing: 0.0);
+const inTitleHeading = TextStyle(
+    fontSize: 25, color: Colors.black, fontFamily: "robob", letterSpacing: 0.0);
+const inAppSubHeading = TextStyle(
     fontSize: 14,
-    color:Colors.black,
+    color: Colors.black,
     fontFamily: "robor",
     fontWeight: FontWeight.w900,
-    letterSpacing: 1.0
-);
-const  oneTime =TextStyle(
+    letterSpacing: 1.0);
+const oneTime = TextStyle(
     fontSize: 12,
-    color:Colors.black38,
+    color: Colors.black38,
     fontFamily: "robor",
-    letterSpacing: 0.0
-);
-const  policy =TextStyle(
+    letterSpacing: 0.0);
+const policy = TextStyle(
     fontSize: 10,
-    color:Colors.black38,
+    color: Colors.black38,
     fontFamily: "robob",
-    letterSpacing: 0.0
-);
-const  splashPolicy =TextStyle(
-    fontSize: 14,
-    color:Colors.black,
-    fontFamily: "robob",
-    letterSpacing: 0.0
-);
+    letterSpacing: 0.0);
+const splashPolicy = TextStyle(
+    fontSize: 14, color: Colors.black, fontFamily: "robob", letterSpacing: 0.0);
 // <!--<?xml version="1.0" encoding="utf-8"?>-->
 // <!--<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
 // <!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->

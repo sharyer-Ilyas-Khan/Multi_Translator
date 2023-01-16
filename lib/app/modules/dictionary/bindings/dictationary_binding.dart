@@ -5,7 +5,8 @@ import '../controllers/dictationary_controller.dart';
 class DictionaryBinding extends Bindings {
   @override
   void dependencies() {
-    Get.put( DictionaryController(),
+    Get.put(
+      DictionaryController(),
     );
   }
 }

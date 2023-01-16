@@ -11,48 +11,58 @@ class DarwerView extends GetView<DarwerController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: CupertinoColors.extraLightBackgroundGray,
-        body: CustomScrollView(
-            slivers: [
-              const CupertinoSliverNavigationBar(
-               stretch: true,
-                largeTitle: Text('Settings'),
-                automaticallyImplyLeading: false,
-                backgroundColor: CupertinoColors.extraLightBackgroundGray,
-                // trailing: Icon(CupertinoIcons.add_circled),
-
-              ),
-      SliverList(
-          delegate: SliverChildListDelegate(
-        [
-          const DrawerOption(icon: "ad_ic", text: "Remove Ads", index: 1,color: Colors.blue),
-
-         DrawerOption(icon: "fav", text: "Favourite", index: 2,color: Colors.red.shade600),
-         const Padding(
-                  padding: EdgeInsets.all(20.0),
-                  child: Text(
-                    "Review section",
-                    style: appBarDrawer,
-                  ),
-                ),
-          const DrawerOption(icon: "feedback", text: "Feedback", index: 4,color: Colors.blue),
-          const DrawerOption(icon: "rateus", text: "Rate us", index: 5,color: Colors.blue),
-          const DrawerOption(icon: "share", text: "Share", index: 6,color: Colors.amber),
-
-          const Padding(
-            padding: EdgeInsets.all(20.0),
-            child: Text(
-              "Privacy section",
-              style: appBarDrawer,
-            ),
+        backgroundColor: CupertinoColors.extraLightBackgroundGray,
+        body: CustomScrollView(slivers: [
+          const CupertinoSliverNavigationBar(
+            stretch: true,
+            largeTitle: Text('Settings'),
+            automaticallyImplyLeading: false,
+            backgroundColor: CupertinoColors.extraLightBackgroundGray,
+            // trailing: Icon(CupertinoIcons.add_circled),
           ),
-          const DrawerOption(icon: "privacy", text: "Privacy policy", index: 7,color: Colors.purple),
-          const DrawerOption(icon: "quit", text: "Quit", index: 8,color: Colors.grey),
-
-        ]
-      ))
-
-
-    ]));
+          SliverList(
+              delegate: SliverChildListDelegate([
+            const DrawerOption(
+                icon: "ad_ic",
+                text: "Remove Ads",
+                index: 1,
+                color: Colors.blue),
+            DrawerOption(
+                icon: "fav",
+                text: "Favourite",
+                index: 2,
+                color: Colors.red.shade600),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                "Review section",
+                style: appBarDrawer,
+              ),
+            ),
+            const DrawerOption(
+                icon: "feedback",
+                text: "Feedback",
+                index: 4,
+                color: Colors.blue),
+            const DrawerOption(
+                icon: "rateus", text: "Rate us", index: 5, color: Colors.blue),
+            const DrawerOption(
+                icon: "share", text: "Share", index: 6, color: Colors.amber),
+            const Padding(
+              padding: EdgeInsets.all(20.0),
+              child: Text(
+                "Privacy section",
+                style: appBarDrawer,
+              ),
+            ),
+            const DrawerOption(
+                icon: "privacy",
+                text: "Privacy policy",
+                index: 7,
+                color: Colors.purple),
+            const DrawerOption(
+                icon: "quit", text: "Quit", index: 8, color: Colors.grey),
+          ]))
+        ]));
   }
 }

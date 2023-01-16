@@ -3,26 +3,23 @@ import 'dart:io';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:flutter_inapp_purchase/flutter_inapp_purchase.dart';
+import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../../../main.dart';
 
 class InAppPurchaseUiController extends GetxController {
-
-
-
-  static  String iapId = "ios.test.purchased";
+  static String iapId = "ios.test.purchased";
   List<IAPItem> _items = [];
-  bool button=true;
+  bool button = true;
   String _platformVersion = 'Unknown';
   late StreamController<int> _events;
   dynamic _timer;
-  bool showDialoge=false;
+  bool showDialoge = false;
   int _counter = 0;
-  double width=Get.width;
-  double height=Get.height;
+  double width = Get.width;
+  double height = Get.height;
   late StreamSubscription _purchaseUpdatedSubscription;
   late StreamSubscription _purchaseErrorSubscription;
   late StreamSubscription _conectionSubscription;
@@ -42,74 +39,68 @@ class InAppPurchaseUiController extends GetxController {
     super.onClose();
   }
 
-  void loadPurchase(context){
-    if(kReleaseMode){ //
-      if(Platform.isAndroid){
+  void loadPurchase(context) {
+    if (kReleaseMode) {
+      //
+      if (Platform.isAndroid) {
         iapId = "com.flight.tracker.flight.radar.live";
       }
-      if(Platform.isIOS){
+      if (Platform.isIOS) {
         iapId = "widget.productId";
       }
     }
-    if(kReleaseMode!=true && Platform.isAndroid){
+    if (kReleaseMode != true && Platform.isAndroid) {
       iapId = 'android.test.purchased';
       // iapId = 'ios.test.purchased';
 
     }
-    if(kReleaseMode!=true && Platform.isIOS){
+    if (kReleaseMode != true && Platform.isIOS) {
       // iapId = 'android.test.purchased';
       iapId = 'ios.test.purchased';
-
     }
     _events = StreamController<int>();
     _events.add(10);
     initPlatformState(context);
   }
+
   Future<Null> _getProduct() async {
-    try{
-      List<IAPItem> items = await FlutterInappPurchase.instance.getProducts([iapId]);
-      if(items.isNotEmpty){
+    try {
+      List<IAPItem> items =
+          await FlutterInappPurchase.instance.getProducts([iapId]);
+      if (items.isNotEmpty) {
         for (var item in items) {
           print(item.toString());
           _items.add(item);
         }
 
-          _items = items;
-      }
-      else{
+        _items = items;
+      } else {
         print("list is empty");
       }
-    }
-    catch(e){
+    } catch (e) {
       print(e.toString());
     }
-
-
   }
+
   Future<void> requestPurchase() async {
     try {
       SharedPreferences prefs = await SharedPreferences.getInstance();
-      if(prefs.getBool("purchased")==false){
-
-        try{
+      if (prefs.getBool("purchased") == false) {
+        try {
           FlutterInappPurchase.instance.requestPurchase(iapId);
-        }
-        catch(e){
+        } catch (e) {
           print(e.toString());
         }
-      }
-      else{
+      } else {
         print("Already Purchased");
         FlutterInappPurchase.instance.requestPurchase(iapId);
       }
-
     } catch (error) {
       print('$error');
     }
     // callEvent("requesting_purchase_white_flight");
-
-
   }
+
   Future<void> initPlatformState(context) async {
     String platformVersion;
 
@@ -130,7 +121,6 @@ class InAppPurchaseUiController extends GetxController {
     // setState to update our non-existent appearance.
     // if (!mounted) return;
 
-
     // refresh items for android
     try {
       String msg = await FlutterInappPurchase.instance.consumeAll();
@@ -141,45 +131,45 @@ class InAppPurchaseUiController extends GetxController {
 
     _conectionSubscription =
         FlutterInappPurchase.connectionUpdated.listen((connected) {
-          print('connected: $connected');
-        });
+      print('connected: $connected');
+    });
 
     _purchaseUpdatedSubscription =
         FlutterInappPurchase.purchaseUpdated.listen((productItem) async {
-          print('purchase-updated: $productItem');
-          if(productItem!.purchaseStateAndroid==PurchaseState.purchased){
-            // callEvent("success_purchased_white_flight");
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.setBool("purchased", true);
-            _startTimer(context);
-            showDialog(
-                barrierDismissible: false,
-                context: context, builder: (_){
+      print('purchase-updated: $productItem');
+      if (productItem!.purchaseStateAndroid == PurchaseState.purchased) {
+        // callEvent("success_purchased_white_flight");
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool("purchased", true);
+        _startTimer(context);
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (_) {
               return abortDialog(context);
             });
-          }
-          if(productItem.transactionStateIOS==TransactionState.purchased){
-            // callEvent("success_purchased_white_flight");
-            SharedPreferences prefs = await SharedPreferences.getInstance();
-            prefs.setBool("purchased", true);
-            _startTimer(context);
-            showDialog(
-                barrierDismissible: false,
-                context: context, builder: (_){
+      }
+      if (productItem.transactionStateIOS == TransactionState.purchased) {
+        // callEvent("success_purchased_white_flight");
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+        prefs.setBool("purchased", true);
+        _startTimer(context);
+        showDialog(
+            barrierDismissible: false,
+            context: context,
+            builder: (_) {
               return abortDialog(context);
             });
-          }
-        });
+      }
+    });
 
     _purchaseErrorSubscription =
         FlutterInappPurchase.purchaseError.listen((purchaseError) {
-          print('purchase-error: $purchaseError');
-          // setState((){
-          //   fadeButton=false;
-          // });
-        });
-
-
+      print('purchase-error: $purchaseError');
+      // setState((){
+      //   fadeButton=false;
+      // });
+    });
 
     // requestPurchase("id");
   }
@@ -188,11 +178,9 @@ class InAppPurchaseUiController extends GetxController {
     return AlertDialog(
       backgroundColor: Colors.white,
       title: Text("Congratulations",
-          style: TextStyle(
-              fontSize: width * 0.05,
-              fontWeight: FontWeight.w900)),
-      content: Text(
-          "Please restart the app to apply new changes.",
+          style:
+              TextStyle(fontSize: width * 0.05, fontWeight: FontWeight.w900)),
+      content: Text("Please restart the app to apply new changes.",
           style: TextStyle(
               color: Colors.black,
               fontSize: width * 0.04,
@@ -205,12 +193,9 @@ class InAppPurchaseUiController extends GetxController {
               stream: _events.stream,
               builder: (BuildContext context, AsyncSnapshot<int> snapshot) {
                 print(snapshot.data.toString());
-                return Text(
-                    "Restarting App in ${snapshot.data.toString()} Sec",
+                return Text("Restarting App in ${snapshot.data.toString()} Sec",
                     style: TextStyle(
-
-                        fontSize: width * 0.05,
-                        fontWeight: FontWeight.w900));
+                        fontSize: width * 0.05, fontWeight: FontWeight.w900));
               },
             ),
           ],
@@ -218,7 +203,6 @@ class InAppPurchaseUiController extends GetxController {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-
             TextButton(
                 onPressed: () {
                   RestartWidget.restartApp(context);
@@ -229,6 +213,7 @@ class InAppPurchaseUiController extends GetxController {
       ],
     );
   }
+
   void _startTimer(context) {
     _counter = 10;
     if (_timer != null) {
@@ -236,10 +221,9 @@ class InAppPurchaseUiController extends GetxController {
     }
     _timer = Timer.periodic(Duration(seconds: 1), (timer) {
       //setState(() {
-      (_counter > 0) ? _counter-- : {
-        _timer.cancel(),
-        RestartWidget.restartApp(context)
-      };
+      (_counter > 0)
+          ? _counter--
+          : {_timer.cancel(), RestartWidget.restartApp(context)};
       //});
       print(_counter);
       _events.add(_counter);

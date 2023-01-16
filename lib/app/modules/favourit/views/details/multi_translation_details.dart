@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 
 import '../../../../data/color_code.dart';
@@ -9,7 +8,9 @@ class MultiTranslationDetailsView extends GetView {
   final data;
   final List prefixList;
   final List dataList;
-  const MultiTranslationDetailsView({Key? key, this.data,required this.prefixList,required this.dataList}) : super(key: key);
+  const MultiTranslationDetailsView(
+      {Key? key, this.data, required this.prefixList, required this.dataList})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -70,38 +71,41 @@ class MultiTranslationDetailsView extends GetView {
                   itemBuilder: (_, index) {
                     print(prefixList);
                     print(prefixList.length);
-                return SizedBox(
-                  child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Text(
-                        "To : ${prefixList[index]}",
-                        style: fromTextStyle,
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: SizedBox(
-                        height: Get.height * 0.1,
-                        width: Get.width * 0.85,
-                        child: SingleChildScrollView(
-                            child: Text(dataList[index],overflow: TextOverflow.fade,
-                          style: fromHintStyle,
-                        )),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20.0),
-                      child: Divider(
-                        thickness: 2,
-                        color: Colors.black12,
-                      ),
-                    ),
-                  ]),
-                );
-              }),
+                    return SizedBox(
+                      child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Text(
+                                "To : ${prefixList[index]}",
+                                style: fromTextStyle,
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: SizedBox(
+                                height: Get.height * 0.1,
+                                width: Get.width * 0.85,
+                                child: SingleChildScrollView(
+                                    child: Text(
+                                  dataList[index],
+                                  overflow: TextOverflow.fade,
+                                  style: fromHintStyle,
+                                )),
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.only(
+                                  left: 20.0, right: 20.0),
+                              child: Divider(
+                                thickness: 2,
+                                color: Colors.black12,
+                              ),
+                            ),
+                          ]),
+                    );
+                  }),
             ),
           ),
         ],

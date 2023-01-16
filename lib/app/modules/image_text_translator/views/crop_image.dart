@@ -2,46 +2,48 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/image_text_translator/controllers/image_text_translator_controller.dart';
 
-
 class CropImage extends StatelessWidget {
   final file;
 
-   CropImage({Key? key, this.file}) : super(key: key);
+  CropImage({Key? key, this.file}) : super(key: key);
   late ImageTextTranslatorController controller;
   @override
   Widget build(BuildContext context) {
-   controller=Get.put(ImageTextTranslatorController());
+    controller = Get.put(ImageTextTranslatorController());
     controller.cropImage(File(file.path));
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        iconTheme: IconThemeData(
-            color: Colors.grey.shade700
+        iconTheme: IconThemeData(color: Colors.grey.shade700),
+        title: const Text(
+          "Translate Image",
+          style: appBar,
         ),
-        title: const Text("Translate Image", style: appBar,),
-        backgroundColor: Colors.white,),
+        backgroundColor: Colors.white,
+      ),
       body: Column(
         children: [
-       Obx(
-         ()=> Expanded(
-                child: controller.file.value.path!=""?Container(
-                  decoration: BoxDecoration(
-                      image: DecorationImage(
-                          image:
-                          // controller.imageReady.value?
-                          FileImage(File(controller.file.value.path),),
-                          fit: BoxFit.fitWidth
-                      )
-                  ),
-                ):Container(),
+          Obx(
+            () => Expanded(
+              child: controller.file.value.path != ""
+                  ? Container(
+                      decoration: BoxDecoration(
+                          image: DecorationImage(
+                              image:
+                                  // controller.imageReady.value?
+                                  FileImage(
+                                File(controller.file.value.path),
+                              ),
+                              fit: BoxFit.fitWidth)),
+                    )
+                  : Container(),
             ),
-       ),
+          ),
           Container(
             height: Get.height * 0.15,
             width: Get.width,
@@ -52,28 +54,27 @@ class CropImage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       controller.cropImage(File(file.path));
                     },
                     child: Container(
                       height: Get.height * 0.05,
                       width: Get.width * 0.1,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle
-
-                      ),
+                          color: Colors.white, shape: BoxShape.circle),
                       child: Center(
-                        child: Icon(Icons.crop, color: Colors.black,),
+                        child: Icon(
+                          Icons.crop,
+                          color: Colors.black,
+                        ),
                       ),
-
                     ),
                   ),
                   Center(
                     child: InkWell(
-                      onTap: (){
-                        controller.getTextFromImage(File(controller.file.value.path),context);
-
+                      onTap: () {
+                        controller.getTextFromImage(
+                            File(controller.file.value.path), context);
                       },
                       child: Container(
                         height: Get.height * 0.06,
@@ -83,31 +84,31 @@ class CropImage extends StatelessWidget {
                           color: AppColors.primaryColor,
                         ),
                         child: Center(
-                          child: Text("Translate", style: toTextStyle,),
+                          child: Text(
+                            "Translate",
+                            style: toTextStyle,
+                          ),
                         ),
-
                       ),
                     ),
-
                   ),
                   InkWell(
-                    onTap: (){
+                    onTap: () {
                       Navigator.pop(context);
                     },
                     child: Container(
                       height: Get.height * 0.05,
                       width: Get.width * 0.1,
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          shape: BoxShape.circle
-                      ),
+                          color: Colors.white, shape: BoxShape.circle),
                       child: Center(
-                        child: Icon(Icons.close, color: Colors.black,),
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.black,
+                        ),
                       ),
-
                     ),
                   ),
-
                 ],
               ),
             ),
@@ -116,7 +117,4 @@ class CropImage extends StatelessWidget {
       ),
     );
   }
-
-
-
 }
