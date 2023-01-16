@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:translator/app/controllers/remote_config_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 import 'package:translator/app/modules/dashboard/bindings/dashboard_binding.dart';
@@ -13,15 +15,18 @@ import '../controllers/languages_controller.dart';
 class InitialLanguagesCheckView extends GetView<LanguageAdController> {
   final String? type;
   final id;
+
   InitialLanguagesCheckView({Key? key, this.type,this.id}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     LanguagesController languageController=Get.find<LanguagesController>();
+    RemoteConfigController remoteConfigController=Get.find<RemoteConfigController>();
     print(languages);
     return Scaffold(
         floatingActionButton: Padding(
           padding:  EdgeInsets.only(bottom: Get.height*0.23),
           child: FloatingActionButton(onPressed: (){
+            controller.setNativeLanguage(remoteConfigController.languageIndex);
             Get.off(()=>DashboardView(),binding: DashboardBinding());
           },
             child: Icon(Icons.check_rounded,color: Colors.white,),),
@@ -59,9 +64,9 @@ class InitialLanguagesCheckView extends GetView<LanguageAdController> {
                                 ()=>InkWell(
                               highlightColor: Colors.transparent,
                               onTap: (){
+
+                                remoteConfigController.assignLanguageIndex(index);
                                 languageController.setIndex(index,"To",null);
-                                print(languageController.languages
-                                [languageController.selectedToIndex.value]);
                                 // Navigator.pop(context);
                               },
                               child: Padding(

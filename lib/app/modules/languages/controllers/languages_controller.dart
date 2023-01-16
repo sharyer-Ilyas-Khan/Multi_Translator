@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/remote_config_controller.dart';
 import 'package:translator/app/modules/multi_translator/controllers/multi_translator_controller.dart';
 import 'package:translator/app/modules/uni_translator/controllers/uni_translator_controller.dart';
 import 'package:translator/app/modules/voice_translator/controllers/voice_translator_controller.dart';
@@ -18,9 +19,13 @@ class LanguagesController extends GetxController {
   UniTranslatorController uniTranslatorController=Get.put(UniTranslatorController());
   VoiceTranslatorController voiceTranslatorController=Get.put(VoiceTranslatorController());
   MultiTranslatorController multiTranslatorController=Get.put(MultiTranslatorController());
+  RemoteConfigController remoteConfigController=Get.find<RemoteConfigController>();
   @override
   void onInit() {
-
+if(remoteConfigController.languageIndex!=null){
+  selectedToIndex.value=remoteConfigController.languageIndex;
+  print(remoteConfigController.languageIndex);
+}
     super.onInit();
   }
 

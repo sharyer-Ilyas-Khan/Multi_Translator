@@ -6,6 +6,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_remote_config/firebase_remote_config.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:translator/app/controllers/remote_config_controller.dart';
 import 'package:translator/app/modules/dashboard/bindings/dashboard_binding.dart';
 import 'package:translator/app/modules/dashboard/views/dashboard_view.dart';
@@ -16,6 +17,7 @@ class SplashController extends GetxController {
 RxBool agree=false.obs;
 RxBool isNativeLoaded=false.obs;
 NativeAd? nativeAd;
+SharedPreferences? prefs;
  FirebaseAnalytics? firebaseAnalytics;
  FirebaseRemoteConfig? remoteConfig;
 RemoteConfigController remoteConfigController=Get.put(RemoteConfigController());
@@ -23,6 +25,7 @@ RemoteConfigController remoteConfigController=Get.put(RemoteConfigController());
   void onInit() {
     // gotoDashboard();
     // getRemoteData();
+    addToSharePreferences();
     initiate();
     loadNativeAd();
     super.onInit();
@@ -40,6 +43,7 @@ RemoteConfigController remoteConfigController=Get.put(RemoteConfigController());
     }
     super.onClose();
   }
+
   void gotoDashboard(){
     // Timer(
         // const Duration(seconds: 4),(){
@@ -64,6 +68,33 @@ void initiate()async{
     // initiate();
   }
 }
+Future<void> addToSharePreferences() async {
+  prefs = await SharedPreferences.getInstance();
+  try{
+    if(prefs!.getBool("purchased")==null ||prefs!.getBool("purchased")==false){
+      prefs!.setBool("purchased", false);
+      remoteConfigController.assignPurchased(false);
+    }
+    if(prefs!.getBool("purchased")==true){
+      remoteConfigController.assignPurchased(true);
+    }
+    if(prefs!.getInt("LanguageIndex")==null){
+      // prefs!.setInt("LanguageIndex",null);
+      remoteConfigController.assignLanguageIndex(null);
+    }
+    if(prefs!.getInt("LanguageIndex")!=null){
+      remoteConfigController.assignLanguageIndex(prefs!.getInt("LanguageIndex"));
+    }
+    // if(prefs!.getBool("country")==null){
+    //   prefs!.setBool("country", true);
+    //   // _createInterstitialAd();
+    // }
+
+  }
+  catch(e){
+    print(e.toString());
+  }
+}
 void getRemoteData(){
   try{
     dynamic rawData = remoteConfig!.getValue("all_language_translator");
@@ -71,14 +102,14 @@ void getRemoteData(){
       print(rawData);
       var jsonValues=jsonDecode(rawData.asString());
       print(jsonValues);
-      remoteConfigController.assignRemoteValue(jsonValues);
+      // remoteConfigController.assignRemoteValue(jsonValues);
       //Android
       // if(remoteConfigController.purchased==false && source=="Play Store"){
       //test Ios
       // if(remoteConfigController.purchased==false&& source=="App Store"){
       //IOS
-      // if(remoteConfigController.purchased==false){
-      //   remoteConfigController.assignRemoteValue(jsonValues);
+      if(remoteConfigController.purchased==false){
+        remoteConfigController.assignRemoteValue(jsonValues);
         // (_interstitialAd==null && remoteConfigController.splashInterID!=""&&remoteConfigController.splashInter=="on")?
         // _createInterstitialAd():{};
         // if(nativeAd==null && remoteConfigController.splashNativeID!="" && remoteConfigController.splashNative=="on"){
@@ -87,10 +118,7 @@ void getRemoteData(){
         // if(nativeAdTwo==null && remoteConfigController.dashboardNativeID!="" && remoteConfigController.dashboardNative=="on"){
         //   loadNativeAdTwo();
         // }
-      // }
-      // if(remoteConfigController.purchased==true){
-      //   remoteConfigController.assignRemoteValuePaid(jsonValues);
-      // }
+      }
     }
   }
   on FormatException catch(e){

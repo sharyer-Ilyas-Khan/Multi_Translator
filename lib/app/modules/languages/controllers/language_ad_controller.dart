@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LanguageAdController extends GetxController {
   //TODO: Implement LanguageAdController
@@ -55,8 +56,10 @@ class LanguageAdController extends GetxController {
     );
     nativeAd!.load();
   }
-  void setNativeLanguage(index){
-
+  SharedPreferences? preferences;
+  Future<void> setNativeLanguage(index) async {
+    preferences = await SharedPreferences.getInstance();
+    preferences!.setInt("LanguageIndex",index);
   }
   List languagesPrefix=[
     "en",

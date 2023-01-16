@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/remote_config_controller.dart';
 import 'package:translator/app/controllers/speaker_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/modules/dashboard/controllers/dashboard_controller.dart';
@@ -23,6 +24,7 @@ class BottomNavButtons extends StatelessWidget {
   late MultiTranslatorController multiTranslatorController;
   late CameraControllers cameraControllers;
   late VoiceTranslatorController voiceTranslatorController;
+  late RemoteConfigController remoteConfigController;
   late  DictionaryController dictionaryController;
   late  SpeakerController speakerController;
   @override
@@ -34,6 +36,7 @@ class BottomNavButtons extends StatelessWidget {
      cameraControllers=Get.put(CameraControllers());
      dictionaryController=Get.put(DictionaryController());
      voiceTranslatorController=Get.put(VoiceTranslatorController());
+     remoteConfigController=Get.find<RemoteConfigController>();
      speakerController=Get.put(SpeakerController());
     return  InkWell(
         onTap: (){
@@ -130,7 +133,7 @@ void clearUniTranslator(){
   uniTranslatorController.translatedText.value="Translation";
   uniTranslatorController.textContent="";
   languagesController.selectedFromIndex.value=0;
-  languagesController.selectedToIndex.value=0;
+  languagesController.selectedToIndex.value=remoteConfigController.languageIndex;
   controller.extractedText.value="";
 }
 

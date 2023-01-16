@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:translator/app/modules/dashboard/views/bottom_nav_bar.dart';
 import 'package:translator/app/modules/image_text_translator/views/image_text_translator_view.dart';
+import 'package:translator/app/modules/languages/controllers/languages_controller.dart';
 import 'package:translator/app/modules/multi_translator/views/multi_translator_view.dart';
 import 'package:translator/app/modules/uni_translator/views/uni_translator_view.dart';
 import 'package:translator/app/modules/voice_translator/views/voice_translator_view.dart';
@@ -17,6 +18,7 @@ class DashboardView extends GetView<DashboardController> {
   List title=["Translator","Voice Translator","Image Translator","Dictionary","Multi Translator"];
   @override
   Widget build(BuildContext context) {
+    LanguagesController languagesController=Get.put(LanguagesController());
     return WillPopScope(
       onWillPop: (){
         controller.showExitDialog();

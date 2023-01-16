@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 import 'package:get/get.dart';
+import 'package:translator/app/controllers/remote_config_controller.dart';
 import 'package:translator/app/data/color_code.dart';
 import 'package:translator/app/data/text_style.dart';
 
@@ -15,6 +16,7 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
   const InAppPurchaseUiView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    RemoteConfigController remoteConfigController=Get.find<RemoteConfigController>();
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
@@ -29,7 +31,9 @@ class InAppPurchaseUiView extends GetView<InAppPurchaseUiController> {
               children: [
                 IconButton(onPressed: (){
                   // Get.close(1);
-                  Get.off(()=> InitialLanguagesCheckView(), binding:LanguagesBinding());
+                  remoteConfigController.languageIndex==null?
+                  Get.off(()=> InitialLanguagesCheckView(), binding:LanguagesBinding())
+                  :Get.off(()=> DashboardView(), binding:DashboardBinding());
                 }, icon: Icon(Icons.close,color: Colors.grey.shade300,)),
                 Container(
                   height: Get.height*0.04,
