@@ -15,7 +15,7 @@ class UniTranslatorView extends GetView<UniTranslatorController> {
   final text;
    UniTranslatorView({Key? key,this.text}) : super(key: key);
 
-  LanguagesController languagesController=Get.put(LanguagesController());
+  LanguagesController languagesController=Get.find<LanguagesController>();
   @override
 
   Widget build(BuildContext context) {

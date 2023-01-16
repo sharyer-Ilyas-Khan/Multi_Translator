@@ -59,9 +59,9 @@ class InitialLanguagesCheckView extends GetView<LanguageAdController> {
                                 ()=>InkWell(
                               highlightColor: Colors.transparent,
                               onTap: (){
-                                languageController.setIndex(index,"from",null);
+                                languageController.setIndex(index,"To",null);
                                 print(languageController.languages
-                                [languageController.selectedFromIndex.value]);
+                                [languageController.selectedToIndex.value]);
                                 // Navigator.pop(context);
                               },
                               child: Padding(

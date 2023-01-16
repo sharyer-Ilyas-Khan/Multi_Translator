@@ -18,7 +18,7 @@ class FromTextArea extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    LanguagesController languagesController=Get.put(LanguagesController());
+    LanguagesController languagesController=Get.find<LanguagesController>();
     UniTranslatorController uniController=Get.put(UniTranslatorController());
     TextFontController fontController=Get.put(TextFontController());
     MenuItemsController menuItemsController = Get.put(MenuItemsController());

@@ -21,6 +21,7 @@
 		4C064868296D3D5800309658 /* largeNativeAdView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C064867296D3D5800309658 /* largeNativeAdView.xib */; };
 		4C0D62E029751B86007D4805 /* nativeWithoutMedia.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C0D62DF29751B86007D4805 /* nativeWithoutMedia.swift */; };
 		4C0D62E429751BE5007D4805 /* nativeWithoutMediaView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0D62E329751BE5007D4805 /* nativeWithoutMediaView.xib */; };
+		4C0D62E629754EDB007D4805 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4C0D62E529754EDB007D4805 /* GoogleService-Info.plist */; };
 		4C8ACE6529658725008C1D4B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 74858FAE1ED2DC5600515810 /* AppDelegate.swift */; };
 		4C8E1B8A297180080062470E /* testInAppPurchase.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4CA767B42966B3DD005836BA /* testInAppPurchase.storekit */; };
 		4CA767B32966A832005836BA /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4CA767B22966A832005836BA /* StoreKit.framework */; };
@@ -83,6 +84,7 @@
 		4C064867296D3D5800309658 /* largeNativeAdView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = largeNativeAdView.xib; sourceTree = "<group>"; };
 		4C0D62DF29751B86007D4805 /* nativeWithoutMedia.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = nativeWithoutMedia.swift; sourceTree = "<group>"; };
 		4C0D62E329751BE5007D4805 /* nativeWithoutMediaView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = nativeWithoutMediaView.xib; sourceTree = "<group>"; };
+		4C0D62E529754EDB007D4805 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4CA767B22966A832005836BA /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4CA767B42966B3DD005836BA /* testInAppPurchase.storekit */ = {isa = PBXFileReference; lastKnownFileType = text; path = testInAppPurchase.storekit; sourceTree = "<group>"; };
 		74858FAD1ED2DC5600515810 /* Runner-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Runner-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 		97C146F01CF9000F007C117D /* Runner */ = {
 			isa = PBXGroup;
 			children = (
+				4C0D62E529754EDB007D4805 /* GoogleService-Info.plist */,
 				4C04909C2965475D0076C151 /* Runner.entitlements */,
 				97C146FA1CF9000F007C117D /* Main.storyboard */,
 				97C146FD1CF9000F007C117D /* Assets.xcassets */,
@@ -306,6 +309,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4C064868296D3D5800309658 /* largeNativeAdView.xib in Resources */,
+				4C0D62E629754EDB007D4805 /* GoogleService-Info.plist in Resources */,
 				97C147011CF9000F007C117D /* LaunchScreen.storyboard in Resources */,
 				4C0D62E429751BE5007D4805 /* nativeWithoutMediaView.xib in Resources */,
 				3B3967161E833CAA004F5970 /* AppFrameworkInfo.plist in Resources */,
